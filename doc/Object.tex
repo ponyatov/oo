@@ -1,2 +1,33 @@
 \secrel{base Object class}\label{Object}\secdown
+
+The whole system built on top of \emph{universal base object}: 
+
+\begin{lstlisting}[language=Python]
+class Object:
+  def __init__(self,V):
+    self.type = self.__class__.__name__.lower()
+    self.value = V
+    self.attr = {} ; self.nest = []
+  def __repr__(self):
+    return '<%s:%s>' % (self.type,self.value)
+\end{lstlisting}
+
+\noindent
+As you can see in \cite{budd}\ \emph{any object} must have two elements:
+\begin{description}%[nosep]
+\item[type]\ points to class of object\\
+what '11' means? is it integer, number, or string of two `1`s\,?\\
+we can't detect this directly, so we require some \term{type tag}
+
+What type should this tag have itself? By design, it should be a pointer to some
+Class object used for current object creation. But if we need only \emph{a fixed
+set of types pre-built into the system}, we can downsize it just to tiny integer
+value, indicates type. As we implement bootstrap VM \ref{bootstrapVM} in \py, we
+just use a pointer to the class, provided by \py VM. Or you can use
+some sort of \verb|std::string| in \cpp\ implementation, if you are targetted on
+simplicity and not efficiency.
+
+\item[value]\ holds object value (in case of primitive object)
+\end{description}
+
 \secup
