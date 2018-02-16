@@ -6,9 +6,20 @@
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 %% hyperlinks pdf style
 \usepackage[unicode,colorlinks=true]{hyperref}
+%% colors
+\usepackage{xcolor}
+\definecolor{red}{rgb}{0.5,0,0}
+\definecolor{green}{rgb}{0,0.3,0}
+\definecolor{blue}{rgb}{0,0,0.7}
+
+% graphics
+\usepackage[pdftex]{graphicx}
+% \newcommand{\fig}[3]{\bigskip\noindent\includegraphics[#3]{#2}\textbf{#1}\bigskip}
 
 % hyphenation and i18n
-\usepackage[english]{babel}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
 
 % relative sectioning
 \usepackage{ifthen}
@@ -24,15 +35,22 @@
 }
 \newcommand{\secly}[1]{
 \section*{#1}
-\addcontentsline{toc}{section}{#1}
+\addcontentsline{toc}{subsection}{#1}
 }
 
 % misc
 \newcommand{\email}[1]{$<$\href{mailto:#1}{#1}$>$}
 \newcommand{\note}[1]{\footnote{\ #1}}
-\renewcommand{\emph}[1]{\textcolor{blue}{\textbf{#1}}}
+\renewcommand{\emph}[1]{\textcolor{blue}{#1}}
+\newcommand{\term}[1]{\textcolor{green}{#1}}
+%% [nosep] option in lists/enums
+\usepackage{enumitem}
+%% frame box
+\usepackage{framed}
 
 % computer specific
 
 %% languages
 \newcommand{\F}{FORTH}
+\newcommand{\py}{Python}
+\newcommand{\cpp}{C(++)}
