@@ -7,6 +7,9 @@
 %% hyperlinks pdf style
 \usepackage[unicode,colorlinks=true]{hyperref}
 
+% hyphenation and i18n
+\usepackage[english]{babel}
+
 % relative sectioning
 \usepackage{ifthen}
 \newcounter{secdepth}\setcounter{secdepth}{0}
@@ -28,3 +31,8 @@
 \newcommand{\email}[1]{$<$\href{mailto:#1}{#1}$>$}
 \newcommand{\note}[1]{\footnote{\ #1}}
 \renewcommand{\emph}[1]{\textcolor{blue}{\textbf{#1}}}
+
+% computer specific
+
+%% languages
+\newcommand{\F}{FORTH}
