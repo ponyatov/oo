@@ -1,1 +1,21 @@
-\secrel{\F}\label{whyFORTH}
+\clearpage\secrel{\F}\label{whyFORTH}
+
+\F\ is the easiest language you can imagine not in usage but \emph{in
+implementation}. Source code is just single words delimited by spaces, there is
+no syntax by fact.
+% 
+% \bigskip
+Interpreter
+\begin{enumerate}[nosep]
+  \item reads \term{input stream} word by word,
+  \item search readed \term{word} in \term{vocabulary}, and
+  \item \term{execute}s it or \term{compile}s if \textit{compiler state} enabled
+\end{enumerate}
+
+\noindent
+That's all! Some words has special \term{IMMED} flag and executes in any states.
+This lets you switch off compiler mode or do some tricks with forward source
+code lookup.
+
+\bigskip\noindent
+See more: first look in \cite{kelly,kellyru}: it's the best \F\ intro book 
