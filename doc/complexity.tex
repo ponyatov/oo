@@ -1,6 +1,6 @@
 \clearpage\secly{Problem of complexity}
 
-\begin{itemize}
+\begin{itemize}[nosep]
   \item 
 Complexity is grows and never lows
   \item
@@ -8,6 +8,7 @@ Overall complexity of software system is constant value
   \item
 Metaprogramming is cool thing, but it gives complexity boost
 \end{itemize}
+\bigskip
 \noindent
 So in principle, you can't find any tool which will simplify your life in
 programming, if you target a whole system design. The one thing we can do is
@@ -28,15 +29,3 @@ language is the best in this case). But \emph{the whole complexity moves to
 source code level}: we've got huge source code files written in a cryptic
 low-level language. And we must do a lot of things manually. Programs become
 huge, buggy and unsupportable.
-
-Metaprogramming is cool technique if your job is making a lot of typical
-applications shares common code parts. So if you can distinguish a lot of
-template-like code in your sources, you need a language with metaprogramming
-capabilities. And it is not about macro\ --- \emph{you must have full scripting
-at compile time} and access to your program code in the source code,
-intermediate program representation, compiler structures and control on
-compiling process itself.
-
-But \emph{metaprogramming is} complex thing by design\ --- it is much simpler to
-write program by hands, then \emph{write program that writes program}.
-
