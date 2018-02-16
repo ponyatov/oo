@@ -22,10 +22,10 @@ we can't detect this directly, so we require some \term{type tag}
 What type should this tag have itself? By design, it should be a pointer to some
 Class object used for current object creation. But if we need only \emph{a fixed
 set of types pre-built into the system}, we can downsize it just to tiny integer
-value, indicates type. As we implement bootstrap VM \ref{bootstrapVM} in \py, we
-just use a pointer to the class, provided by \py VM. Or you can use
-some sort of \verb|std::string| in \cpp\ implementation, if you are targetted on
-simplicity and not efficiency.
+value, indicates type \cite{STFPGA}. As we implement bootstrap VM
+\ref{bootstrapVM} in \py, we just use a pointer to the class, provided by \py
+VM. Or you can use some sort of \verb|std::string| in \cpp\ implementation, if
+you are targetted on simplicity and not efficiency.
 
 \item[value]\ holds object value (in case of primitive object)
 \end{description}
