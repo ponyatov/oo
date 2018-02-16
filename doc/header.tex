@@ -1,0 +1,30 @@
+% e-book
+\documentclass[12pt]{article}
+%% paper size for mobile phone
+\usepackage[paperwidth=118.8mm,paperheight=68.2mm,margin=2mm]{geometry}
+%% font setup for screen reading
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+%% hyperlinks pdf style
+\usepackage[unicode,colorlinks=true]{hyperref}
+
+% relative sectioning
+\usepackage{ifthen}
+\newcounter{secdepth}\setcounter{secdepth}{0}
+\newcommand{\secup}{\addtocounter{secdepth}{1}}
+\newcommand{\secdown}{\addtocounter{secdepth}{-1}}
+\newcommand{\secrel}[1]{
+\ifthenelse{\equal{\value{secdepth}}{0}}{\part{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-1}}{\chapter{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-2}}{\section{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-3}}{\subsection{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-4}}{\subsubsection{#1}}{}
+}
+\newcommand{\secly}[1]{
+\section*{#1}
+\addcontentsline{toc}{section}{#1}
+}
+
+% misc
+\newcommand{\email}[1]{$<$\href{mailto:#1}{#1}$>$}
+\newcommand{\note}[1]{\footnote{\ #1}}
+\renewcommand{\emph}[1]{\textcolor{blue}{\textbf{#1}}}
