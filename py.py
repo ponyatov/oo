@@ -6,5 +6,7 @@ class Object:
         self.value = V
     def __repr__(self):
         return '<%s:%s>'%(self.type,self.value)
+       
+class Primitive(Object): pass
 
 print Object('test')
