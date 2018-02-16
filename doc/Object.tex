@@ -23,11 +23,36 @@ What type should this tag have itself? By design, it should be a pointer to some
 Class object used for current object creation. But if we need only \emph{a fixed
 set of types pre-built into the system}, we can downsize it just to tiny integer
 value, indicates type \cite{STFPGA}. As we implement bootstrap VM
-\ref{bootstrapVM} in \py, we just use a pointer to the class, provided by \py
-VM. Or you can use some sort of \verb|std::string| in \cpp\ implementation, if
-you are targetted on simplicity and not efficiency.
+\ref{bootstrapVM} in \py, we can use a pointer to the class, provided by \py
+VM. But now \emph{we are targetted on simplicity and not efficiency}, so we just
+use dumb \verb|std::string| available even in \cpp.
 
-\item[value]\ holds object value (in case of primitive object)
+\item[value]\ holds object value (in case of primitive object)\ \\
+the \term{primitive} types like numbers and strings need only single variable to
+do it's job
+
+\item[attr]\ attr\verb|{}|ibutes (key/value \emph{map} data container)
+\item[nest]\ nest\verb|[]|ed elements (\textit{ordered} list/\emph{vector} +
+\emph{stack})
+
+To write programs we need some \term{composite} data containers can hold
+collections of data. First of all it is \F\ \term{vocabulary} holds all named
+elements, like variables, elementary commands available from VM, and user
+compiled functions.
+
+To do it we can define special data classes like \verb|dict{}| and \verb|list[]|
+available in \py. But as we are going to play with \term{program
+transformation} \ref{PT}\ and dynamic OOP \ref{DynOOP}\ implementation, we'll
+embed two primary collection elements \emph{directly into base class}.
+ 
 \end{description}
+
+\noindent
+For the first view base class is over-bloated: base Object instance can work as
+a single data element, map, vector, and stack simultaneously. But this
+universality is the power. Our goal is pure dynamic scripting language with live
+object database. This base class gives a lot of functionality from scratch,
+including tagging for attribute grammar processing, and storing nested elements
+for AST, tree and graph storage.
 
 \secup
