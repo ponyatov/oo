@@ -1,0 +1,17 @@
+\clearpage\secrel{Symbol}\label{Symbol}
+
+\begin{lstlisting}[language=Python]
+class Symbol(Primitive): pass
+\end{lstlisting}
+
+\noindent
+Symbol corresponds to any entity we must name to \emph{id}entify it. Symbol can
+name program and physical variables, modules, math functions,\ldots\ any
+\term{ID}. For example in \F\ \emph{word name} by fact is a Symbol instance,
+before it was \term{resolve}d into some value or executable definition via
+\term{vocabulary}.
+
+Symbols has its own algebra. For example we should get error on try to evaluate
+$A+B$, because we can't say what it means if we don't \term{resolve} symbols and
+say what $A$ and $B$ means. Please don't confuse a Symbol and a Variable:
+Symbol's value is itself.

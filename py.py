@@ -9,4 +9,6 @@ class Object:
        
 class Primitive(Object): pass
 
+class Symbol(Primitive): pass
+
 print Object('test')
