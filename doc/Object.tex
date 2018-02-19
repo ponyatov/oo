@@ -4,12 +4,12 @@ The whole system built on top of \emph{universal base object}:
 
 \begin{lstlisting}[language=Python]
 class Object:
-  def __init__(self,V):
-    self.type = self.__class__.__name__.lower()
-    self.value = V
-    self.attr = {} ; self.nest = []
-  def __repr__(self):
-    return '<%s:%s>' % (self.type,self.value)
+	def __init__(self,V):
+		self.type = self.__class__.__name__.lower()
+		self.value = V
+		self.attr = {} ; self.nest = []
+	def __repr__(self):
+		return '<%s:%s>' % (self.type,self.value)
 \end{lstlisting}
 
 \noindent
@@ -53,11 +53,11 @@ a single data element, map, vector, and stack simultaneously. But this
 universality is the power. Our goal is pure dynamic scripting language with live
 object database. This base class gives a lot of functionality from scratch,
 including tagging for attribute grammar processing, and storing nested elements
-for AST, tree and graph storage.
+for AST, tree and graph storage (see \ref{pytest} on unit test vs dumb print).
 
-\begin{lstlisting}
->>> print Object('test')
-<object:test>
+\begin{lstlisting}[language=Python]
+def test_Object(): # run$ py.test -v VM.py
+	assert str(Object('test')) == '<object:test>'
 \end{lstlisting}
 
 \secup

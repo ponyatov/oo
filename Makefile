@@ -1,2 +1,2 @@
-log.log: src.src py.py
-	python py.py < $< > $@ && tail $(TAIL) $@
+log.log: src.src VM.py
+	python VM.py < $< > $@ && tail $(TAIL) $@

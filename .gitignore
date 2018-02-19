@@ -4,3 +4,4 @@
 *.log
 *.pyc
 *.synctex.gz
+.pytest_cache/
