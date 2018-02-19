@@ -19,9 +19,16 @@ class Primitive(Object): pass
 def test_Primiteve(): assert \
     str( Primitive('atom') ) == '<primitive:atom>'
     
-########################################################## Symbol ( generic ID)
+######################################################### Symbol ( generic ID )
 
 class Symbol(Primitive): pass
 
 def test_Symbol(): assert \
     '%s'%Symbol('Pi') == '<symbol:Pi>'
+    
+######################################################################## String
+
+class String(Object): pass
+
+def test_String(): assert '%s' % \
+    String('hello') == '<string:hello>'
