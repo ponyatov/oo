@@ -9,6 +9,8 @@ class Object:
         self.type = self.__class__.__name__.lower()
         self.value = V  # single value for instance
         self.flush()
+    def __repr__(self):
+        return '<%s:%s>'%(self.type,self.value)
     def flush(self):
         # store attributes in form of key/value
         self.attr = {}    # clean
@@ -16,8 +18,9 @@ class Object:
         self.nest = []    # clean
         # return object itself for sequential operations
         return self
-    def __repr__(self):
-        return '<%s:%s>'%(self.type,self.value)
+    def push(self,object):
+        self.nest.append(object) ; return self
+    def __lshift__(self,object): return self.push(object)
     
 def test_Object(): # run tests using py.test -v VM.py
     assert '%s' % Object('test') == '<object:test>'
@@ -89,7 +92,6 @@ class Stack(Container): pass
 def test_Stack_flush(): assert \
     Stack('flush test').flush().nest == []
 
-# def test_Stack_push():
-#     print Stack('push') << 1 << 2 << 3
-#     assert False
+def test_Stack_push(): assert \
+    ( Stack('push test') << 1 << 2 << 3 ).nest == [1,2,3]
      

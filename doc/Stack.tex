@@ -53,5 +53,19 @@ def test_Stack_flush(): assert \
 \clearpage
 \begin{lstlisting}[language=Python]
 class Object:
-	def push(self,object): self.nest.append(object) ; return self
+	def push(self,object):
+		self.nest.append(object) ; return self
 \end{lstlisting}
+
+\noindent As pushing objects on stack is frequently operation, let's define
+special \verb|operator<<|:
+\begin{lstlisting}[language=Python]
+class Object:
+	def __lshift__(self,object):
+		return self.push(object)
+
+def test_Stack_push(): assert \
+	( Stack('push test') << 1 << 2 << 3 ).nest \
+		== [1,2,3]
+\end{lstlisting}
+ 
