@@ -1,1 +1,35 @@
-\secrel{Unit testing for \py\ programs}\label{pytest}
+\clearpage\secrel{Unit testing for \py\ programs}\label{pytest}
+
+As you can see in this manual we use \term{unit test}s for demonstrating VM
+elements semantics written in \py. It can be strange and frustrating for
+beginners. For example, it will be more simple to just print sample elements and
+include what you should see, like this:
+\begin{lstlisting}
+>>> print Object('test')
+<object:test>
+\end{lstlisting}
+
+\noindent
+The key advance of using unit tests is: you always
+\begin{itemize}[nosep]
+  \item 
+can get full demo samples of \emph{code usage in real cases}, and
+  \item 
+\emph{automatically check} if everything works well and especially \emph{not
+broken after some changes}
+\end{itemize}
+
+\noindent
+I use py.test package, available via
+\begin{lstlisting}
+$ sudo pip install pytest
+$ py.test -v VM.py
+\end{lstlisting}
+If you use Eclipse, configure it via\\
+\menu{Window>Preferences>PyDev>PyUnit}\\
+\menu{Test runner>py.test runner}\\
+\menu{Parameters for test runner>\{live it empty\}}
+
+\medskip\noindent
+and you can run any \py\ script via \keys{Ctrl+F11}\ with unit testing:\\
+\menu{Run>Run As>Python unit test}

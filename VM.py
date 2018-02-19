@@ -16,13 +16,12 @@ def test_Object(): # run tests using py.test -v VM.py
        
 class Primitive(Object): pass
 
-def test_Primiteve():
-    assert str( Primitive('machine') ) == '<primitive:machine>'
+def test_Primiteve(): assert \
+    str( Primitive('atom') ) == '<primitive:atom>'
     
 ########################################################## Symbol ( generic ID)
 
 class Symbol(Primitive): pass
 
-def test_Symbol():
-    assert '%s'%Symbol('Pi') == '<symbol:Pi>'
-    
+def test_Symbol(): assert \
+    '%s'%Symbol('Pi') == '<symbol:Pi>'
