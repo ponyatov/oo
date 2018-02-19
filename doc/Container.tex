@@ -1,0 +1,26 @@
+\secrel{Containers}\secdown
+
+Container types implements data storage and manipulation.
+
+\begin{lstlisting}[language=Python]
+class Container(Object): pass
+\end{lstlisting}
+
+\noindent
+Some \emph{fixes} must be applied to \emph{base} Object to let us \emph{hold
+data}:
+
+\begin{lstlisting}[language=Python]
+class Object:
+	def __init__(self,V):
+		...
+		# store attributes in form of key/value
+		self.attr = {}
+		# store nested elements (ordered) / stack
+		self.nest = []
+\end{lstlisting}
+
+\input{Stack}
+\input{Map}
+\input{Queue}
+\secup

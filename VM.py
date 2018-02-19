@@ -7,12 +7,19 @@ import os,sys,math
 class Object:
     def __init__(self,V):
         self.type = self.__class__.__name__.lower()
-        self.value = V
+        self.value = V  # single value for instance
+        self.attr = {}  # store attributes in form of key/value
+        self.nest = []  # store nested elements (ordered) / stack
     def __repr__(self):
         return '<%s:%s>'%(self.type,self.value)
     
 def test_Object(): # run tests using py.test -v VM.py
     assert '%s' % Object('test') == '<object:test>'
+    
+def test_Object_attr(): assert \
+    Object('attr{} test').attr == {}
+def test_Object_nest(): assert \
+    Object('nest[] test').nest == []
     
 #################################################################### Primitives
        
@@ -42,7 +49,7 @@ def test_String(): assert '%s' % \
 class Number(Primitive):
     def __init__(self,V):
         Primitive.__init__(self, V)
-        self.value = float(V) # use python float
+        self.value = float(V)           # use python float
 
 def test_Number_point(): assert \
     type(Number('-0123.45').value) == type(-123.45) and \
@@ -57,8 +64,27 @@ def test_Number_exp(): assert \
 class Integer(Number):
     def __init__(self,V):
         Number.__init__(self, V)
-        self.value = int(V) # use python integer
+        self.value = int(V)             # use python integer
 
 def test_Integer(): assert \
     type(Integer('-012345').value) == type(-12345) and \
     Integer('-012345').value == -12345
+
+#################################################################### Containers
+
+class Container(Object): pass
+
+def test_Container(): assert True
+
+######################################################################### Stack
+
+class Stack(Container):
+    def flush(self): self.nest = [] ; return self
+
+def test_Stack_flush(): assert \
+    Stack('flush').flush().nest == []
+
+def test_Stack_push():
+    print Stack('push') << 1 << 2 << 3
+    assert False
+    

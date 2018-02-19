@@ -1,0 +1,27 @@
+\secrel{Stack}
+
+The \term{stack} is data container mostly used in our VM itself: we do all data
+exchange between system elements via global \term{data stack}.
+
+\begin{lstlisting}[language=Python]
+class Stack(Container): pass
+\end{lstlisting}
+
+\noindent
+Stack is data structure with LIFO data flow: \emph{Last In First Out}.\\
+It must support two principle messages (methods):
+\begin{description}[nosep]
+\item[push]\ \\adds element to the
+top of stack (to the end of \verb|.nest[]|)\\
+in VM method returns stack itself to do sequential operations
+\item[pop]\ \\return \emph{and delete} topmost
+element (last pushed)
+\end{description}
+
+\noindent
+There are other optional methods we will implement:
+\begin{description}[nosep]
+\item[top]\ \\returns topmost element but leave it on
+stack
+\item[flush]\ \\clean up data
+\end{description}
