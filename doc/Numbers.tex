@@ -40,3 +40,21 @@ def test_Number_point(): assert \
 def test_Number_exp(): assert \
 	# the same for '-01.23e+45' and '-01.23E+45' 
 \end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[language=Python]
+class Integer(Number):
+    def __init__(self,V):
+        Number.__init__(self, V)
+        self.value = int(V) # use python integer
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+def test_Integer(): assert \
+    type(Integer('-012345').value) == type(-12345) and \
+    Integer('-012345').value == -12345
+\end{lstlisting}
+Here we use \verb|==|\ direct comparision as we have no precision loss effect
+on integers.
+
+\bigskip\noindent
+If you want you can define special classes for unsigned hex numbers and binary strings if you work with low-level programming.

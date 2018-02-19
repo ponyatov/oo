@@ -37,6 +37,8 @@ def test_String(): assert '%s' % \
 
 ####################################################################### Numbers
 
+######################################################################### Float
+
 class Number(Primitive):
     def __init__(self,V):
         Primitive.__init__(self, V)
@@ -50,4 +52,13 @@ def test_Number_exp(): assert \
     type(Number('-01.23e+45').value) == type(-123.45) and \
     abs( Number('-01.23E+45').value - (-1.23e45) ) < 1e-6
 
-class Integer(Number): pass
+####################################################################### Integer
+
+class Integer(Number):
+    def __init__(self,V):
+        Number.__init__(self, V)
+        self.value = int(V) # use python integer
+
+def test_Integer(): assert \
+    type(Integer('-012345').value) == type(-12345) and \
+    Integer('-012345').value == -12345
