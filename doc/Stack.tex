@@ -1,27 +1,57 @@
-\secrel{Stack}
+\secrel{Stack (LIFO)}
 
 The \term{stack} is data container mostly used in our VM itself: we do all data
 exchange between system elements via global \term{data stack}.
 
-\begin{lstlisting}[language=Python]
-class Stack(Container): pass
-\end{lstlisting}
-
-\noindent
+\bigskip\noindent
 Stack is data structure with LIFO data flow: \emph{Last In First Out}.\\
 It must support two principle messages (methods):
 \begin{description}[nosep]
-\item[push]\ \\adds element to the
+\item[push ( -- o )]\ \\adds element to the
 top of stack (to the end of \verb|.nest[]|)\\
 in VM method returns stack itself to do sequential operations
-\item[pop]\ \\return \emph{and delete} topmost
+\item[pop ( o -- )]\ \\return \emph{and delete} topmost
 element (last pushed)
 \end{description}
 
-\noindent
+\clearpage\noindent
 There are other optional methods we will implement:
 \begin{description}[nosep]
-\item[top]\ \\returns topmost element but leave it on
-stack
-\item[flush]\ \\clean up data
+\item[top ( o -- ) ]\ returns topmost element but leave it on stack
+\item[flush ( \ldots o -- )]\ clean up data
+\item[dup ( o -- o o )]\ duplicate
+\item[swap ( o1 o2 -- o2 o1 )]\ swap two top elements 
 \end{description}
+
+\medskip\noindent
+Don't forget that we \emph{delegate all basic manipulations} on data to base
+Object class:
+
+\begin{lstlisting}[language=Python]
+class Container(Object): pass
+class Stack(Container): pass
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+class Object:
+	def __init__(self,V): ... self.flush()
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+class Object:
+	def flush(self):
+		# store attributes in form of key/value
+		self.attr = {}	# clean
+		# store nested elements (ordered) / stack
+		self.nest = []	# clean
+		# return itself for sequential operations
+		return self
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+def test_Stack_flush(): assert \
+    Stack('flush test').flush().nest == []
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[language=Python]
+class Object:
+	def push(self,object): self.nest.append(object) ; return self
+\end{lstlisting}

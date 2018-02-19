@@ -8,8 +8,14 @@ class Object:
     def __init__(self,V):
         self.type = self.__class__.__name__.lower()
         self.value = V  # single value for instance
-        self.attr = {}  # store attributes in form of key/value
-        self.nest = []  # store nested elements (ordered) / stack
+        self.flush()
+    def flush(self):
+        # store attributes in form of key/value
+        self.attr = {}    # clean
+        # store nested elements (ordered) / stack
+        self.nest = []    # clean
+        # return object itself for sequential operations
+        return self
     def __repr__(self):
         return '<%s:%s>'%(self.type,self.value)
     
@@ -78,13 +84,12 @@ def test_Container(): assert True
 
 ######################################################################### Stack
 
-class Stack(Container):
-    def flush(self): self.nest = [] ; return self
+class Stack(Container): pass
 
 def test_Stack_flush(): assert \
-    Stack('flush').flush().nest == []
+    Stack('flush test').flush().nest == []
 
-def test_Stack_push():
-    print Stack('push') << 1 << 2 << 3
-    assert False
-    
+# def test_Stack_push():
+#     print Stack('push') << 1 << 2 << 3
+#     assert False
+     
