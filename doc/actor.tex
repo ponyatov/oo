@@ -22,12 +22,25 @@ Actor can:
   \item \emph{mutate its state} as result of procesing message
 \end{itemize}
 
-\bigskip\noindent
+\clearpage\noindent
 As you can view \href{https://www.youtube.com/watch?v=7erJ1DV_Tlo}{in this
-video}, the actor is primitive computing unit requires these essential 
-elements:
+video}, the \term{actor} is a \emph{primitive computing unit} requires these
+essential elements:
 \begin{enumerate}[nosep]
   \item processing
   \item storage
   \item communication
 \end{enumerate} 
+
+\noindent
+On message received, actor can:
+\begin{itemize}[nosep]
+  \item create more actors
+  \item send messages to known addresses
+  \item designate what it will do on next message it receives
+\end{itemize}
+
+\medskip\noindent
+\emph{Actors is nondeterministic model}: you have no control of order of
+messages will be received, some messages can be lost, and some messages interact
+with outer world in an unpredictable manner.
