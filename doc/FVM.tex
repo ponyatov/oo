@@ -1,2 +1,18 @@
 \secrel{\F\ Virtual Machine}\label{FVM}\secdown
+
+Classical \F\ has:
+\begin{itemize}[nosep]
+  \item \emph{CPU} commands without attributes, manipulates data on
+  \item \emph{data stack}, which resides in
+  \item \emph{main memory} with lot of call/ret commands use separate
+  \item \emph{return stack}
+\end{itemize}
+
+\noindent
+As we move to pure object language, our virtual machine should implement message
+passing between objects, and uses executable types \ref{Active}\ for program
+representation in place of main memory. Another diff from classical \F\ --- you
+can't use direct addressing, all storage access must be done via state messages.
+Every object state including data stack and vocabulary must be isolated.
+
 \secup
