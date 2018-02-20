@@ -1,1 +1,14 @@
 \clearpage\secrel{Map (key/value storage)}
+
+\noindent Another container required for VM run is \term{map}: it holds data
+identified by \term{key}s: every data element has unical id which can be used to
+fetch it from container.
+
+\begin{lstlisting}[language=Python]
+class Map(Container): pass
+def test_Map(): assert Map('map').attr == {}
+\end{lstlisting}
+
+\noindent
+\F\ require map for storing definintions in \term{vocabulary} \ref{vocab}, so
+map is the second root data structure in our system.

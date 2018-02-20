@@ -96,6 +96,8 @@ def test_Container(): assert True
 
 class Stack(Container): pass
 
+def test_Stack(): assert Stack('stack').nest == []
+
 def test_Stack_flush(): assert \
     Stack('flush test').flush().nest == []
 
@@ -115,3 +117,9 @@ def test_Stack_dup(): assert \
 
 def test_Stack_swap(): assert \
     ( Stack('swap test') << 1 << 2 ).swap().nest == [2,1]
+
+######################################################################### Stack
+
+class Map(Container): pass
+
+def test_Map(): assert Map('map').attr == {}
