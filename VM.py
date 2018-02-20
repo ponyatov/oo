@@ -153,3 +153,13 @@ class VM(Active):
 
 def test_VM(): assert '%s' % \
     VM('command',lambda phi:phi) == '<vm:command>'
+
+######################################################### FORTH Virtual Machine
+
+###################################################### global context registers
+
+#################################################################### data stack
+
+D = Stack('DATA')
+
+def test_FVM_D(): assert '%s' % D == '<stack:DATA>'
