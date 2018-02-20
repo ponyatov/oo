@@ -12,6 +12,7 @@ by one. If an actor needs to interact with other it sends the message
 asynchronously and continues its job\note{or wait for answer if you need to
 mimic classical synchronous processing}.
 
+\clearpage\noindent
 Actor can:
 \begin{itemize}[nosep]
   \item process incoming messages \emph{sequentially} one by one
@@ -20,3 +21,13 @@ Actor can:
   \item \emph{maintain private state} impacts on next messages processing
   \item \emph{mutate its state} as result of procesing message
 \end{itemize}
+
+\bigskip\noindent
+As you can view \href{https://www.youtube.com/watch?v=7erJ1DV_Tlo}{in this
+video}, the actor is primitive computing unit requires these essential 
+elements:
+\begin{enumerate}[nosep]
+  \item processing
+  \item storage
+  \item communication
+\end{enumerate} 
