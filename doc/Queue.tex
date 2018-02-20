@@ -8,10 +8,12 @@ def test_Queue(): assert Queue('queue').nest == []
 \end{lstlisting}
 
 \noindent
-Original \F\ does not use it, but in our system, we use actor model and message
-passing which requires ordered container with First In First Out discipline.
-FIFO uses the same two principle messages as Stack \ref{stackpushpop}, but:
-\begin{description}
+Original \F\ does not use it, actor-like messaging can use recivers Stacks for
+message passing\note{as actor model works on \emph{unordered} messages}, but
+\emph{a lot of practical systems requires ordered container} with First In First Out
+discipline. FIFO uses the same two principle messages as Stack
+\ref{stackpushpop}, but:
+\begin{description}[nosep]
 \item[push] put object into begin of queue
 \item[pop] return obejct from other end of queue
 \end{description}
