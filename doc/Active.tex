@@ -1,4 +1,4 @@
-\clearpage\secrel{Active element}
+\clearpage\secrel{Active element}\secdown
 
 \begin{lstlisting}[language=Python]
 class Active(Object): pass
@@ -6,7 +6,7 @@ class Active(Object): pass
 
 \noindent Active is anything can be \emph{executed}. In \F\ we have:
 \begin{itemize}[nosep]
-  \item low-level functions embedded in VM implementation
+  \item low-level functions embedded in VM implementation \ref{VMcommand}
   \item libraries imported by dynamic linker or FFI\note{Fast Foreign Interface}
   \item user-defined words (like \term{colon definition}s) 
 \end{itemize}
@@ -16,3 +16,6 @@ Also
   \item AST trees can be executed as is
   \item bytecode
 \end{itemize}
+
+\input{VMcommand}
+\secup

@@ -90,7 +90,8 @@ def test_Integer(): assert \
 
 class Container(Object): pass
 
-def test_Container(): assert True
+def test_Container(): assert '%s' % \
+    Container('with data') == '<container:with data>'
 
 ######################################################################### Stack
 
@@ -137,4 +138,18 @@ def test_Queue_pushpop():
 
 ######################################################################### Queue
 
-class Active(Object): pass
+class Active(Object):
+    def execute(self): return self
+
+def test_Active(): assert '%s' % \
+    Active('life').execute() == '<active:life>'
+
+############################################################################ VM
+
+class VM(Active):
+    def __init__(self,V,F):
+        Active.__init__(self, V)
+        self.fn = F                 # special function pointer
+
+def test_VM(): assert '%s' % \
+    VM('command',lambda phi:phi) == '<vm:command>'
