@@ -134,3 +134,7 @@ def test_Queue(): assert Queue('queue').nest == []
 def test_Queue_pushpop():
     Q = Queue('queue') << 1 << 2 << 3
     assert Q.pop() == 1
+
+######################################################################### Queue
+
+class Active(Object): pass

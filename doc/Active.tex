@@ -1,0 +1,18 @@
+\clearpage\secrel{Active element}
+
+\begin{lstlisting}[language=Python]
+class Active(Object): pass
+\end{lstlisting}
+
+\noindent Active is anything can be \emph{executed}. In \F\ we have:
+\begin{itemize}[nosep]
+  \item low-level functions embedded in VM implementation
+  \item libraries imported by dynamic linker or FFI\note{Fast Foreign Interface}
+  \item user-defined words (like \term{colon definition}s) 
+\end{itemize}
+Also
+\begin{itemize}[nosep]
+  \item runtime compiled functions created by JIT compiler
+  \item AST trees can be executed as is
+  \item bytecode
+\end{itemize}
