@@ -1,1 +1,29 @@
 \clearpage\secrel{Queue (FIFO)}
+
+\Term{Queue} is the third whale of a computer system.
+
+\begin{lstlisting}[language=Python]
+class Queue(Container): pass
+def test_Queue(): assert Queue('queue').nest == []
+\end{lstlisting}
+
+\noindent
+Original \F\ does not use it, but in our system, we use actor model and message
+passing which requires ordered container with First In First Out discipline.
+FIFO uses the same two principle messages as Stack \ref{stackpushpop}, but:
+\begin{description}
+\item[push] put object into begin of queue
+\item[pop] return obejct from other end of queue
+\end{description}
+
+\clearpage
+So to make Queue work as we need, we must override pop() method from Object:
+\begin{lstlisting}[language=Python]
+class Queue(Container):
+	def pop(self): return self.nest[0]	# override
+
+def test_Queue_pushpop():
+	Q = Queue('queue') << 1 << 2 << 3	# in order
+	assert Q.pop() == 1								# first is 1
+\end{lstlisting}
+    

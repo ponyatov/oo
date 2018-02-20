@@ -123,3 +123,14 @@ def test_Stack_swap(): assert \
 class Map(Container): pass
 
 def test_Map(): assert Map('map').attr == {}
+
+######################################################################### Queue
+
+class Queue(Container):
+    def pop(self): return self.nest[0]
+
+def test_Queue(): assert Queue('queue').nest == []
+
+def test_Queue_pushpop():
+    Q = Queue('queue') << 1 << 2 << 3
+    assert Q.pop() == 1
