@@ -1,0 +1,23 @@
+\clearpage\secrel{Advantages of actor model}\secdown
+
+\secrel{Fault tolerance}
+
+\href{http://www.brianstorti.com/the-actor-model/}{Here} you can find a note on
+Erlang language as a sample of actor model implementation. Erlang preaches <<let
+it crash>> ideology of program development: some actor named \term{process} do
+its job without tracking any failure cases can happen when a program executes.
+If something goes wrong, the process simply crashes. But this situation will be
+caught by another \term{supervisor} actor, which will do crashed process
+healing, moving it to some consistent state like just restart the process into
+an initial state.
+ 
+\secrel{Scalable computation distribution}
+
+\emph{Message passing is natively scalable} across distributed systems. As all
+actors totally \emph{isolated} from each other, there is no matter on what
+computing node every actor resides\note{with some overhead of transmitting
+messages}. But don't be happy: you still have interprocess data dependency, and
+connection link capacity still limits your ability to share your data between
+distributed nodes.
+
+\secup

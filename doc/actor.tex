@@ -1,0 +1,22 @@
+\secrel{Actor model vs OOP}
+
+\term{Actor model} is an extrapolation of object oriented programming. In
+traditional OOP implementations all messages pass via \emph{synchronous} calls:
+do message \verb|object.call(parameters)| and object returns result and
+execution \emph{back to call point}. Even in most objected SmallTalk
+language messages are sent synchronously.
+
+Contrary to this, actors works asynchronously in principle. Every actor has a
+\term{mailbox} (message dispatch entry) and process every message received one
+by one. If an actor needs to interact with other it sends the message
+asynchronously and continues its job\note{or wait for answer if you need to
+mimic classical synchronous processing}.
+
+Actor can:
+\begin{itemize}[nosep]
+  \item process incoming messages \emph{sequentially} one by one
+  \item send \emph{async} messages to other actors
+  \item \emph{create new} actors
+  \item \emph{maintain private state} impacts on next messages processing
+  \item \emph{mutate its state} as result of procesing message
+\end{itemize}
