@@ -21,6 +21,13 @@ class Object:
     def push(self,object):
         self.nest.append(object) ; return self
     def __lshift__(self,object): return self.push(object)
+    def pop(self): return self.nest.pop()
+    def top(self): return self.nest[-1]
+    def dup(self): self.nest.append(self.top()) ; return self
+    def swap(self):
+        B = self.pop() ; A = self.pop()
+        self.push(B) ; self.push(A)
+        return self
     
 def test_Object(): # run tests using py.test -v VM.py
     assert '%s' % Object('test') == '<object:test>'
@@ -94,4 +101,17 @@ def test_Stack_flush(): assert \
 
 def test_Stack_push(): assert \
     ( Stack('push test') << 1 << 2 << 3 ).nest == [1,2,3]
-     
+
+def test_Stack_pop():
+    S = Stack('pop test') << 1 << 2
+    assert S.pop() == 2
+    assert S.nest == [1]
+
+def test_Stack_top(): assert \
+    ( Stack('top test') << 1 << 2 ).top() == 2
+
+def test_Stack_dup(): assert \
+    ( Stack('dup test') << 1 ).dup().nest == [1,1]
+
+def test_Stack_swap(): assert \
+    ( Stack('swap test') << 1 << 2 ).swap().nest == [2,1]

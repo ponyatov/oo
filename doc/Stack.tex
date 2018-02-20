@@ -35,6 +35,8 @@ class Stack(Container): pass
 class Object:
 	def __init__(self,V): ... self.flush()
 \end{lstlisting}
+
+\clearpage
 \begin{lstlisting}[language=Python]
 class Object:
 	def flush(self):
@@ -69,3 +71,39 @@ def test_Stack_push(): assert \
 		== [1,2,3]
 \end{lstlisting}
  
+\clearpage
+\begin{lstlisting}[language=Python]
+class Object:
+	def pop(self): return self.nest.pop()
+
+def test_Stack_pop():
+	S = Stack('pop test') << 1 << 2
+	assert S.pop() == 2
+	assert S.nest == [1]
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+class Object:
+    def top(self): return self.nest[-1]
+
+def test_Stack_top(): assert \
+    ( Stack('top test') << 1 << 2 ).top() == 2
+\end{lstlisting}
+
+
+\clearpage
+\begin{lstlisting}[language=Python]
+class Object:
+	def dup(self):
+		self.nest.append(self.top()) ; return self
+	def swap(self):
+		B = self.pop() ; A = self.pop()
+		self.push(B) ; self.push(A)
+		return self
+
+def test_Stack_dup(): assert \
+    ( Stack('dup test') << 1 ).dup().nest == [1,1]
+def test_Stack_swap(): assert \
+    ( Stack('swap test') << 1 << 2 ).swap().nest \
+    	== [2,1]
+\end{lstlisting}
