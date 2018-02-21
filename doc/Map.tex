@@ -12,3 +12,19 @@ def test_Map(): assert Map('map').attr == {}
 \noindent
 \F\ require map for storing definintions in \term{vocabulary} \ref{vocab}, so
 map is the second root data structure in our system.
+
+\clearpage\noindent
+For ease of Map usage we can define two operators let as work with any object in
+array manner:
+
+\begin{lstlisting}[language=Python]
+class Object:
+	def __setitem__(self,key,value):
+		self.attr[key] = value ; return self
+	def __getitem__(self,key): return self.attr[key]
+
+def test_Map_GetSet():
+	M = Map('get/set') ; M['X'] = 'Y'
+	assert M.attr == {'X':'Y'}  # check set
+	assert M['X'] == 'Y'        # check get
+\end{lstlisting}

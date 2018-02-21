@@ -21,11 +21,11 @@ commands implemented in \py\ into the vocabulary.
 
 \begin{lstlisting}[language=Python]
 class Map(Container):
-	def __lshift__(self,F): # operator<<
-		try: self.attr[F.value] = F # push object
-		except AttributeError: # fallback for 
-			self.attr[F.__name__] = VM(F) # VM command
-		return self # return modified Map
+	def __lshift__(self,F):				# operator<<
+		try: self[F.value] = F			# push object
+		except AttributeError:			# fallback for 
+			self[F.__name__] = VM(F)	#    VM command
+		return self									# return modified
 \end{lstlisting}
 \clearpage\noindent
 Then we can test VM command injection into new empty vocabulary, using test

@@ -25,8 +25,10 @@ class Object:
             S += self.attr[i].dump(depth+1,'%s = ' % i)
         # nest[]ed elements subtree
         for j in self.nest:
-            S += i.dump(depth+1)
+            S += j.dump(depth+1)
         return S
+    def __setitem__(self,key,value): self.attr[key] = value ; return self
+    def __getitem__(self,key): return self.attr[key]
     def flush(self):
         # store attributes in form of key/value
         self.attr = {}    # clean
@@ -135,13 +137,13 @@ def test_Stack_dup(): assert \
 def test_Stack_swap(): assert \
     ( Stack('swap test') << 1 << 2 ).swap().nest == [2,1]
 
-######################################################################### Stack
+########################################################################### Map
 
 class Map(Container):
     def __lshift__(self,F): # operator<<
-        try: self.attr[F.value] = F # push object
+        try: self[F.value] = F # push object
         except AttributeError: # fallback for
-            self.attr[F.__name__] = VM(F) # VM command
+            self[F.__name__] = VM(F) # VM command
         return self # return modified Map
 
 def test_Map(): assert Map('map').attr == {}
@@ -149,6 +151,11 @@ def test_Map(): assert Map('map').attr == {}
 def test_Map_LL(): assert '%s' % \
     ( Map('LL') << test_Map_LL ) == \
         '\n<map:LL>\n\ttest_Map_LL = <vm:test_Map_LL>'
+        
+def test_Map_GetSet():
+    M = Map('get/set') ; M['X'] = 'Y'
+    assert M.attr == {'X':'Y'}  # check set
+    assert M['X'] == 'Y'        # check get
 
 ######################################################################### Queue
 
@@ -193,3 +200,11 @@ def test_FVM_W(): assert W.head() == '<map:FORTH>'
 D = Stack('DATA')   # global data stack register
 
 def test_FVM_D(): assert '%s' % D == '\n<stack:DATA>'
+
+def DUP(): D.dup()
+W << DUP
+
+# def test_D_dup():
+#     assert W['DUP'] == DUP  # check DUP in vocabulary
+#     D.flush() << 1 ; W['DUP']() ; print D
+#     assert False
