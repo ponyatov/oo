@@ -1,1 +1,63 @@
 \clearpage\secrel{Callable objects}
+
+\F\ distincts two types of words: executable and \term{literals}. If you look
+into source code of any F system implementation or disassemble \verb|INTERPRET|
+word, you'll see some checking of every word name parsed. If a parsed word looks
+like a number and was not found in vocabulary, it will be pushed onto data stack
+as is. In another case, vocabulary lookup will be done and found \term{execution
+token} will be executed. This token is a magic thing which \F\ treats as an
+\emph{executable object}: in classical system it is \emph{some magic number
+points to \term{word definition} and can be executed by} \verb|EXECUTE|
+\emph{word}. Our system works universally with objects on data stack, so for
+uniformity \emph{in o\F\ any object can be executed}.
+
+\noindent
+\verb|EXECUTE| command works very simple: pop object from data stack, and run
+it's \verb|execute()| method.
+
+\begin{lstlisting}[language=Python]
+def EXECUTE(): D.pop().execute()
+W << EXECUTE
+\end{lstlisting}
+
+For generic objects like primitives there is one
+way to execute: just put object back to data stack:
+
+\begin{lstlisting}[language=Python]
+class Object:
+	def execute(self): D << self ; return self
+\end{lstlisting}
+
+\noindent
+In \py\ and some other languages we can define \verb|operator()| method which
+let us run any object as a function call, but I found this feature very error
+prone and gives a lot of glitches, so avoid it.
+
+\begin{lstlisting}[language=Python]
+def test_callable_generic():
+	D.flush() << Object('callable')	# push generic
+	W['EXECUTE'].execute()					# execute it
+	assert str(D) == \
+		'\n<stack:DATA>\n\t<object:callable>'
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+def test_callable_literals():
+	D.flush()
+	D << Integer(1234) ; W['EXECUTE'].execute()
+	D << String('lit') ; W['EXECUTE'].execute()
+	assert str(D) == \
+		'\n<stack:DATA>\n\t<int:1234>\n\t<string:lit>'
+\end{lstlisting}
+
+\clearpage
+\noindent Active does nothing with data stack:
+\begin{lstlisting}[language=Python]
+class Active(Object):
+	def __call__(self): return self
+\end{lstlisting}
+
+\noindent \emph{And finally the thing makes \F\ alive}: 
+\begin{lstlisting}[language=Python]
+class VM(Active):
+	def __call__(self): self.fn()
+\end{lstlisting}

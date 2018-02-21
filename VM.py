@@ -42,10 +42,12 @@ class Object:
     def pop(self): return self.nest.pop()
     def top(self): return self.nest[-1]
     def dup(self): self.nest.append(self.top()) ; return self
+    def drop(self): del self.nest[-1] ; return self
     def swap(self):
         B = self.pop() ; A = self.pop()
         self.push(B) ; self.push(A)
         return self
+    def execute(self): D << self ; return self
     
 def test_Object(): # run tests using py.test -v VM.py
     assert Object('test').head() == '<object:test>'
@@ -173,15 +175,13 @@ def test_Queue_pushpop():
 class Active(Object):
     def execute(self): return self
 
-def test_Active(): assert '%s' % \
-    Active('life').execute() == '\n<active:life>'
-
 ############################################################################ VM
 
 class VM(Active):
     def __init__(self,F):
         Active.__init__(self, F.__name__)   # get name
         self.fn = F                 # special function pointer
+    def execute(self): self.fn()
 
 def test_VM(): assert VM(test_VM).head() == '<vm:test_VM>'
 
@@ -204,7 +204,43 @@ def test_FVM_D(): assert '%s' % D == '\n<stack:DATA>'
 def DUP(): D.dup()
 W << DUP
 
-# def test_D_dup():
-#     assert W['DUP'] == DUP  # check DUP in vocabulary
-#     D.flush() << 1 ; W['DUP']() ; print D
-#     assert False
+def DROP(): D.drop()
+W << DROP
+
+def test_D_dupswap():
+    # check stack fluffing words in vocabulary
+    assert W['DUP'].fn == DUP ; assert W['DROP'].fn == DROP
+    # dup is callable and duplicates
+    D.flush() << Integer(1) ; W['DUP'].execute()
+    assert str(D) == '\n<stack:DATA>\n\t<integer:1>\n\t<integer:1>'
+    # drop is callable and drops
+    W['DROP'].execute()
+#     assert str(D) == '\n<stack:DATA>\n\t<integer:1>'
+
+###################################################################### callable
+
+def EXECUTE(): D.pop().execute()
+W << EXECUTE
+
+def test_callable_generic():
+    D.flush() << Object('callable') ; W['EXECUTE'].execute()
+    assert str(D) == '\n<stack:DATA>\n\t<object:callable>'
+
+def test_callable_literals():
+    D.flush()
+    D << Integer(1234) ; W['EXECUTE'].execute()
+    D << String('lit') ; W['EXECUTE'].execute()
+    assert str(D) == \
+        '\n<stack:DATA>\n\t<integer:1234>\n\t<string:lit>'
+
+def test_Active():
+    D.flush()
+    assert '%s' % \
+        Active('life').execute() == '\n<active:life>'
+    assert '%s' % \
+        D == '\n<stack:DATA>'
+    
+def test_Object_callable():
+    D.flush()
+    T = Object('callable')
+    T.execute() ; assert D.top() == T
