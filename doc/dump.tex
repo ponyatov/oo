@@ -1,0 +1,33 @@
+\secrel{Dumping}
+
+Working with an o\F\ system you will be sitting for hours looking on objects and
+its contents. Every few second working on a design you will \term{dump} some
+objects to see what is going on, and here we will define basic functionality to
+do it.
+
+\begin{lstlisting}[language=Python]
+	# this convert function will be used by 'print'
+	def __repr__(self): return self.dump()
+	# return only <T:V> header string
+	def head(self):
+		return '<%s:%s>'%(self.type,self.value)
+	# padding with N tabs for tree-like output
+	def pad(self,N): return '\t'*N
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[language=Python]
+	# recursive tree-like dump of any object
+	def dump(self,depth=0,prefix=''):
+		# tabbed head()er with optional prefix
+		S = '\n'+self.pad(depth) + prefix+self.head()
+		# attr{}ibutes subtree
+		for i in self.attr:
+			S += self.attr[i].dump(depth+1,'%s = ' % i)
+		# nest[]ed elements subtree
+		for j in self.nest:
+			S += i.dump(depth+1)
+		return S
+\end{lstlisting}
+\noindent
+Resulting dump as good as can be used in full-featured IDE if you need only text
+representation.

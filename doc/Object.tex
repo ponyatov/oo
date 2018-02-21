@@ -57,7 +57,9 @@ for AST, tree and graph storage (see \ref{pytest} on unit test vs dumb print).
 
 \begin{lstlisting}[language=Python]
 def test_Object(): # run$ py.test -v VM.py
-	assert str(Object('test')) == '<object:test>'
+	assert Object('test').head() == '<object:test>'
 \end{lstlisting}
+
+\input{dump}
 
 \secup

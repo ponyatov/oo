@@ -9,8 +9,24 @@ class Object:
         self.type = self.__class__.__name__.lower()
         self.value = V  # single value for instance
         self.flush()
-    def __repr__(self):
+    # this convert function will be used by 'print'
+    def __repr__(self): return self.dump()
+    # return only <T:V> header string
+    def head(self):
         return '<%s:%s>'%(self.type,self.value)
+    # padding with N tabs for tree-like output
+    def pad(self,N): return '\t'*N
+    # recursive tree-like dump of any object
+    def dump(self,depth=0,prefix=''):
+        # tabbed head()er with optional prefix
+        S = '\n'+self.pad(depth) + prefix + self.head()
+        # attr{}ibutes subtree
+        for i in self.attr:
+            S += self.attr[i].dump(depth+1,'%s = ' % i)
+        # nest[]ed elements subtree
+        for j in self.nest:
+            S += i.dump(depth+1)
+        return S
     def flush(self):
         # store attributes in form of key/value
         self.attr = {}    # clean
@@ -30,7 +46,7 @@ class Object:
         return self
     
 def test_Object(): # run tests using py.test -v VM.py
-    assert '%s' % Object('test') == '<object:test>'
+    assert Object('test').head() == '<object:test>'
     
 def test_Object_attr(): assert \
     Object('attr{} test').attr == {}
@@ -42,21 +58,21 @@ def test_Object_nest(): assert \
 class Primitive(Object): pass
 
 def test_Primiteve(): assert \
-    str( Primitive('atom') ) == '<primitive:atom>'
+    str( Primitive('atom') ) == '\n<primitive:atom>'
     
 ######################################################### Symbol ( generic ID )
 
 class Symbol(Primitive): pass
 
 def test_Symbol(): assert \
-    '%s'%Symbol('Pi') == '<symbol:Pi>'
+    Symbol('Pi').head() == '<symbol:Pi>'
     
 ######################################################################## String
 
 class String(Primitive): pass
 
 def test_String(): assert '%s' % \
-    String('hello') == '<string:hello>'
+    String('hello') == '\n<string:hello>'
 
 ####################################################################### Numbers
 
@@ -90,8 +106,8 @@ def test_Integer(): assert \
 
 class Container(Object): pass
 
-def test_Container(): assert '%s' % \
-    Container('with data') == '<container:with data>'
+def test_Container(): assert \
+    Container('with data').head() == '<container:with data>'
 
 ######################################################################### Stack
 
@@ -121,9 +137,18 @@ def test_Stack_swap(): assert \
 
 ######################################################################### Stack
 
-class Map(Container): pass
+class Map(Container):
+    def __lshift__(self,F): # operator<<
+        try: self.attr[F.value] = F # push object
+        except AttributeError: # fallback for
+            self.attr[F.__name__] = VM(F) # VM command
+        return self # return modified Map
 
 def test_Map(): assert Map('map').attr == {}
+
+def test_Map_LL(): assert '%s' % \
+    ( Map('LL') << test_Map_LL ) == \
+        '\n<map:LL>\n\ttest_Map_LL = <vm:test_Map_LL>'
 
 ######################################################################### Queue
 
@@ -136,30 +161,35 @@ def test_Queue_pushpop():
     Q = Queue('queue') << 1 << 2 << 3
     assert Q.pop() == 1
 
-######################################################################### Queue
+######################################################################## Active
 
 class Active(Object):
     def execute(self): return self
 
 def test_Active(): assert '%s' % \
-    Active('life').execute() == '<active:life>'
+    Active('life').execute() == '\n<active:life>'
 
 ############################################################################ VM
 
 class VM(Active):
-    def __init__(self,V,F):
-        Active.__init__(self, V)
+    def __init__(self,F):
+        Active.__init__(self, F.__name__)   # get name
         self.fn = F                 # special function pointer
 
-def test_VM(): assert '%s' % \
-    VM('command',lambda phi:phi) == '<vm:command>'
+def test_VM(): assert VM(test_VM).head() == '<vm:test_VM>'
 
 ######################################################### FORTH Virtual Machine
 
 ###################################################### global context registers
 
+#################################################################### Vocabulary
+
+W = Map('FORTH')    # global vocabulary register
+
+def test_FVM_W(): assert W.head() == '<map:FORTH>'
+
 #################################################################### data stack
 
-D = Stack('DATA')
+D = Stack('DATA')   # global data stack register
 
-def test_FVM_D(): assert '%s' % D == '<stack:DATA>'
+def test_FVM_D(): assert '%s' % D == '\n<stack:DATA>'
