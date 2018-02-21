@@ -1,0 +1,34 @@
+\secrel{Context}
+
+In computing, \term{context} refers to \emph{state of current computation}:
+\begin{itemize}[nosep]
+  \item
+instruction pointer to current position in program
+  \item
+CPU registers including state/flag registers 
+  \item
+two registers points to
+\begin{enumerate}[nosep]
+  \item base of stack frame or pointer to dedicated stack
+  \item top of stack
+\end{enumerate} 
+\end{itemize} 
+\medskip
+In high level languages we also have
+\begin{itemize}[nosep]
+  \item the scope of name visibility (local variables, object methods)
+  \item resources allocated for task/process or held inside an actor
+\end{itemize}
+
+\clearpage\noindent
+\emph{In traditional \F\ the whole context is global}: there is no multitasking,
+so we have only single instruction pointer, data/return stack, and
+vocabulary\note{in case of multiple vocabularies combined into vocabulary tree,
+word search order is shared between all words}.
+
+Moving to multitasking or object/actor model we must entangle VM with context
+switching and holding of multiple execution pointers, stacks and so on. The task
+becomes especially complicated if we want to utilize hardware multitasking
+features available in multicore systems and grid computers. Here we will be
+faced with a real hell of context switching under syncronizations, locks and
+signal races.
