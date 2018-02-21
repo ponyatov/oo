@@ -1,1 +1,8 @@
-\secrel{Data Stack}\label{Dstack}
+\clearpage\secrel{Data Stack}\label{Dstack}
+
+\begin{lstlisting}[language=Python]
+D = Stack('DATA')			# global data stack register
+
+def test_FVM_D():			# test empty stack on init
+	assert str(D) == '\n<stack:DATA>'
+\end{lstlisting}
