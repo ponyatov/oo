@@ -241,10 +241,8 @@ def test_callable_literals():
 
 def test_Active():
     D.flush()
-    assert '%s' % \
-        Active('life').execute() == '\n<active:life>'
-    assert '%s' % \
-        D == '\n<stack:DATA>'
+    assert '%s' % Active('life').execute() == '\n<active:life>'
+    assert '%s' % D == '\n<stack:DATA>'
     
 def test_Object_callable():
     D.flush()

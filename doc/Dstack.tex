@@ -13,3 +13,24 @@ W << DROP
 def SWAP(): D.swap()
 W << SWAP
 \end{lstlisting}
+\begin{lstlisting}[language=Python]
+def test_D_dupswap():
+	# check stack fluffing words in vocabulary
+	assert W['DUP'].fn == DUP
+	assert W['DROP'].fn == DROP
+	# dup is callable and duplicates
+	D.flush() << Integer(1) ; W['DUP'].execute()
+	assert str(D) == \
+		'\n<stack:DATA>\n\t<integer:1>\n\t<integer:1>'
+	# drop is callable and drops
+	W['DROP'].execute()
+	assert str(D) == \
+		'\n<stack:DATA>\n\t<integer:1>'
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+	# swap
+	D << Integer(2) << W['SWAP'] # found SWAP
+	W['EXECUTE'].execute() # test exec SWAP in stack
+	assert str(D) == \
+		'\n<stack:DATA>\n\t<integer:2>\n\t<integer:1>'
+\end{lstlisting}
