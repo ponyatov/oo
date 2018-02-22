@@ -207,6 +207,9 @@ W << DUP
 def DROP(): D.drop()
 W << DROP
 
+def SWAP(): D.swap()
+W << SWAP
+
 def test_D_dupswap():
     # check stack fluffing words in vocabulary
     assert W['DUP'].fn == DUP ; assert W['DROP'].fn == DROP
@@ -215,7 +218,10 @@ def test_D_dupswap():
     assert str(D) == '\n<stack:DATA>\n\t<integer:1>\n\t<integer:1>'
     # drop is callable and drops
     W['DROP'].execute()
-#     assert str(D) == '\n<stack:DATA>\n\t<integer:1>'
+    assert str(D) == '\n<stack:DATA>\n\t<integer:1>'
+    # swap
+    D << Integer(2) << W['SWAP'] ; W['EXECUTE'].execute()
+    assert str(D) == '\n<stack:DATA>\n\t<integer:2>\n\t<integer:1>'
 
 ###################################################################### callable
 

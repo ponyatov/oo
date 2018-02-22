@@ -7,12 +7,13 @@ def test_FVM_W(): assert W.head() == '<map:FORTH>'
 \end{lstlisting}
 
 \emph{Word search in vocabulary} is one of prime in \F\ mechanics. And going to
-objects we will use the same hint to dispatch messages. \F\ F don't use
-vocabulary in the execution of compiled definition, as all cross-word links were
-resolved in compilation stage, and Map implementation efficiency impacts only on
-the speed of interpretation and compilation. In case of message dispatch in pure
+objects we will use the same hint to dispatch messages. \F\ don't use vocabulary
+in the execution of compiled definition, as all cross-word links were resolved
+in compilation stage, and Map implementation efficiency impacts only on the
+speed of interpretation and compilation. In case of message dispatch in pure
 dynamic object/actor model it is not so, so for real-world applications, we need
-to do a large effort on making vocabulary search at a speed of light.
+to do a large effort on making vocabulary search at a speed of light. It's like
+to do a dynamic call via vocabulary.
 
 \bigskip
 Returning to a prototype implementation, we need to add some syntax sugar to Map

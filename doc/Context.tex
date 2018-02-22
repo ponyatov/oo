@@ -1,23 +1,25 @@
-\secrel{Context}
+\secrel{Context}\label{context}
 
 In computing, \term{context} refers to \emph{state of current computation}:
 \begin{itemize}[nosep]
   \item
-instruction pointer to current position in program
+instruction pointer to current position in a program
   \item
 CPU registers including state/flag registers 
   \item
-two registers points to
-\begin{enumerate}[nosep]
-  \item base of stack frame or pointer to dedicated stack
-  \item top of stack
+two registers points to base of stack frame and top of stack
 \end{enumerate} 
 \end{itemize} 
-\medskip
 In high level languages we also have
 \begin{itemize}[nosep]
   \item the scope of name visibility (local variables, object methods)
   \item resources allocated for task/process or held inside an actor
+\end{itemize}
+In \F:
+\begin{itemize}[nosep]
+  \item data and return \emph{stack contents}
+  \item \emph{vocabulary}
+  \item \emph{addressable memory} and \textit{objects available for messaging}
 \end{itemize}
 
 \clearpage\noindent

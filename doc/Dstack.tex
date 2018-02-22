@@ -5,4 +5,11 @@ D = Stack('DATA')			# global data stack register
 
 def test_FVM_D():			# test empty stack on init
 	assert str(D) == '\n<stack:DATA>'
+
+def DUP(): D.dup()
+W << DUP
+def DROP(): D.drop()
+W << DROP
+def SWAP(): D.swap()
+W << SWAP
 \end{lstlisting}
