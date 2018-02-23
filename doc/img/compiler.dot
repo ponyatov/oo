@@ -1,0 +1,7 @@
+digraph {
+	rankdir=LR;
+	x [shape=none,label="",width=0];
+	x -> frontend [label="source\lcode"]
+	frontend -> backend [label="intermediate\lrepresentation"];
+	backend -> "object\lfile" [label="machine\lcode"];
+}

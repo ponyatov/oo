@@ -1,0 +1,8 @@
+digraph frontend {
+	rankdir=LR;
+	src -> lexer [label=chars];
+	lexer -> parser [label=tokens];
+	parser -> IR [label=AST];
+	parser [label="(syntax)\lparser",shape=box];
+	lexer [shape=box];
+}

@@ -1,0 +1,10 @@
+digraph frontend {
+	rankdir=LR;
+	src -> lexer [label=chars];
+	lexer -> interpreter [label="word\lname"];
+	lexer [label="WORD\l(lexer)"];
+	interpreter -> vocabulary [label="FIND\lword name"];
+	vocabulary -> interpreter [label="execution\ltoken"];
+	interpreter -> EXECUTE [label="execution\ltoken"];
+	EXECUTE [label="EXECUTE\lCOMPILE"];
+}
