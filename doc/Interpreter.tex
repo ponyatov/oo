@@ -25,7 +25,7 @@ according to programming language grammar. The output of parser is AST:
 not use syntax parser.
 \end{description}
 
-\clearpage\secrel{Lexer}
+\clearpage\secrel{Lexer}\label{lexer}
 \noindent\includegraphics[width=\textwidth]{img/forthend.png} 
 In classical \F\ the whole lexer is \verb|WORD| (and few words do special
 lexing like \verb|\| and \verb|"| use WORD for its work). But this way has a
@@ -143,4 +143,36 @@ while True:													# infty loop
 <integer:-1>			<number:2.3>		<number:4e-05>
 <hex:0xDeadBeef>	<bin:0b1101>		<symbol:?>	
 <symbol:.>				<symbol:?>
+\end{lstlisting}
+
+\secrel{INTERPRET}
+\emph{Non-standard WORD word} is analog of classical \verb|WORD|, but does not
+get delimiter char codes from stack for its work, as it uses lexer
+defined before \ref{lexer}:
+\begin{lstlisting}[language=Python]
+lexer = lex.lex()              		 # create lexer
+							# feed stdin as source input stream
+lexer.input(sys.stdin.read())
+
+def WORD():
+	token = lex.token() ; if not token: sys.exit(0)
+	D << token	# push to data stack
+W << WORD
+\end{lstlisting}
+\clearpage\noindent
+\begin{lstlisting}[language=Python]
+def INTERPRET():
+    while True:						# interpreter REPL loop
+        WORD()						# Read
+		# search/execute/compile magic should be there
+        print D						# Print (stack)
+W << INTERPRET
+INTERPRET()			# start on VM run
+\end{lstlisting}
+\begin{lstlisting}
+<stack:DATA>
+	<integer:-1>
+	<number:2.3>
+	<number:4e-05>
+	<hex:0xDeadBeef>
 \end{lstlisting}

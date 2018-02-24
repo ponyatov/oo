@@ -295,9 +295,19 @@ def t_WORD(t):
     r'[a-zA-Z0-9_\?\.]+'
     return Symbol(t.value)
 
-lexer = lex.lex()
-lexer.input(open('src.src').read())
-while True:
+def BYE(): sys.exit(0)          # stop system
+W << BYE
+
+lexer = lex.lex()               # create lexer
+lexer.input(sys.stdin.read())   # feed stdin as source input stream
+def WORD():
     token = lex.token()
-    if not token: break
-    print token
+    if not token: BYE()
+    D << token
+W << WORD
+
+def INTERPRET():
+    while True:                     # interpreter loop
+        WORD() ; print D
+W << INTERPRET
+INTERPRET()
