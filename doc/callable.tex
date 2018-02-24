@@ -1,13 +1,13 @@
-\clearpage\secrel{Callable objects}
+\clearpage\secrel{Callable objects}\label{callable}
 
 \F\ distincts two types of words: executable and \term{literals}. If you look
 into source code of any F system implementation or disassemble \verb|INTERPRET|
 word, you'll see some checking of every word name parsed. If a parsed word looks
 like a number and was not found in vocabulary, it will be pushed onto data stack
 as is. In another case, vocabulary lookup will be done and found \term{execution
-token} will be executed. This token is a magic thing which \F\ treats as an
-\emph{executable object}: in classical system it is \emph{some magic number
-points to \term{word definition} and can be executed by} \verb|EXECUTE|
+token} \label{xt} will be executed. This token is a magic thing which \F\ treats
+as an \emph{executable object}: in classical system it is \emph{some magic
+number points to \term{word definition} and can be executed by} \verb|EXECUTE|
 \emph{word}. Our system works universally with objects on data stack, so for
 uniformity \emph{in o\F\ any object can be executed}.
 

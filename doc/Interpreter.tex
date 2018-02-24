@@ -145,7 +145,7 @@ while True:													# infty loop
 <symbol:.>				<symbol:?>
 \end{lstlisting}
 
-\secrel{INTERPRET}
+\secrel{WORD FIND INTERPRET loop}
 \emph{Non-standard WORD word} is analog of classical \verb|WORD|, but does not
 get delimiter char codes from stack for its work, as it uses lexer
 defined before \ref{lexer}:
@@ -170,9 +170,26 @@ W << INTERPRET
 INTERPRET()			# start on VM run
 \end{lstlisting}
 \begin{lstlisting}
-<stack:DATA>
+<stack:DATA>		# you will see rising stack in log
 	<integer:-1>
 	<number:2.3>
 	<number:4e-05>
 	<hex:0xDeadBeef>
 \end{lstlisting}
+\clearpage\noindent
+
+\begin{lstlisting}[language=Python]
+def EXECUTE():	D.pop().execute()
+def FIND():			WN = D.pop() ; D << W[WN.value]
+def INTERPRET():
+	while True:									# interpreter loop
+		WORD() # ( -- token )					# Read
+		if D.top().type == 'symbol':	# ? need lookup
+			FIND()    # ( token -- xt )	# Decode
+			EXECUTE() # ( xt -- )				# Eval
+		print D												# Print
+\end{lstlisting}
+If \verb|WORD| returns symbol, \term{lookup} in vocabulary must be done.
+\verb|FIND| pops \term{word name} from data stack $\rightarrow$\verb|WN|, and do
+search in \verb|W[]|. Resulting \term{execution token} \ref{xt} will be
+\verb|EXECUTE|d.

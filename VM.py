@@ -254,6 +254,21 @@ def test_Object_callable():
     T = Object('callable')
     T.execute() ; assert D.top() == T
 
+######################################################################### debug
+
+def q(): print D
+W['?'] = VM(q)
+def qq(): print D ; print W ; BYE()
+W['??'] = VM(qq)
+
+########################################################################## misc
+
+def dot(): D.flush()
+W['.'] = VM(dot)
+
+def BYE(): sys.exit(0)          # stop system
+W << BYE
+
 ######################################################################### lexer
 
 import ply.lex as lex
@@ -295,9 +310,6 @@ def t_WORD(t):
     r'[a-zA-Z0-9_\?\.]+'
     return Symbol(t.value)
 
-def BYE(): sys.exit(0)          # stop system
-W << BYE
-
 lexer = lex.lex()               # create lexer
 lexer.input(sys.stdin.read())   # feed stdin as source input stream
 def WORD():
@@ -306,8 +318,13 @@ def WORD():
     D << token
 W << WORD
 
+def FIND(): WN = D.pop() ; D << W[WN.value]
+
 def INTERPRET():
     while True:                     # interpreter loop
-        WORD() ; print D
+        WORD()
+        if D.top().type == 'symbol':    # need lookup
+            FIND() ; EXECUTE()
+        print D
 W << INTERPRET
 INTERPRET()
