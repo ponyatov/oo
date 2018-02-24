@@ -2,7 +2,7 @@ IMG = img/compiler.png img/frontend.png img/forthend.png
 
 LATEX = pdflatex -halt-on-error
 
-manual.pdf: *.tex $(IMG)
+manual.pdf: *.tex $(IMG) *.sty
 	$(LATEX) manual && $(LATEX) manual
 img/%.png: img/%.dot
 	dot -T png -o $@ $< 

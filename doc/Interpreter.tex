@@ -46,3 +46,101 @@ PLY\note{and parser generators for \cpp} in place of dumb \verb|WORD|. Such
 lexer will do type detection for \term{literals} (numbers, strings,..).
 
 \clearpage
+\begin{lstlisting}[language=Forth]
+# metasystem tests
+01 02.3 +04e-05 0xDeadBeef 0b1101 (lot of numbers)
+? . ?														\ dump/clear stack
+\end{lstlisting}
+Here the sample code contains various types of comments, numbers, debug
+\verb|?| stack dump and stack clean \verb|.| dot word. We will process it using
+well known \href{http://www.dabeaz.com/ply/}{PLY library}\note{\$ sudo pip
+install ply} for \py.
+\begin{lstlisting}[language=Python]
+############################################ lexer
+import ply.lex as lex
+\end{lstlisting}
+We don't use \verb|ply.yacc| because lexer is enough for o\F. You can use it for
+more complex recursive syntax like parens or lists.
+\clearpage\noindent
+ply.lex requires some predefined elements must be declared:
+
+\begin{lstlisting}[language=Python]
+# lexer error callback
+def t_error(t): raise SyntaxError(t)
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+# ignored chars: spaces
+t_ignore = ' \t\r\n'
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+def t_COMMENT(t):
+    r'\#.+'
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+# list of used token (literal) types
+tokens = ['WORD','integer','number','hex','bin']
+\end{lstlisting}
+\clearpage\noindent
+Every lexer rule should be defined in form of specially formatted function,
+contains \emph{regular expression in its docstring}, and returns any object has
+\verb|.type| and \verb|.value| properties. If rule function does not return any
+value, a parsed element will be omitted, as it was done with \verb|t_COMMENT|.
+The order of rule definition is the topmost first: \emph{earlier defined rule
+has more priority}.
+
+\medskip
+\begin{lstlisting}[language=Python]
+def t_NUMBER_exp(t):	# float in exponential form
+	r'[\+\-]?[0-9]+(\.[0-9]*)?[eE][\+\-]?[0-9]+'
+	return Number(t.value)
+def t_NUMBER_point(t):					# float with point
+	r'[\+\-]?[0-9]+\.[0-9]*'
+	return Number(t.value)
+\end{lstlisting}
+\clearpage
+\noindent \verb|Hex|adecimal and \verb|Bin|ary numbers are widely used in
+low-level programming and HDL\note{Hardware Description Languages\ --- Verilog,
+VHDL}, here we use some machine number classes:
+\begin{lstlisting}[language=Python]
+def t_HEX(t):							# machine number in hex
+    r'0x[0-9a-fA-F]+'
+    return Hex(t.value)
+def t_BIN(t):									# binary bit string
+    r'0b[01]+'
+    return Bin(t.value)
+def t_INTEGER(t):								# generic integer
+    r'[\+\-]?[0-9]+'
+    return Integer(t.value)
+\end{lstlisting}
+\clearpage\noindent o\F\ has many variants of comments in syntax:
+\begin{lstlisting}[language=Python]
+def t_COMMENT_hash(t):			# single line #comment
+	r'\#.+'
+def t_COMMENT_slash(t):			# single line \comment
+	r'\\.+'
+def t_COMMENT_parens(t):		# block (comment)
+	r'\(.*?\)'
+\end{lstlisting}
+
+\bigskip\noindent And finally \emph{the most important lexer rule}:
+\begin{lstlisting}[language=Python]
+def t_WORD(t): 					# parse generic word name
+    r'[a-zA-Z0-9_\?\.]+'
+    return Symbol(t.value)
+\end{lstlisting}
+\clearpage\noindent To get results of lexer run isolated from INTERPET you can
+use this code:
+
+\begin{lstlisting}[language=Python]
+lexer = lex.lex()										# create lexer
+lexer.input(open('src.src').read())	# feed source
+while True:													# infty loop
+    token = lex.token()
+    if not token: break				# until empty token
+    print token
+\end{lstlisting}
+\begin{lstlisting}
+<integer:-1>			<number:2.3>		<number:4e-05>
+<hex:0xDeadBeef>	<bin:0b1101>		<symbol:?>	
+<symbol:.>				<symbol:?>
+\end{lstlisting}

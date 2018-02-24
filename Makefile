@@ -1,4 +1,4 @@
-default: doc/manual.pdf
+default: doc/manual.pdf log.log
 
 log.log: src.src VM.py
 	python VM.py < $< > $@ && tail $(TAIL) $@
@@ -10,5 +10,5 @@ doc: pdf
 pdf: $(PDF)
 $(PDF): doc/manual.pdf
 	cp $< $@
-doc/manual.pdf: doc/*.tex doc/Makefile doc/img/*
+doc/manual.pdf: doc/*.tex doc/Makefile doc/img/* doc/*.sty
 	cd doc ; $(MAKE)

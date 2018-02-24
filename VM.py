@@ -98,13 +98,18 @@ def test_Number_exp(): assert \
 ####################################################################### Integer
 
 class Integer(Number):
-    def __init__(self,V):
-        Number.__init__(self, V)
+    def __init__(self,V,B=10):
+        Number.__init__(self, '0')
         self.value = int(V)             # use python integer
 
 def test_Integer(): assert \
     type(Integer('-012345').value) == type(-12345) and \
     Integer('-012345').value == -12345
+    
+class Hex(Integer):
+    def __init__(self,V): Integer.__init__(self, '0') ; self.value = V
+class Bin(Integer):
+    def __init__(self,V): Integer.__init__(self, '0') ; self.value = V
 
 #################################################################### Containers
 
@@ -248,3 +253,51 @@ def test_Object_callable():
     D.flush()
     T = Object('callable')
     T.execute() ; assert D.top() == T
+
+######################################################################### lexer
+
+import ply.lex as lex
+
+# lexer error callback
+def t_error(t): raise SyntaxError(t)
+
+# ignored chars: spaces
+t_ignore = ' \t\r\n'
+
+def t_COMMENT_hash(t):   r'\#.+'                # single line #comment
+def t_COMMENT_slash(t):  r'\\.+'                # single line \comment
+def t_COMMENT_parens(t): r'\(.*?\)'             # block (comment)
+
+# list of used token (literal) types
+tokens = ['symbol','integer','number','hex','bin']
+
+def t_NUMBER_exp(t):                            # float in exponential form
+    r'[\+\-]?[0-9]+(\.[0-9]*)?[eE][\+\-]?[0-9]+'
+    return Number(t.value)
+
+def t_NUMBER_point(t):                          # float with point
+    r'[\+\-]?[0-9]+\.[0-9]*'
+    return Number(t.value)
+
+def t_HEX(t):                                   # machine number in hex
+    r'0x[0-9a-fA-F]+'
+    return Hex(t.value)
+
+def t_BIN(t):                                   # binary bit string
+    r'0b[01]+'
+    return Bin(t.value)
+
+def t_INTEGER(t):                               # generic integer
+    r'[\+\-]?[0-9]+'
+    return Integer(t.value)
+
+def t_WORD(t):
+    r'[a-zA-Z0-9_\?\.]+'
+    return Symbol(t.value)
+
+lexer = lex.lex()
+lexer.input(open('src.src').read())
+while True:
+    token = lex.token()
+    if not token: break
+    print token
