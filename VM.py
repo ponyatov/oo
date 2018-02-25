@@ -164,9 +164,13 @@ def test_Map_GetSet():
     assert M.attr == {'X':'Y'}  # check set
     assert M['X'] == 'Y'        # check get
 
+######################################################################## Vector
+
+class Vector(Container): pass
+
 ######################################################################### Queue
 
-class Queue(Container):
+class Queue(Vector):
     def pop(self): return self.nest[0]
 
 def test_Queue(): assert Queue('queue').nest == []
@@ -189,6 +193,20 @@ class VM(Active):
     def execute(self): self.fn()
 
 def test_VM(): assert VM(test_VM).head() == '<vm:test_VM>'
+
+###################################################################### Specials
+
+###################################################################### Booleans
+
+class Bool(Object): pass
+class true(Bool): pass
+class false(Bool): pass
+
+T = true('T') ; F = false('F')
+
+def test_Bool():
+    assert T.head() == '<true:T>'
+    assert F.head() == '<false:F>'
 
 ######################################################### FORTH Virtual Machine
 
@@ -258,7 +276,7 @@ def test_Object_callable():
 
 def q(): print D
 W['?'] = VM(q)
-def qq(): print D ; print W ; BYE()
+def qq(): print W ; print D ; BYE()
 W['??'] = VM(qq)
 
 ########################################################################## misc
@@ -268,6 +286,14 @@ W['.'] = VM(dot)
 
 def BYE(): sys.exit(0)          # stop system
 W << BYE
+
+###################################################################### Compiler
+
+COMPILE = None
+def QL(): global COMPILE ; COMPILE = Vector('')
+def QR(): global COMPILE ; D << COMPILE ; COMPILE = None
+W['['] = VM(QL) 
+W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag    
 
 ######################################################################### lexer
 
@@ -307,11 +333,13 @@ def t_INTEGER(t):                               # generic integer
     return Integer(t.value)
 
 def t_WORD(t):
-    r'[a-zA-Z0-9_\?\.]+'
+    r'[a-zA-Z0-9_\?\.\[\]]+'
     return Symbol(t.value)
 
-lexer = lex.lex()               # create lexer
-lexer.input(sys.stdin.read())   # feed stdin as source input stream
+lexer = lex.lex()                               # create lexer
+
+################################################################### Interpreter
+
 def WORD():
     token = lex.token()
     if not token: BYE()
@@ -324,7 +352,13 @@ def INTERPRET():
     while True:                     # interpreter loop
         WORD()
         if D.top().type == 'symbol':    # need lookup
-            FIND() ; EXECUTE()
-        print D
+            FIND()
+            if D.top().attr.has_key('IMMED'): EXECUTE()
+        if COMPILE: COMPILE << D.pop()  # compile from stack
+        else:       EXECUTE()           # or execute in place
+#         print D
 W << INTERPRET
-INTERPRET()
+
+if __name__ == "__main__":              # VM startup
+    lexer.input(open('src.src').read()) # feed stdin as source input stream
+    INTERPRET()

@@ -6,3 +6,5 @@
 *.synctex.gz
 .pytest_cache/
 *.pdf
+.cache/
+

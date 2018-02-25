@@ -1,0 +1,15 @@
+\clearpage\secrel{Bool}
+
+Boolean values should be defined in two \emph{singletone}s:
+
+\begin{lstlisting}[language=Python]
+class Bool(Object): pass
+class true(Bool): pass
+class false(Bool): pass
+
+T = true('T') ; F = false('F')
+
+def test_Bool():
+    assert T.head() == '<true:T>'
+    assert F.head() == '<false:F>'
+\end{lstlisting}

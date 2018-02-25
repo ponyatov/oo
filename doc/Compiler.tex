@@ -1,0 +1,28 @@
+\clearpage\secrel{Compiler}
+
+In \F\ term \term{compile} means something different than mainstream languages:
+a user defines new words using existing ones. In classical \F\
+implementation dynamic memory allocation model is extra simple: you can only
+\emph{compile bytes to the end of vocabulary}, moving HERE pointer. We will use
+\textit{executable vectors}\note{and attribute trees as a native representation
+for programs written in mainstream languages} for storing user definitions, so
+\emph{compiling will be done into the end of vector} held in \verb|COMPILE|
+variable.
+
+\bigskip
+Don't confuse with \term{dynamic compilation} introduced later \ref{dynajit}.
+
+\clearpage\noindent
+The simplest compilation sample can be executable vector analogous to SmallTalk
+block or argumentless lambda function:
+\begin{lstlisting}[language=Forth]
+[ 1 2 3 ] ??
+\end{lstlisting}
+\begin{lstlisting}
+<stack:DATA>
+	<vector:>
+		<integer:1>
+		<integer:2>
+		<integer:3>
+\end{lstlisting}
+		
