@@ -1,1 +1,14 @@
 \clearpage\secrel{Vector}
+
+Vector is \emph{ordered container} has very important role in o\F: \emph{it
+contains executable definitions} in form of \term{sequential programs}.
+Classical machine code or bytecode compiled programs can be easily represented
+in a model of ordered container: linear list of commands, and jumps by integer
+indexes.
+\begin{lstlisting}[language=Python]
+class Vector(Container): pass
+
+def test_Vector(): assert \
+	( Vector('ordered') << 1 << 2 << 3 ).nest \
+		== [1,2,3]
+\end{lstlisting}

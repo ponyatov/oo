@@ -168,6 +168,9 @@ def test_Map_GetSet():
 
 class Vector(Container): pass
 
+def test_Vector(): assert \
+    ( Vector('ordered') << 1 << 2 << 3 ).nest == [1,2,3]
+
 ######################################################################### Queue
 
 class Queue(Vector):
