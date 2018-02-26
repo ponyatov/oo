@@ -344,9 +344,8 @@ lexer = lex.lex()                               # create lexer
 ################################################################### Interpreter
 
 def WORD():
-    token = lex.token()
-    if not token: BYE()
-    D << token ; return token
+    D << lex.token() # get object right from lexer
+    if not D.top(): D.pop() ; raise EOFError
 W << WORD
 
 test_STRING_4Interpreter = '''
@@ -361,15 +360,28 @@ ThisMustBeFirst
 
 def test_WORD():
     lexer.input(test_STRING_4Interpreter)
-    assert WORD().head() == '<symbol:ThisMustBeFirst>'
-    assert WORD().head() == '<integer:-1>'
-    assert WORD().head() == '<number:2.3>'
-    assert WORD().head() == '<number:4e-05>'
-    assert WORD().head() == '<hex:0xDeadBeef>'
-    assert WORD().head() == '<bin:0b1101>'
-    assert WORD().head() == '<symbol:Some>'
+    WORD() ; assert D.pop().head() == '<symbol:ThisMustBeFirst>'
+    WORD() ; assert D.pop().head() == '<integer:-1>'
+    WORD() ; assert D.pop().head() == '<number:2.3>'
+    WORD() ; assert D.pop().head() == '<number:4e-05>'
+    WORD() ; assert D.pop().head() == '<hex:0xDeadBeef>'
+    WORD() ; assert D.pop().head() == '<bin:0b1101>'
+    WORD() ; assert D.pop().head() == '<symbol:Some>'
+    try: WORD() ; assert False
+    except EOFError: assert True # test ok
 
-def FIND(): WN = D.pop() ; D << W[WN.value]
+def FIND():
+    WN = D.pop()            # get word name to be found
+    try: D << W[WN.value]   # push result from vocabulary
+    except KeyError: raise SyntaxError(WN.value) # not found
+
+def test_FIND():
+    D << String('FIND') ; FIND()
+    assert D.pop().head() == '<vm:FIND>'
+    D << String('NOTFOUND')
+    try: FIND() ;       assert False
+    except SyntaxError: assert True
+W << FIND
 
 def INTERPRET():
     while True:                     # interpreter loop
@@ -379,8 +391,21 @@ def INTERPRET():
             if D.top().attr.has_key('IMMED'): EXECUTE()
         if COMPILE: COMPILE << D.pop()  # compile from stack
         else:       EXECUTE()           # or execute in place
-#         print D
 W << INTERPRET
+
+def test_INTERPRET():
+    def ThisMustBeFirst(): pass
+    def Some(): pass
+    D.flush() ; lexer.input(test_STRING_4Interpreter)
+    W << ThisMustBeFirst << Some ; D.flush()
+    try: INTERPRET()
+    except EOFError: pass
+    assert D.pop().head() == '<bin:0b1101>'
+    assert D.pop().head() == '<hex:0xDeadBeef>'
+    assert D.pop().head() == '<number:4e-05>'
+    assert D.pop().head() == '<number:2.3>'
+    assert D.pop().head() == '<integer:-1>'
+    assert D.nest == []
 
 if __name__ == "__main__":              # VM startup
     lexer.input(open('src.src').read()) # feed stdin as source input stream

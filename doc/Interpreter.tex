@@ -167,9 +167,9 @@ INTERPRET()			# start on VM run
 \end{lstlisting}
 \clearpage\noindent
 
+\input{Find}
+\clearpage
 \begin{lstlisting}[language=Python]
-def EXECUTE():	D.pop().execute()
-def FIND():			WN = D.pop() ; D << W[WN.value]
 def INTERPRET():
 	while True:									# interpreter loop
 		WORD() # ( -- token )					# Read

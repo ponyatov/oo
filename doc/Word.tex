@@ -1,14 +1,14 @@
-\emph{Non-standard WORD word} is analog of classical \verb|WORD|, but does not
-get delimiter char codes from stack for its work, as it uses lexer
-defined before \ref{lexer}:
+\textcolor{red}{Non-standard} \verb|WORD| is analog of classical \verb|WORD|,
+but \emph{does not get delimiter char codes from stack} for its work, as it uses
+lexer defined before \ref{lexer}:
 \begin{lstlisting}[language=Python]
 lexer = lex.lex()              		 # create lexer
 							# feed stdin as source input stream
 lexer.input(sys.stdin.read())
 
 def WORD():
-	token = lex.token() ; if not token: sys.exit(0)
-	D << token	# push to data stack
+    D << lex.token() # get object right from lexer
+    if not D.top(): D.pop() ; raise EOFError
 W << WORD
 \end{lstlisting}
 \clearpage\noindent
@@ -34,12 +34,14 @@ lexer alone, interpreter, and compiler.
 \begin{lstlisting}[language=Python]
 def test_WORD():
 	lexer.input(test_STRING_4Interpreter)
-	assert WORD().head() == '<symbol:ThisMustBeFirst>'
-	assert WORD().head() == '<integer:-1>'
-	assert WORD().head() == '<number:2.3>'
-	assert WORD().head() == '<number:4e-05>'
-	assert WORD().head() == '<hex:0xDeadBeef>'
-	assert WORD().head() == '<bin:0b1101>'
-	assert WORD().head() == '<symbol:Some>'
+	WORD();assert D... == '<symbol:ThisMustBeFirst>'
+	WORD();assert D.pop().head() == '<integer:-1>'
+	WORD();assert D.pop().head() == '<number:2.3>'
+	WORD();assert D.pop().head() == '<number:4e-05>'
+	WORD();assert D.pop().head() == '<hex:0xDeadBeef>'
+	WORD();assert D.pop().head() == '<bin:0b1101>'
+	WORD();assert D.pop().head() == '<symbol:Some>'
+	try: WORD() ; assert False
+	except EOFError: assert True # test ok
 \end{lstlisting}
     

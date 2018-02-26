@@ -1,0 +1,19 @@
+\noindent\label{FIND}
+\textcolor{red}{Non-standart} \verb|FIND| \emph{does not push any flags}, but
+raises SyntaxError:
+\begin{lstlisting}[language=Python]
+def FIND():
+	WN = D.pop()				# get word name to be found
+	try: D << W[WN.value]	# push result from vocab
+	except KeyError: raise SyntaxError(WN.value)
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+def test_FIND():
+	D << String('FIND') ; FIND()		 # find existing
+	assert D.pop().head() == '<vm:FIND>'
+	D << String('NOTFOUND')				 	 # find noword
+	try:   FIND() ;     assert False # test fault
+	except SyntaxError: assert True  # must be error
+W << FIND
+\end{lstlisting}
