@@ -5,9 +5,9 @@ a user defines new words using existing ones. In classical \F\
 implementation dynamic memory allocation model is extra simple: you can only
 \emph{compile bytes to the end of vocabulary}, moving HERE pointer. We will use
 \textit{executable vectors}\note{and attribute trees as a native representation
-for programs written in mainstream languages} for storing user definitions, so
-\emph{compiling will be done into the end of vector} held in \verb|COMPILE|
-variable.
+for programs written in mainstream languages} for storing user definitions
+\ref{Vector}, so \emph{compiling will be done into the end of vector} held in
+\verb|COMPILE| register.
 
 \bigskip
 Don't confuse with \term{dynamic compilation} introduced later \ref{dynajit}.
@@ -16,7 +16,7 @@ Don't confuse with \term{dynamic compilation} introduced later \ref{dynajit}.
 The simplest compilation sample can be executable vector analogous to SmallTalk
 block or argumentless lambda function:
 \begin{lstlisting}[language=Forth]
-[ 1 2 3 ] ??
+[ 1 2 3 ] ? EXECUTE ??
 \end{lstlisting}
 \begin{lstlisting}
 <stack:DATA>
@@ -24,5 +24,61 @@ block or argumentless lambda function:
 		<integer:1>
 		<integer:2>
 		<integer:3>
+<stack:DATA>
+	<integer:1>
+	<integer:2>
+	<integer:3>
 \end{lstlisting}
-		
+\clearpage\noindent
+\F\ system mode is managed by global \verb|COMPILE| register:
+\begin{lstlisting}[language=Python]
+COMPILE = None
+def COMPILE_RST(): global COMPILE ; COMPILE = None
+\end{lstlisting}
+\begin{description}[nosep]
+\item[\term{interpretation mode}] \verb|COMPILE == None| 
+\item[\term{compilation mode}] \verb|COMPILE| contains \emph{current compilation
+item}
+\end{description}
+\begin{lstlisting}[language=Python]
+def QL(): global COMPILE ; COMPILE = Vector('')
+W['['] = VM(QL) 
+\end{lstlisting}
+\verb|[| word \emph{switches the system} into compilation mode just \emph{by
+assigning an empty vector} will be used as a \term{compiler target} later. In
+classical \F\ standard bool variable \verb|STATE| points is system works in
+compilation. But in o\F\ we use \textcolor{red}{a special VM register}.
+\clearpage\noindent
+\begin{lstlisting}[language=Python]
+def QR(): D << COMPILE ; COMPILE_RST()
+W[']'] = VM(QR)
+\end{lstlisting}
+\verb|]| word  \emph{leaves the compiled object on the data stack} and stops
+compilation.
+\begin{lstlisting}[language=Python]
+W[']']['IMMED'] = T   # set immediate flag
+\end{lstlisting}
+\emph{Some words must be executed in compile state} to do its job, so we must
+use special \verb|IMMEDIATE| flag to force interpreter to run word just after it
+was found in vocabulary.
+\begin{lstlisting}[language=Python]
+def test_QLQR():
+	QL(); assert     COMPILE
+	QR(); assert not COMPILE
+\end{lstlisting}
+\clearpage\noindent
+\verb|INTERPRET| becomes more complex:
+\begin{lstlisting}[language=Python]
+def INTERPRET(SRC=''):
+	lexer.input(SRC)						# feed source input
+	while True:									# interpreter loop                     
+		try: WORD()
+		except EOFError: break
+		if D.top().type == 'symbol':    # need lookup
+			FIND()
+			if D.top().attr.has_key('IMMED'):
+				EXECUTE() ; continue
+		if COMPILE: COMPILE << D.pop()  # from stack
+		else:       EXECUTE()           # in place
+W << INTERPRET
+\end{lstlisting}

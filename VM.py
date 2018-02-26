@@ -298,8 +298,8 @@ COMPILE = None
 def COMPILE_RST(): global COMPILE ; COMPILE = None
 
 def QL(): global COMPILE ; COMPILE = Vector('')
-def QR(): global COMPILE ; D << COMPILE ; COMPILE = None
 W['['] = VM(QL) 
+def QR(): D << COMPILE ; COMPILE_RST()
 W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag
 
 def test_QLQR():
@@ -352,6 +352,8 @@ lexer = lex.lex()                               # create lexer
 
 ################################################################### Interpreter
 
+########################################################################## WORD
+
 def WORD():
     D << lex.token() # get object right from lexer
     if not D.top(): D.pop() ; raise EOFError
@@ -379,6 +381,8 @@ def test_WORD():
     try: WORD() ; assert False
     except EOFError: assert True # test ok
 
+########################################################################## FIND
+
 def FIND():
     WN = D.pop()            # get word name to be found
     try: D << W[WN.value]   # push result from vocabulary
@@ -391,6 +395,8 @@ def test_FIND():
     try: FIND() ;       assert False
     except SyntaxError: assert True
 W << FIND
+
+##################################################################### INTERPRET
 
 def INTERPRET(SRC=''):
     lexer.input(SRC)                    # feed source input
