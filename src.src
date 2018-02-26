@@ -1,6 +1,6 @@
 # metasystem
 
-[ 1 2 3 ] ??
+[ 1 2 3 ] ? EXECUTE ??
 
 -01 002.3 +04e-05 0xDeadBeef 0b1101 ( lot of numbers )
 ? . ?													\ dump/clear stack

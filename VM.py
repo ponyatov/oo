@@ -166,7 +166,8 @@ def test_Map_GetSet():
 
 ######################################################################## Vector
 
-class Vector(Container): pass
+class Vector(Container):
+    def execute(self): map(lambda x:x.execute(), self.nest)
 
 def test_Vector(): assert \
     ( Vector('ordered') << 1 << 2 << 3 ).nest == [1,2,3]
@@ -274,6 +275,7 @@ def test_Object_callable():
     D.flush()
     T = Object('callable')
     T.execute() ; assert D.top() == T
+    D.flush()
 
 ######################################################################### debug
 
@@ -293,10 +295,17 @@ W << BYE
 ###################################################################### Compiler
 
 COMPILE = None
+def COMPILE_RST(): global COMPILE ; COMPILE = None
+
 def QL(): global COMPILE ; COMPILE = Vector('')
 def QR(): global COMPILE ; D << COMPILE ; COMPILE = None
 W['['] = VM(QL) 
-W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag    
+W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag
+
+def test_QLQR():
+    COMPILE_RST();
+    QL(); assert     COMPILE
+    QR(); assert not COMPILE
 
 ######################################################################### lexer
 
@@ -383,30 +392,63 @@ def test_FIND():
     except SyntaxError: assert True
 W << FIND
 
-def INTERPRET():
-    while True:                     # interpreter loop
-        WORD()
+def INTERPRET(SRC=''):
+    lexer.input(SRC)                    # feed source input
+    while True:                         # interpreter loop                     
+        try: WORD()
+        except EOFError: break
         if D.top().type == 'symbol':    # need lookup
             FIND()
-            if D.top().attr.has_key('IMMED'): EXECUTE()
+            if D.top().attr.has_key('IMMED'):
+                EXECUTE() ; continue
         if COMPILE: COMPILE << D.pop()  # compile from stack
         else:       EXECUTE()           # or execute in place
 W << INTERPRET
 
+def test_INTERPRET_null():
+    D.flush() ; INTERPRET('')
+    assert D.nest == []
+
 def test_INTERPRET():
     def ThisMustBeFirst(): pass
     def Some(): pass
-    D.flush() ; lexer.input(test_STRING_4Interpreter)
-    W << ThisMustBeFirst << Some ; D.flush()
-    try: INTERPRET()
-    except EOFError: pass
+    W << ThisMustBeFirst << Some ; 
+    D.flush() ; INTERPRET(test_STRING_4Interpreter)
     assert D.pop().head() == '<bin:0b1101>'
     assert D.pop().head() == '<hex:0xDeadBeef>'
     assert D.pop().head() == '<number:4e-05>'
     assert D.pop().head() == '<number:2.3>'
     assert D.pop().head() == '<integer:-1>'
     assert D.nest == []
-
+    
+def test_COMPILE_emptyblock():
+    # check bad syntax (must have spaces)
+    try: INTERPRET('[]') ; assert False
+    except SyntaxError: assert True
+    # check right syntax
+    INTERPRET('[ ]')
+    assert D.top().head() == '<vector:>'
+    # check execution of empty block
+    EXECUTE()
+    assert D.nest == []
+     
+def test_INTERPRET_state_transitions():
+    D.flush() ; COMPILE_RST()   # cleaup
+    INTERPRET('[')              # start compilation
+    assert COMPILE.head() == '<vector:>'
+    INTERPRET(']')              # stop
+    assert COMPILE == None
+     
+def test_vector_compile():
+    D.flush(); COMPILE_RST()
+    INTERPRET('[ 1 2 3 ]')
+    assert str(D.top()) == \
+        '\n<vector:>\n\t<integer:1>\n\t<integer:2>\n\t<integer:3>'
+    # don't cleanup data stack
+def test_vector_exec():
+    test_vector_compile() ; EXECUTE()
+    assert str(D) == \
+    '\n<stack:DATA>\n\t<integer:1>\n\t<integer:2>\n\t<integer:3>'
+ 
 if __name__ == "__main__":              # VM startup
-    lexer.input(open('src.src').read()) # feed stdin as source input stream
-    INTERPRET()
+    INTERPRET(open('src.src').read())   # feed src.src
