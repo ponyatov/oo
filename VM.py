@@ -346,8 +346,28 @@ lexer = lex.lex()                               # create lexer
 def WORD():
     token = lex.token()
     if not token: BYE()
-    D << token
+    D << token ; return token
 W << WORD
+
+test_STRING_4Interpreter = '''
+# line comment
+\ slash line comment
+( block comment )
+ThisMustBeFirst
+-01 002.3 +04e-05 0xDeadBeef 0b1101 ( lot of numbers )
+#this tightly inputted code can't be parsed by classical FORTH, lexer only
+(And)Some\Symbols
+    '''
+
+def test_WORD():
+    lexer.input(test_STRING_4Interpreter)
+    assert WORD().head() == '<symbol:ThisMustBeFirst>'
+    assert WORD().head() == '<integer:-1>'
+    assert WORD().head() == '<number:2.3>'
+    assert WORD().head() == '<number:4e-05>'
+    assert WORD().head() == '<hex:0xDeadBeef>'
+    assert WORD().head() == '<bin:0b1101>'
+    assert WORD().head() == '<symbol:Some>'
 
 def FIND(): WN = D.pop() ; D << W[WN.value]
 

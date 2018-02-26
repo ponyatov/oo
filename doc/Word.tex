@@ -1,0 +1,45 @@
+\emph{Non-standard WORD word} is analog of classical \verb|WORD|, but does not
+get delimiter char codes from stack for its work, as it uses lexer
+defined before \ref{lexer}:
+\begin{lstlisting}[language=Python]
+lexer = lex.lex()              		 # create lexer
+							# feed stdin as source input stream
+lexer.input(sys.stdin.read())
+
+def WORD():
+	token = lex.token() ; if not token: sys.exit(0)
+	D << token	# push to data stack
+W << WORD
+\end{lstlisting}
+\clearpage\noindent
+\begin{lstlisting}[language=Python]
+test_STRING_4Interpreter = '''
+\end{lstlisting}
+\begin{lstlisting}[language=Forth]
+# line comment
+\ slash line comment
+( block comment )
+ThisMustBeFirst
+-01 002.3 +04e-05 0xDeadBeef 0b1101 ( lot numbers )
+#this tightly inputted code can't be parsed 
+\by classical FORTH, lexer only
+(And)Some\Symbols
+\end{lstlisting}
+\begin{lstlisting}[language=Python]
+'''
+\end{lstlisting}
+Testing of an interpreter may be some complex: we need to prepare a bit complex
+source code, which must be processed several times by several parts: single
+lexer alone, interpreter, and compiler.
+\begin{lstlisting}[language=Python]
+def test_WORD():
+	lexer.input(test_STRING_4Interpreter)
+	assert WORD().head() == '<symbol:ThisMustBeFirst>'
+	assert WORD().head() == '<integer:-1>'
+	assert WORD().head() == '<number:2.3>'
+	assert WORD().head() == '<number:4e-05>'
+	assert WORD().head() == '<hex:0xDeadBeef>'
+	assert WORD().head() == '<bin:0b1101>'
+	assert WORD().head() == '<symbol:Some>'
+\end{lstlisting}
+    

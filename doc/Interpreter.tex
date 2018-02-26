@@ -146,19 +146,8 @@ while True:													# infty loop
 \end{lstlisting}
 
 \secrel{WORD FIND INTERPRET loop}
-\emph{Non-standard WORD word} is analog of classical \verb|WORD|, but does not
-get delimiter char codes from stack for its work, as it uses lexer
-defined before \ref{lexer}:
-\begin{lstlisting}[language=Python]
-lexer = lex.lex()              		 # create lexer
-							# feed stdin as source input stream
-lexer.input(sys.stdin.read())
+\input{Word}
 
-def WORD():
-	token = lex.token() ; if not token: sys.exit(0)
-	D << token	# push to data stack
-W << WORD
-\end{lstlisting}
 \clearpage\noindent
 \begin{lstlisting}[language=Python]
 def INTERPRET():
