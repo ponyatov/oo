@@ -10,6 +10,7 @@ doc: pdf
 pdf: $(PDF)
 $(PDF): doc/manual.pdf
 	cp $< $@
-TEX = doc/*.tex doc/core/*.tex doc/oForth/*.tex doc/img/*
+TEX = doc/*.tex doc/core/*.tex doc/oForth/*.tex doc/algo/*.tex doc/dyna/*.tex
+TEX += doc/img/*
 doc/manual.pdf: $(TEX) doc/Makefile doc/*.sty
 	cd doc ; $(MAKE)

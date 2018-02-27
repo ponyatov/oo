@@ -1,0 +1,31 @@
+digraph {
+    rankdir=LR;
+    #metaprogram -> algograph;
+    seq -> compiler -> elf;
+    elf [label="object\lfiles"];
+    #model_compiler [label="model\ltranslator"];
+    
+    subgraph cluster_interpreter {
+        label="interpreter";
+        #algograph -> model_compiler -> seq;
+        algograph -> seq [label="model\ltranslator"]; 
+        VM [shape=diamond];
+    subgraph cluster_model {
+        label = "domain model";
+        algograph;
+    };
+    
+    compiler [label="(cross)\lcompiler\lLLVM"];
+
+    subgraph cluster_seq {
+        label = "target system model";
+        seq [label="sequential\lcomputation\lalgograph"];
+    };
+    
+    };
+    
+    seq -> deploy;
+    deploy [label="deployment\lscripts"];
+    
+    { rank=same; elf; deploy; }
+}

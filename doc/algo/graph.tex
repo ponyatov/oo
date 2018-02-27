@@ -1,0 +1,42 @@
+\clearpage\secrel{AlgoGraphs:\\Metamodeling in terms of Objects}\secdown
+
+\noindent \term{AlgoGraph} (AG) is a main actor in our system. AG is a
+\term{hypergraph} of \emph{interacting} objects (actors). Objects have
+\emph{active nature}, so they can \emph{modify} AG itself.
+
+\medskip\noindent
+An interaction between objects does via \term{message passing}, which is
+\emph{native to distributed systems} and have very good \term{scalability}.
+
+\medskip\noindent
+Elements of AG describes widely used elements of software systems, so our model
+is mix of \href{http://en.wikipedia.org/wiki/Actor_model}{Actor Model},
+\href{http://en.wikipedia.org/wiki/Generic_programming}{Generic Programming}
+and \href{http://en.wikipedia.org/wiki/Model-driven_engineering}{Model-driven
+engineering} with adaptation for
+\href{http://en.wikipedia.org/wiki/Metaprogramming}{Metaprogramming}.
+
+\clearpage\noindent
+Ideal structure of final o\F\ system will be:\\
+\includegraphics[width=\textwidth]{img/dynamodel.png}\\
+\term{Metaprogram} controls build of \term{algograph}, which \emph{describes
+required abstract computing system in terms of generic elements}: data
+containers, data flows, actors and messages, algorithms, finite automata,
+storages, caches,\ldots
+
+\term{Target model} describes required hardware and deployment: platform,
+underlying OS, servers interconnection, databases,\ldots
+
+\term{Model translator} transforms maps computational model into sequential form
+able to run\note{in multitasking} on required target system.
+
+Resulting sequential model can be transformed into executable code via
+\term{dynamic compilaton} \ref{dynacomp}, using LLVM cross-compiler for
+required target system, or some mainstream language generators. Also, the
+accompanying deployment scripts, packages/installers and other precompiled data
+are generated.
+
+\input{vsalgo}
+\input{actor}
+\input{actoadvance}
+\secup

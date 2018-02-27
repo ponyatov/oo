@@ -1,5 +1,6 @@
-TEX = *.tex core/*.tex oForth/*.tex
-IMG = img/compiler.png img/frontend.png img/forthend.png
+TEX = *.tex core/*.tex oForth/*.tex algo/*.tex dyna/*.tex
+IMG = img/compiler.png img/frontend.png img/forthend.png 
+IMG += img/dynacomp.png img/circomp.png img/dynamodel.png
 
 LATEX = pdflatex -halt-on-error
 

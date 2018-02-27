@@ -1,0 +1,6 @@
+digraph {
+rankdir=LR;
+metaprogram -> interpreter -> crosscompiler -> elf
+crosscompiler [label="(cross)\lcompiler\lLLVM"];
+elf [label="object\lfile"]; 
+}
