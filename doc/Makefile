@@ -1,8 +1,9 @@
+TEX = *.tex core/*.tex oForth/*.tex
 IMG = img/compiler.png img/frontend.png img/forthend.png
 
 LATEX = pdflatex -halt-on-error
 
-manual.pdf: *.tex $(IMG) *.sty
+manual.pdf: $(TEX) $(IMG) *.sty
 	$(LATEX) manual && $(LATEX) manual
 img/%.png: img/%.dot
 	dot -T png -o $@ $< 
