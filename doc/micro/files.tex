@@ -1,0 +1,35 @@
+\clearpage\secrel{Build from source (files)}
+
+\begin{tabular}{l l}
+Makefile & build scripts \\
+.gitignore & files masks for generated and temp files (for git) \\
+micro.c & Virtual Machine source code\\&extra portable, written in strict C'89\\
+compiler.lex & compiler source code (flex/\cpp) \\
+FORTH.uF & \F-system source code\\&written in \term{compiling script} syntax\\
+\end{tabular}
+
+\bigskip\noindent
+Install MinGW or GNU toolchain, and build it using
+\begin{lstlisting}
+$ cd ~/o/micro ; [mingw32-]make
+\end{lstlisting}
+
+\clearpage\secrel{Run system}
+You will get few .exe\note{.exe required for Windows, and have no matter for
+Linux} files in current directory:
+
+\medskip\noindent
+\begin{tabular}{l l}
+uFORTH.exe & emulator to run on your host system \\
+compiler.exe & simple bytecode compiler using \F-like script \\
+FORTH.bc & demo system compiled into bytecode
+\end{tabular}
+
+\medskip\noindent
+\verb|.bc| file is optional: resulting \verb|uFORTH.exe| was built as
+full-functional standalone executable, and all required bytecode was
+in-compiled. But \emph{you can run your own programs in .bc files} as:
+\begin{lstlisting}
+$ ./compiler.exe < YourProgram.uF > compiling.log
+$ ./uFORTH.exe YourProgram.bc
+\end{lstlisting}

@@ -1,0 +1,9 @@
+*~
+*.swp
+
+*.exe
+*.log
+*.bc
+
+lexer.cpp
+
