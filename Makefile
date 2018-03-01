@@ -1,4 +1,4 @@
-default: doc/manual.pdf log.log micro/log.log
+default: doc/manual.pdf log.log micro/log.log android
 
 log.log: src.src VM.py
 	python VM.py < $< > $@ && tail $(TAIL) $@
@@ -18,3 +18,9 @@ doc/manual.pdf: $(TEX) doc/Makefile doc/*.sty
 
 micro/log.log: micro/*.c micro/*.lex micro/*.uF
 	cd micro ; $(MAKE)
+	
+android: Android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+Android/app/src/main/res/mipmap-mdpi/ic_launcher.png: doc/img/hedgehog.png Makefile
+	convert $< -resize 48x48^ $@ 
+doc/img/hedgehog.png:
+	wget -c -O $@ https://github.com/ponyatov/icons/raw/master/hedgehog.png
