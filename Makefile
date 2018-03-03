@@ -1,4 +1,4 @@
-default: doc/manual.pdf log.log micro/log.log android
+default: js doc/manual.pdf log.log micro/log.log android
 
 log.log: src.src VM.py
 	python VM.py < $< > $@ && tail $(TAIL) $@
@@ -25,3 +25,7 @@ Android/app/src/main/res/mipmap-mdpi/ic_launcher.png: doc/img/hedgehog_black.png
 #	convert $< -resize 48x48^ -gravity center -extent 48x48 -background black $@ 
 doc/img/hedgehog.png:
 	wget -c -O $@ https://github.com/ponyatov/icons/raw/master/hedgehog.png
+	
+js: js/logo.png
+js/logo.png: doc/img/hedgehog_black.png Makefile
+	convert $< -resize 48x48\> $@
