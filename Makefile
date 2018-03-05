@@ -1,4 +1,5 @@
-default: js doc/manual.pdf log.log micro/log.log android
+default: js 
+#doc/manual.pdf log.log micro/log.log android
 
 log.log: src.src VM.py
 	python VM.py < $< > $@ && tail $(TAIL) $@
@@ -28,4 +29,5 @@ doc/img/hedgehog.png:
 	
 js: js/logo.png
 js/logo.png: doc/img/hedgehog_black.png Makefile
-	convert $< -resize 48x48\> $@
+	convert $< -scale 64x64 miff:- | convert - -extent 64x64 -background black -gravity center $@
+#	   -gravity center  $@
