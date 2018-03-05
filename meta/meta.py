@@ -19,6 +19,9 @@ class Object():
         for j in self.nest:
             S += j.dump(depth+1)
         return S
+    def cpp(self): return '/* %s */'%self.head()
+
+print Object('object').cpp()
     
 class Symbol(Object): pass
     
@@ -51,7 +54,8 @@ class Module(Object):
 #         os.system('make -C %s' % self.value) ;
         return self
     
-class Type(Object): pass
+class Type(Object):
+    def cpp(self): return self.value
 
 void = Type('void')
 int  = Type('int')

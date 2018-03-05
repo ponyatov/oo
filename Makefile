@@ -1,5 +1,5 @@
-default: js 
-#doc/manual.pdf log.log micro/log.log android
+default: js doc/manual.pdf 
+# log.log micro/log.log android
 
 log.log: src.src VM.py
 	python VM.py < $< > $@ && tail $(TAIL) $@
@@ -12,7 +12,7 @@ pdf: $(PDF)
 $(PDF): doc/manual.pdf
 	cp $< $@
 TEX = doc/*.tex doc/core/*.tex doc/oForth/*.tex doc/algo/*.tex doc/dyna/*.tex
-TEX += doc/micro/*.tex
+TEX += doc/micro/*.tex doc/meta/*
 TEX += doc/img/*
 doc/manual.pdf: $(TEX) doc/Makefile doc/*.sty
 	cd doc ; $(MAKE)

@@ -1,0 +1,65 @@
+\secrel{Metaprogramming (embedded \purec\ backend)}\secdown
+
+\begin{framed}
+\emph{Metaprogramming is} complex thing by design\ --- it is much simpler to
+write \textit{single} program by hands, then \emph{write program that writes
+program}.
+\end{framed}
+
+% \bigskip
+\noindent
+Metaprogramming is cool technique if your job is making a lot of typical
+applications shares common code parts. So if you can distinguish a lot of
+template-like code in your sources, you need a language with metaprogramming
+capabilities. And it is not about macro\ --- \emph{you must have full scripting
+at compile time} and access to your program code in the source code,
+intermediate program representation, compiler structures and control on
+compiling process itself.
+
+\begin{framed}\noindent
+If you are limited by some corporate rules, meta can let you generate program
+source in pure C using \emph{\py} (or anything else) as the \emph{macro
+language}.
+\end{framed}
+
+\noindent
+Here you will be faced with complexity problem: metaprogramming is complex by
+design, and the only way to hide this complexity\ --- use libraries and OOP, and
+be ready for unavoidable complexity when you start.
+
+\clearpage\secrel{Hello meta}
+
+You already know this beast\ \ref{Object}:
+\begin{lstlisting}[language=Python]
+class Object():
+	def __init__(self,V):
+		self.value = V ; self.attr={} ; self.nest = []
+	def __lshift__(self,V): return self.push(V)
+	def push(self,o):
+		self.nest.append(o) ; return self
+	def __setitem__(self,K,V):
+		self.attr[K] = V ; return self
+	def __getitem__(self,K):
+		return self.attr[K]
+\end{lstlisting}
+\clearpage\noindent
+Dump object:
+\begin{lstlisting}[language=Python]
+	def __repr__(self): return self.dump()
+    def head(self,prefix=''):
+        return '%s<%s:%s>'%(prefix,self.__class__.__name__.lower(),self.value)
+    def pad(self,N): return '\n'+'\t'*N
+    def dump(self,depth=0):
+        S = self.pad(depth)+ self.head()
+        for i in self.attr:
+            S += self.pad(depth+1) + self.attr[i].head(prefix='%s = '%i)
+        for j in self.nest:
+            S += j.dump(depth+1)
+        return S
+\end{lstlisting}
+And here we are interested in metaprogramming:
+\begin{lstlisting}[language=Python]
+    def cpp(self): return '/* %s */'%self.head()
+\end{lstlisting}
+
+\secup
