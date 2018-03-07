@@ -1,7 +1,29 @@
 <link rel="shortcut icon" type="image/png" href="logo.png" />
+
+<style>
+html{
+    width:100%;
+    height:100%;
+}
+body{
+    width:100%;
+    height:100%;
+    background-color:darkslategrey;
+}
+textarea {
+	resize:none;
+	width:100%;
+}
+button {
+	width:100%;
+}
+</style>
+
 <title>oFORTH</title>
 
-<table height=100% width=100% border=1>
+<body>
+
+<table height=95% width=95% border=1>
 	<tr height="10%">
 		<td><img src="png.png" height=100% border=1> <img
 			src="logo.png" height=100% border=1></td>
@@ -9,9 +31,21 @@
 	<tr>
 		<td>
 		<form style="width: 100%">
-		<input type="text"><br>
-		<input type="text"><br>
-		<input type="button" text="GO">
+			<textarea name=log cols=40 rows=16></textarea><br>
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form style="width: 100%">
+			<textarea name=pad cols=40 rows=3></textarea><br>
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form style="width: 100%">
+			<input name=go type="button" text="GO">
 		</form>
 		</td>
 	</tr>
