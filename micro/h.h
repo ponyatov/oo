@@ -23,6 +23,8 @@
 extern uint8_t M[]; extern uint16_t Mp;						/* memory image */
 extern void B(uint8_t byte);								/* compile byte */
 
+extern void LFA(UCELL prev);						/* compile LFA */
+
 /* command opcodes constants */
 
 #define NOP		0x00
