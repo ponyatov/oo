@@ -1,12 +1,4 @@
-/* sizes of statically allocated structures */
-#define Dsz 0x10
-#define Rsz 0x100
-#define Msz 0x1000
-
-#include <stdint.h>					/* std.includes */
-#ifdef EMULATOR						/* for emulator mode only */
-#include <stdlib.h>
-#endif
+#include "h.h"
 
 /* set 16/32 bit mode
 	CELL is machine word for FORTH systems */

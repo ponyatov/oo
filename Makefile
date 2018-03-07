@@ -1,4 +1,4 @@
-default: js doc/manual.pdf 
+default: doc/manual.pdf micro
 # log.log micro/log.log android
 
 log.log: src.src VM.py
@@ -17,7 +17,8 @@ TEX += doc/img/*
 doc/manual.pdf: $(TEX) doc/Makefile doc/*.sty
 	cd doc ; $(MAKE)
 
-micro/log.log: micro/*.c micro/*.lex micro/*.uF
+micro: micro/log.log
+micro/log.log: micro/*.c micro/*.h micro/*.lex micro/*.uF
 	cd micro ; $(MAKE)
 	
 android: Android/app/src/main/res/mipmap-mdpi/ic_launcher.png
