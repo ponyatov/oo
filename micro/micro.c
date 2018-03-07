@@ -1,10 +1,5 @@
 #include "h.h"
 
-/* set 16/32 bit mode
-	CELL is machine word for FORTH systems */
-#define  CELL  int16_t	/* light microcontrollers */
-#define UCELL uint16_t
-
 /* data stack */
  CELL D[Dsz]; uint16_t Dp=0;	/* [D]ata [p]ointer */
 /* return stack */

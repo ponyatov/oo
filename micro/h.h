@@ -15,6 +15,11 @@
 #include <assert.h>
 #endif
 
+/* set 16/32 bit mode
+	CELL is machine word for FORTH systems */
+#define  CELL  int16_t	/* light microcontrollers */
+#define UCELL uint16_t
+
 extern uint8_t M[]; extern uint16_t Mp;						/* memory image */
 extern void B(uint8_t byte);								/* compile byte */
 
