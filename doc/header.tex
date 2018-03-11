@@ -14,6 +14,7 @@
 
 % graphics
 \usepackage[pdftex]{graphicx}
+\usepackage[export]{adjustbox} %% adjust position
 % \newcommand{\fig}[3]{\bigskip\noindent\includegraphics[#3]{#2}\textbf{#1}\bigskip}
 
 % hyphenation and i18n
@@ -32,6 +33,7 @@
 \ifthenelse{\equal{\value{secdepth}}{-2}}{\section{#1}}{}
 \ifthenelse{\equal{\value{secdepth}}{-3}}{\subsection{#1}}{}
 \ifthenelse{\equal{\value{secdepth}}{-4}}{\subsubsection{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-5}}{\paragraph{#1}}{}
 }
 \newcommand{\secly}[1]{
 \section*{#1}
@@ -52,6 +54,7 @@
 
 %% languages
 \newcommand{\F}{FORTH}
+\newcommand{\uF}{$\mu$\F}
 \newcommand{\py}{Python}
 \newcommand{\cpp}{$C^+_+$}
 \newcommand{\purec}{$C_{89}$}
