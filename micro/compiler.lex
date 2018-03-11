@@ -4,8 +4,6 @@
 #include <map>
 using namespace std;
 
-FILE *img=NULL;
-
 #define YYERR "\n\n"<<yylineno<<":"<<msg<<"["<<yytext<<"]\n\n"
 void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; abort(); }
 %}
@@ -13,7 +11,10 @@ void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; abort(); }
 %%
 \\[^\n]*		{}		// line comments
 
-\:				{yylex(); cout << yytext << endl; return 0;}
+\:				{yylex(); cout << yytext << endl;
+				//LFA(0);
+				return 0;}
+				
 \;				{ B(RET); return 0; }
 
 [a-zA-Z0-9_]+	{return 0;}
@@ -21,12 +22,14 @@ void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; abort(); }
 [ \t\r\n]+		{}		// drop spaces
 .				{yyerror("lexer");}
 
-<<EOF>>			{ assert( fwrite(M,Mp,1,img)==Mp ); fclose(img); exit(0); }
+<<EOF>>			{ return EOF; }
 
 %%
 
 int main(int argc, char *argv[]) {
 	assert(argc==2);
-	assert( img=fopen(argv[1],"wb") );
-	for (;;) yylex();
+	LFA(0x12345678);
+	LFA(0);
+	while (yylex() != EOF);
+	SAVE(argv[1]);
 }

@@ -7,7 +7,7 @@ FORTH.log: FORTH.uF ./micro.exe ./compiler.exe
 
 # virtual machine / emulator
 # strict old C compiling: for portability and strange C compilers
-VM_CFLAGS += -std=c89 -Wall -Wextra -Werror
+VM_CFLAGS += -std=c89 -Wall -Wextra
 ./micro.exe: micro.c c.c h.h
 	$(CC) $(VM_CFLAGS) -DEMULATOR -o $@ micro.c c.c
 	

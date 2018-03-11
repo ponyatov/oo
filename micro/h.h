@@ -12,6 +12,7 @@
 #include <stdint.h>					/* std.includes */
 #ifdef EMULATOR						/* for emulator mode only */
 #include <stdlib.h>
+#include <stdio.h>
 #include <assert.h>
 #endif
 
@@ -24,6 +25,8 @@ extern uint8_t M[]; extern uint16_t Mp;						/* memory image */
 extern void B(uint8_t byte);								/* compile byte */
 
 extern void LFA(UCELL prev);						/* compile LFA */
+
+extern void SAVE(const char *bcfile);
 
 /* command opcodes constants */
 

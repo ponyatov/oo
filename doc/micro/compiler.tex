@@ -1,7 +1,8 @@
 \clearpage\secrel{$\mu$Compiler}\label{ucompiler}
 
-uCompiler into bytecode was written as stand alone application in flex/bison. It
+uCompiler into bytecode was written as standalone application in flex/bison. It
 implements some sort of portable assembly: resulting code is extra compact
 comparing to most known real machine code formats. The uCompiler has no ability
 to execute code in compile time, so you can't use some tricks available in
-any generic \F\ system.
+any generic \F\ system. You can solve this problem by extending the compiler
+or syntax parser grammar let you adapt input language for your needs.
