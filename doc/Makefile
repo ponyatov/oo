@@ -1,5 +1,5 @@
 TEX = *.tex core/*.tex oForth/*.tex algo/*.tex dyna/*.tex micro/*.tex
-TEX +=  meta/*.tex
+TEX +=  meta/*.tex model/*.tex
 IMG = img/compiler.png img/frontend.png img/forthend.png 
 IMG += img/dynacomp.png img/circomp.png img/dynamodel.png
 
