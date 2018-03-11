@@ -33,7 +33,7 @@
 \ifthenelse{\equal{\value{secdepth}}{-2}}{\section{#1}}{}
 \ifthenelse{\equal{\value{secdepth}}{-3}}{\subsection{#1}}{}
 \ifthenelse{\equal{\value{secdepth}}{-4}}{\subsubsection{#1}}{}
-\ifthenelse{\equal{\value{secdepth}}{-5}}{\paragraph{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-5}}{\paragraph{#1}\ \\}{}
 }
 \newcommand{\secly}[1]{
 \section*{#1}
