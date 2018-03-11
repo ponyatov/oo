@@ -8,6 +8,28 @@ AFA & BYTE & Attribute (IMMED flag) \\
 CFA & \ldots & Code \\
 PFA & (optional) & Parameter for vairables/constant/\ldots\\
 \end{tabular}
+
 \medskip\noindent
-First word can be FORTH or any name (of your application for example) does
-nothing. Last defined word will be entry point.
+\emph{First word} is FORTH\note{or any name (your application name)} contains
+LATEST value: LFA of last defined word in the vocabulary. LATEST points to the
+last word, all defined words were linked by LFA fields, and first LFA has NULL
+value. In result, we have minimal consistent data structure able to hold
+vocabulary in a \emph{dynamic} manner.
+In classical structures implements dynamic memory allocation traditionally
+should have another structure:
+
+\medskip\noindent
+\begin{tabular}{l p{1.8cm} p{5.9cm} p{1cm}}
+\verb|next| & \verb|ptr*| & point to a previously allocated memory
+block&(LFA)\\
+\verb|size| & \verb|ssize_t| & size of allocated block & (SZA) \\
+\verb|flags| & \verb|struct {}| \verb|byte| & flags marks block to be
+erased, movable, DIRT (sync with server or update dependent
+data),\ldots&(AFA)\\
+\ldots & \ldots & optional fields (word header)& (NFA) \\
+\ldots & \ldots & executable bytecode, arrays,\\&& images,\ldots, & (CFA) \\ 
+\end{tabular}
+
+\noindent
+This full structure let us use \emph{full functional dynamic memory allocation}
+with \term{garbage collection},

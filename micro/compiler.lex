@@ -28,8 +28,8 @@ void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; abort(); }
 
 int main(int argc, char *argv[]) {
 	assert(argc==2);
-	LFA(0x12345678);
-	LFA(0);
-	while (yylex() != EOF);
-	SAVE(argv[1]);
+	LFA(0);						// first LFA marks begin of vocabulary
+	
+	while (yylex() != EOF);		// run compiler
+	SAVE(argv[1]); DUMP();		// save/dump resulting bytecode image
 }

@@ -26,7 +26,8 @@ extern void B(uint8_t byte);								/* compile byte */
 
 extern void LFA(UCELL prev);						/* compile LFA */
 
-extern void SAVE(const char *bcfile);
+extern void SAVE(const char *bcfile);				/* save memory image */
+extern void DUMP();									/* dump memory image */
 
 /* command opcodes constants */
 

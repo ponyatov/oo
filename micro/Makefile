@@ -3,7 +3,7 @@ CFLAGS += -DMsz=$(Msz)
 
 FORTH.bc: FORTH.log
 FORTH.log: FORTH.uF ./micro.exe ./compiler.exe
-	./compiler.exe FORTH.bc < $< > $@ && od -t x1 FORTH.bc >> $@ && tail $(TAIL) $@
+	./compiler.exe FORTH.bc < $< > $@ && tail $(TAIL) $@
 
 # virtual machine / emulator
 # strict old C compiling: for portability and strange C compilers

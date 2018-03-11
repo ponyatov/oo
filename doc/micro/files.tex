@@ -2,16 +2,17 @@
 
 \begin{tabular}{l l}
 Makefile & build scripts \\
-.gitignore & files masks for generated and temp files (for git) \\
-micro.c & Virtual Machine source code\\&extra portable, written in strict
-ANSI C'89\\
-h.h c.c & shared code \\
-compiler.lex & compiler source code (flex/\cpp) \\
-FORTH.uF & \F-system source code\\&written in \term{compiling script} syntax\\
+.gitignore & file masks for generated and temp files (git) \\
+micro.c & \term{$\mu$FVM: $\mu$[F]orth [V]irtual [M]achine}\\&extra
+portable, written in strict ANSI \purec\\
+h.h c.c & \emph{shared code}: parts of FVM \emph{used in compiler} \\
+compiler.lex & compiler \ref{ucompiler}\ source code (flex/\cpp) \\
+FORTH.uF & \emph{interactive console} \F-system\\&written in
+\term{compiling script} syntax\\
 \end{tabular}
 
 \medskip\noindent
-Install MinGW or GNU toolchain, and build it using
+Install MinGW or GNU toolchain, and build from command line:
 \begin{lstlisting}
 $ cd ~/o/micro ; [mingw32-]make
 \end{lstlisting}
