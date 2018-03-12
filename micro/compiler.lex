@@ -12,7 +12,7 @@ void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; abort(); }
 \\[^\n]*		{}		// line comments
 \([^\)]*\)		{}		// ( coment in commas )
 
-\:				{yylex(); cout << yytext << endl;
+\:				{yylex();							// lex word name
 				LFA(); NFA(yytext); AFA(0); CFA();	// compile word header
 				return 0; }
 				

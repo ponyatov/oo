@@ -1,9 +1,10 @@
 Msz = 0x10000
 CFLAGS += -DMsz=$(Msz) 
 
-FORTH.bc: FORTH.log
-FORTH.log: FORTH.uF ./micro.exe ./compiler.exe
-	./compiler.exe FORTH.bc < $< > $@ && tail $(TAIL) $@
+exec: FORTH.bc ./micro.exe
+	./micro.exe $< >> FORTH.log && tail $(TAIL) FORTH.log
+FORTH.bc: FORTH.uF ./micro.exe ./compiler.exe
+	./compiler.exe FORTH.bc < $< > FORTH.log && tail $(TAIL) FORTH.log
 
 # virtual machine / emulator
 # strict old C compiling: for portability and strange C compilers

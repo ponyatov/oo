@@ -1,21 +1,22 @@
 #include "h.h"
 
-uint8_t M[Msz]; uint16_t Cp=0;								/* memory image */
+BYTE M[Msz]; UCELL Cp=0; 									/* memory image */
 
-void B(uint8_t  byte) { M[Cp++]=byte; }						/* compile byte */
-void W(uint16_t word) { M[Cp++]=word; M[Cp++]=word>>8; }	/* 16 bit word  */
+void B( BYTE byte) { M[Cp++]=byte; }						/* compile byte */
+void W(UCELL word) { M[Cp++]=word; M[Cp++]=word>>8; }		/* 16 bit word  */
 
-void set(uint16_t addr, uint16_t word) { M[addr+0]=word; M[addr+1]=word>>8; }
-uint16_t get(uint16_t addr) { return M[addr+0]|(M[addr]<<8); }
+void set(UCELL addr, UCELL word) { M[addr+0]=word; M[addr+1]=word>>8; }
+UCELL get(UCELL addr) { return M[addr+0]|(M[addr+1]<<8); }
 
 void LFA() { W(get(LATEST)); }
 
 void NFA(char* name) {
-	uint8_t len = strlen(name);
+	BYTE len = strlen(name);
+	int i; for (i=0;i<len;i++) name[i]=toupper(name[i]);
 	B(len); memcpy(&M[Cp],name,len); Cp += len;
 }
 
-void AFA(uint8_t attr) { B(attr); }
+void AFA(BYTE attr) { B(attr); }
 
 void CFA() { set(ENTRY,Cp); }
 
@@ -26,8 +27,15 @@ void SAVE(const char *bcfile) {
 	fclose(img);
 }
 
+void LOAD(const char *bcfile) {
+	FILE *img = NULL;
+	assert(img = fopen(bcfile, "rb"));
+	Cp = fread(M, 1, Msz, img); assert(Cp>0); assert(Cp<Msz);
+	fclose(img);
+}
+
 void DUMP() {
-	uint16_t addr; char buf[0x10]; uint8_t bufptr=0; buf[0]=0;
+	UCELL addr; char buf[0x10]; uint8_t bufptr=0; buf[0]=0;
 	for (addr = 0; addr < Cp; addr++) {
 		if (addr % 0x10 == 0)
 			printf("\t%s\n%.4X: ", buf,addr), buf[0]=0;

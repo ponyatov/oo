@@ -13,21 +13,23 @@
 #ifdef EMULATOR						/* for emulator mode only */
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 #include <assert.h>
 #endif
 
 /* set 16/32 bit mode
 	CELL is machine word for FORTH systems */
+#define  BYTE  uint8_t
 #define  CELL  int16_t	/* light microcontrollers */
 #define UCELL uint16_t
 
-extern uint8_t M[]; extern uint16_t Cp;						/* memory image */
-extern void B(uint8_t  byte);								/* compile byte */
-extern void W(uint16_t word);								/* compile 16bit */
+extern BYTE M[]; extern UCELL Cp; extern UCELL Ip;			/* memory image */
+extern void B(BYTE  byte);									/* compile byte */
+extern void W(UCELL word);									/* compile 16bit */
 
-extern void set(uint16_t addr, uint16_t word);				/* set 16bit */
-extern uint16_t get(uint16_t addr);							/* get 16bit */
+extern void set(UCELL addr, UCELL word);					/* set 16bit */
+extern UCELL get(UCELL addr);							/* get 16bit */
 
 #define ENTRY  0x0001	/* jmp _entry */
 #define HEAP   0x0003	/* Cp to first free byte */
@@ -35,10 +37,11 @@ extern uint16_t get(uint16_t addr);							/* get 16bit */
 
 extern void LFA();									/* compile LFA */
 extern void NFA(char* name);						/* compile NFA */
-extern void AFA(uint8_t attr);
+extern void AFA(BYTE attr);
 extern void CFA();									/* patch entry point */
 
 extern void SAVE(const char *bcfile);				/* save memory image */
+extern void LOAD(const char *bcfile);
 extern void DUMP();									/* dump memory image */
 
 /* command opcodes constants */
