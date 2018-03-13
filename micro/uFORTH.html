@@ -1,0 +1,36 @@
+<style>
+body  { font-size:10vmin; }
+input { font-size: 5vmin; }
+.log { font-size: 5vmin; }
+</style>
+
+<input id=bytecode type="file">
+<div id=Dsz>Dsz</div>
+<div id=Rsz>Rsz</div>
+<div id=Msz>Msz</div>
+<div class=log id=log>this is log</div>
+
+<script>
+
+const log = document.getElementById('log');
+
+// configuration
+
+var Dsz =   0x10;
+var Rsz =  0x100;
+var Msz = 0x1000;
+
+// structures and registers
+
+// main memory and registers in uFORTH.js
+var D = new  Int16Array(Dsz); var Dp = 0;	// data stack
+var R = new Uint16Array(Dsz); var Rp = 0;	// return stack
+
+//wait until bytecode ready
+window.onload = function() {
+	console.log(M);
+}
+
+</script>
+
+<script id=bytecode src="uFORTH.js"/>

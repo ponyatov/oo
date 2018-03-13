@@ -31,7 +31,7 @@ bye				{ B(BYE); return 0; }
 %%
 
 int main(int argc, char *argv[]) {
-	assert(argc==2);
+	assert(argc==3);
 								// compile bytecode image header:
 	B(JMP); W(0);				// ENTRY: jmp _entry
 	W(0);						// HEAP: Cp register must be HERE
@@ -40,4 +40,15 @@ int main(int argc, char *argv[]) {
 	while (yylex() != EOF);		// run compiler
 	set(HEAP,Cp);				// save Cp
 	SAVE(argv[1]); DUMP();		// save/dump resulting bytecode image
+	
+	FILE *js = fopen(argv[2],"w"); assert(js);
+	fprintf(js,"var M = {");
+	for (uint16_t addr = 0; addr < Cp; addr++) {
+		if (addr % 0x10 ==0) fprintf(js,"\n\t/* %.4X */\t",addr);
+		fprintf(js,"%.2X,",M[addr]);
+	}
+	fprintf(js,"\n0};\n\n");
+	fprintf(js,"var Cp = 0x%.4X;\n\n",Cp);
+	fprintf(js,"var Ip = 0x%.4X;\n\n",get(1));
+	fclose(js);
 }
