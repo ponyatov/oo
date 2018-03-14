@@ -48,9 +48,12 @@ extern void DUMP();									/* dump memory image */
 
 #define NOP		0x00
 #define BYE		0xFF
+													/* control flow */
 #define JMP		0x01
 #define qJMP	0x02
 #define CALL	0x03
 #define RET		0x04
+													/* debug */
+#define LABEL	0xD0
 
 #endif /* _H_uFORTH */

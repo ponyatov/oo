@@ -2,6 +2,19 @@
 
 const NOP = 0x00;
 const BYE = 0xFF;
+													/* debug */
+const LABEL = 0xD0;
+
+/* memory r/w byte by byte */
+
+function get(addr) { return M[addr+0]|(M[addr+1]<<8); }
+
+function getstr(addr) {
+	var count = M[addr]; var S='';
+	for (ptr=addr+1;ptr<=addr+count;ptr++)
+		S += String.fromCharCode(M[ptr]);
+	return S;
+}
 
 /* hex dump: JS have no printf %.4X */
 
@@ -18,7 +31,16 @@ function   XX(N) { return Xn(N,2); }
 var log = { addr:'', op:'', cmd:'', params:'' };
 
 function _log() {
-	console.log( "\n"+XXXX(log.addr)+":\t"+XX(log.op)+"\t"+log.cmd+"\t"+log.params );
+	console.log( "\n"+XXXX(log.addr)+":\t"+
+		XX(log.op)+"\t"+
+		log.cmd+"\t"+log.params );
+}
+
+function _LABEL() {
+	log.cmd='label';
+	var addr = get(Ip); Ip += 2; var NFA = getstr(addr); 
+	log.params=XXXX(addr)+":"+NFA;
+	console.group(XXXX(Ip)+":"+NFA);
 }
 
 /* virtual machine: bytecode interpreter */
@@ -32,13 +54,15 @@ function _BYE() { log.cmd='bye'; bye=true; }
 
 function VM() {
 	while (!bye) {
-		log.addr = Ip; var op = M[Ip++]; log.op = op;
+		log.addr = Ip; var op = M[Ip++]; log.op = op;	// get ip++:op
+		log.cmd=''; log.params='';						// clear cmd/params
 		switch (op) {
-			case NOP: _NOP(); break;
-			case BYE: _BYE(); break;
+			case NOP:		_NOP();		break;
+			case BYE:		_BYE();		break;
+			case LABEL:		_LABEL();	break;
 			default: throw new Error('bad command '+XXXX(Ip-1)+":"+XX(op));
 		}
-		_log();
+		_log();											// print command log
 	}
 }
 

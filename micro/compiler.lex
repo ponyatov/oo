@@ -13,7 +13,10 @@ void yyerror(string msg) { cout<<YYERR; cerr<<YYERR; abort(); }
 \([^\)]*\)		{}		// ( coment in commas )
 
 \:				{yylex();							// lex word name
-				LFA(); NFA(yytext); AFA(0); CFA();	// compile word header
+				LFA();								// \ compile word header
+				UCELL push_NFA = Cp;				// save NFA for debug/label
+				NFA(yytext); AFA(0); CFA();
+				B(LABEL); W(push_NFA);				// / mark label
 				return 0; }
 				
 \;				{ B(RET); return 0; }
