@@ -1,5 +1,5 @@
 var M  = new Uint8Array(Msz);				// main memory
-var Ip = 0;									// instuction point
+var Ip = 0;									// instruction pointer
 var Cp = 0;									// compiler (heap) pointer
 
 // bytecode loader
