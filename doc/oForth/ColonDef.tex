@@ -1,0 +1,10 @@
+\clearpage\secrel{Colon definitions}
+
+\begin{lstlisting}[language=Forth]
+\ simple colon definition with VM commands
+: init ( -- ) nop bye ;
+\end{lstlisting}
+
+\noindent This \term{colon defition} creates new word with name placed after
+colon. Two names before ; are not word names but primitive VM commands should be
+detected by parser as predefined names, and compiled as bytecodes.

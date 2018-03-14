@@ -1,4 +1,5 @@
-default: doc/manual.pdf micro
+default: doc/manual.pdf log.log
+# micro
 # log.log micro/log.log android
 
 log.log: src.src VM.py
