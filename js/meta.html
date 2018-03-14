@@ -1,0 +1,26 @@
+<script>
+// object metasystem in JavaScript (c) dponyatov@gmail.com
+
+
+// base object
+
+const Object = function (T,V) {
+	this.type = T;
+	this.value = V;
+}
+
+Object.prototype.head = function() {
+	return '<'+this.type+':'+this.value+'>';
+}
+
+Object.prototype.dump = function() {
+	S = this.head();
+	return S;
+}
+
+Object.prototype.toString = Object.prototype.dump;
+
+const x = new Object('t','v');
+console.log (x.dump());
+</script>
+
