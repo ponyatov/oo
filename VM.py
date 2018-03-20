@@ -115,8 +115,9 @@ class Bin(Integer):
 
 class Container(Object): pass
 
-def test_Container(): assert \
-    Container('with data').head() == '<container:with data>'
+def test_Container():
+    C = Container('with data')
+    assert C.head() == '<container:with data>'
 
 ######################################################################### Stack
 
@@ -167,10 +168,16 @@ def test_Map_GetSet():
 ######################################################################## Vector
 
 class Vector(Container):
-    def execute(self): map(lambda x:x.execute(), self.nest)
+    def execute(self):
+        for op in self.nest: op.execute()
 
 def test_Vector(): assert \
     ( Vector('ordered') << 1 << 2 << 3 ).nest == [1,2,3]
+    
+def test_Vector_execute():
+    D << Vector('empty')
+    assert str(D) == '\n<stack:DATA>\n\t<vector:empty>'
+    EXECUTE() ; assert D.nest == []
 
 ######################################################################### Queue
 
@@ -292,21 +299,6 @@ W['.'] = VM(dot)
 def BYE(): sys.exit(0)          # stop system
 W << BYE
 
-###################################################################### Compiler
-
-COMPILE = None
-def COMPILE_RST(): global COMPILE ; COMPILE = None
-
-def QL(): global COMPILE ; COMPILE = Vector('')
-W['['] = VM(QL) 
-def QR(): D << COMPILE ; COMPILE_RST()
-W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag
-
-def test_QLQR():
-    COMPILE_RST();
-    QL(); assert     COMPILE
-    QR(); assert not COMPILE
-
 ######################################################################### lexer
 
 import ply.lex as lex
@@ -345,7 +337,7 @@ def t_INTEGER(t):                               # generic integer
     return Integer(t.value)
 
 def t_WORD(t):
-    r'[a-zA-Z0-9_\?\.\[\]]+'
+    r'[a-zA-Z0-9_\?\.\[\]\:\;]+'
     return Symbol(t.value)
 
 lexer = lex.lex()                               # create lexer
@@ -427,7 +419,23 @@ def test_INTERPRET():
     assert D.pop().head() == '<integer:-1>'
     assert D.nest == []
     
+###################################################################### Compiler
+
+COMPILE = None
+def COMPILE_RST(): global COMPILE ; COMPILE = None
+
+def QL(): global COMPILE ; COMPILE = Vector('')
+W['['] = VM(QL) 
+def QR(): D << COMPILE ; COMPILE_RST()
+W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag
+
+def test_QLQR():
+    COMPILE_RST();
+    QL(); assert     COMPILE
+    QR(); assert not COMPILE
+
 def test_COMPILE_emptyblock():
+    COMPILE_RST(); D.flush()
     # check bad syntax (must have spaces)
     try: INTERPRET('[]') ; assert False
     except SyntaxError: assert True
