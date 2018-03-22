@@ -435,7 +435,7 @@ def test_QLQR():
     QR(); assert not COMPILE
 
 def test_COMPILE_emptyblock():
-    COMPILE_RST(); D.flush()
+    D.flush() ; COMPILE_RST()   # cleaup
     # check bad syntax (must have spaces)
     try: INTERPRET('[]') ; assert False
     except SyntaxError: assert True
@@ -447,7 +447,7 @@ def test_COMPILE_emptyblock():
     assert D.nest == []
      
 def test_INTERPRET_state_transitions():
-    D.flush() ; COMPILE_RST()   # cleaup
+    D.flush() ; COMPILE_RST()   # cleanup
     INTERPRET('[')              # start compilation
     assert COMPILE.head() == '<vector:>'
     INTERPRET(']')              # stop
@@ -463,6 +463,24 @@ def test_vector_exec():
     test_vector_compile() ; EXECUTE()
     assert str(D) == \
     '\n<stack:DATA>\n\t<integer:1>\n\t<integer:2>\n\t<integer:3>'
+    
+############################################################## Colon definition
+
+def colon():
+    WORD() ; WN = D.pop().value # fetch new word name
+    # 1) we'll compile colon definition into vectors,
+    #    but not memory image like classical FORTH 
+    # 2) push just created word into vocabulary:
+    #    it let as to use self word name for recursion
+    global COMPILE ; W[WN] = COMPILE = Vector(WN)
+     
+    print COMPILE,D,W
+    abort()
+W[':'] = VM(colon)
+
+def test_colon_def():
+    D.flush()
+    INTERPRET(''' : init ( -- ) nop bye ; ''')
  
 if __name__ == "__main__":              # VM startup
     INTERPRET(open('src.src').read())   # feed src.src

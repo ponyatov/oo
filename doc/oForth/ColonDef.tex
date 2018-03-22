@@ -5,7 +5,7 @@
 : init ( -- ) nop bye ;
 \end{lstlisting}
 
-\noindent This \term{colon defition} creates new word with name placed after
+\noindent This \term{colon definition} creates new word with name placed after
 colon. Two names before ; are not word names but primitive VM commands should be
 detected by parser as predefined names, and compiled as bytecodes.
 
@@ -14,4 +14,14 @@ def t_WORD(t):
     r'[a-zA-Z0-9_\?\.\[\]\:\;]+' # expand lexer
     return Symbol(t.value)
 \end{lstlisting}
-    
+
+\pg 
+
+\begin{lstlisting}[language=Python]
+def test_colon_def():
+    D.flush()
+    INTERPRET(''' : init ( -- ) nop bye ; ''')
+\end{lstlisting}
+
+\medskip\noindent
+: word start new definition placing \emph{named} vector
