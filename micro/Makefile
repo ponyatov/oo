@@ -1,9 +1,13 @@
 Msz = 0x10000
 CFLAGS += -DMsz=$(Msz)
 
-exec: FORTH.bc ./micro.exe
+exec: FORTH.bc ./micro.exe uFORTH.html
 	./micro.exe $< >> FORTH.log && tail $(TAIL) FORTH.log
-FORTH.bc: FORTH.uF ./micro.exe ./compiler.exe
+
+uFORTH.html: head.html uFORTH.js foot.html
+	cat $^ > $@
+
+FORTH.bc uFORTH.js: FORTH.uF ./micro.exe ./compiler.exe
 	./compiler.exe FORTH.bc uFORTH.js < $< > FORTH.log && tail $(TAIL) FORTH.log
 
 # virtual machine / emulator
