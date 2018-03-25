@@ -9,5 +9,38 @@ Google Chrome browser, and press \keys{F12} to get \js\ \emph{console}:
 </script>
 \end{lstlisting}
 
+\noindent
+Just create stacks in one line:
+
+\begin{lstlisting}[language=c++]
+D = [ ]												// data stack
+R = [ ]												// return stack
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[language=c++]
+W = { }												// vocabulary
+\end{lstlisting}
+
+\noindent
+Let's add few VM commands as primitive functions:
+
+\begin{lstlisting}[language=c++]
+W.nop = function nop() {}			// empty VM command
+W.bye = function bye() {}			// stop system
+\end{lstlisting}
+
+\begin{lstlisting}[language=c++]
+W.words = function words() {	// jast print vocab
+	console.log(W); }
+
+window.onload = function entry () {	// system init
+W['words'](); console.log(W.nop); }
+\end{lstlisting}
+
+\begin{lstlisting}[language=c++]
+{nop: f, bye: f, words: f}		// vocabulary
+f nop() {}										// VM function
+\end{lstlisting}
 
 \secup

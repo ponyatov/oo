@@ -1,4 +1,36 @@
 <title>oFORTH/js</title>
+
+<style>
+* { font-family: "Lucida Console", monospace; font-size: 1.7vh; }
+bosy { padding:10px; }
+textarea { width:100%; border:0px; font-size: 3vh; }
+</style>
+
 <script>
-// put your code here, restart by just page reload
+
+D = [ ]		// data stack
+R = [ ]		// return stack
+W = { }		// vocabulary
+
+W.nop = function nop() {}	// empty VM command
+W.bye = function bye() {}	// stop system
+
+W.words = function words() { console.log(W); }
+
+window.onload = function entry () { // system init entry point
+	W['words'] ();
+	console.log(W.nop);
+}
+
 </script>
+
+<b>oFORTH</b>/js
+(c) Dmitry Ponyatov
+&lt;<a href="mailto:dponyatov@gmail.com">dponyatov@gmail.com</a>&gt;
+<p><hr>
+
+<div style="border:1px solid;">
+font-size: 1.7vh; 
+<textarea id="pad" rows="3"># enter your commands here</textarea>
+</div>
+
