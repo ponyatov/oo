@@ -67,7 +67,7 @@ will not be too big on a mobile phone screen.
 \end{description}
 \begin{lstlisting}[language=html]
 <pre id="log">
-<b>oFORTH</b>/js live web object system
+oFORTH/js live web object system
 (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
 github: https://github.com/ponyatov/o
 </pre>
@@ -76,6 +76,64 @@ github: https://github.com/ponyatov/o
 <textarea id="pad" rows=3>
 # enter your commands here
 </textarea>
+\end{lstlisting}
+
+\pg Console emulation will be good only with monospace font, so add this to CSS:
+
+\begin{lstlisting}[language=html]
+* { font-family:"Lucida Console", monospace;
+    font-size:3vmin; }
+\end{lstlisting}
+
+\noindent
+Web page for full-screen console should be tuned:
+\begin{lstlisting}[language=html]
+html,body {
+	/* full-screen */
+	margin:0; padding:0; height:100%; width:100%;
+	/* disable scroll bars */
+	overflow:hidden;
+	/* black mono console */
+	color:white; background-color:black; }
+\end{lstlisting}
+
+\pg PAD should be screen wide and larger font to be handy:
+\begin{lstlisting}[language=html]
+#pad { font-size:4vmin; width:100%;
+       position:absolute; bottom:0; }
+\end{lstlisting}
+
+\noindent
+On a mobile phone, the whole screen will be filled with PAD and screen keyboard,
+and we can't use \keys{Enter} as it used for multiline command editing. So it
+will be helpful to \emph{run anything in PAD every time you want just click on
+LOG}. So LOG should have a visible border, as we yet have some problems with
+HTML layout\note{LOG element covers only its content}:
+\begin{lstlisting}[language=html]
+#log { border: 0.5vh double white; height:80%; }
+\end{lstlisting}
+
+\pg To test click run, let's modify \verb|words()| to output on LOG not in
+\verb|console.log|:
+\begin{lstlisting}[language=html]
+W.words = function words() {
+	log.innerHTML += '\n';
+	for (i in W) log.innerHTML += i+'\t';
+	log.innerHTML += '\n'; }
+	
+var log; var pad;
+window.onload = function entry () { // system init
+	log = document.getElementById('log');
+	log.onclick = W.words;	// register click event
+	pad = document.getElementById('pad');
+	W.words(); console.log(W.nop); }
+\end{lstlisting}
+
+\pg
+\begin{lstlisting}[language=html]
+html { clip:auto; position:absolute; }
+#log { font-size:4vmin; height: 70%; width: auto; white-space: pre-wrap; }
+#pad { font-size:5vmin; height: 30%; width:100%; }
 \end{lstlisting}
 
 \secup

@@ -3,11 +3,17 @@
 <title>oFORTH/js</title>
 
 <style>
-* { font-family:"Lucida Console", monospace; font-size:3vmin; }
-html { width:auto; height: 100%; clip:auto; position:absolute; overflow:hidden; }
-body { color:white; background-color:black; width:auto; }
-#log { font-size:4vmin; height: 70%; width: auto; white-space: pre-wrap; }
-#pad { font-size:5vmin; height: 30%; width:100%; }
+* { font-family:"Lucida Console", monospace; font-size:3vmin; } 
+html,body {
+	/* full-screen */
+	margin:0; padding:0; height:100%; width:100%;
+	/* disable scroll bars */
+	overflow:hidden;
+	/* black mono console */
+	color:white; background-color:black; }
+#log { border: 0.5vh double white; height:50%; overflow: auto; }
+#pad { font-size:4vmin; width:100%;
+       position:absolute; bottom:0; }
 </style>
 
 <script>
@@ -19,12 +25,22 @@ W = { }		// vocabulary
 W.nop = function nop() {}	// empty VM command
 W.bye = function bye() {}	// stop system
 
-W.words = function words() { console.log(W); }
+W.words = function words() {
+	log.innerHTML += '\n';
+	for (i in W) log.innerHTML += i+'\t';
+	log.innerHTML += '\n';
+}
+
+var log;
+var pad;
 
 window.onload = function entry () { // system init entry point
-	W['words'] ();
+	log = document.getElementById('log'); log.onclick = W.words;
+	pad = document.getElementById('pad');
+	W.words();
 	console.log(W.nop);
 }
+
 
 </script>
 
@@ -32,19 +48,17 @@ window.onload = function entry () { // system init entry point
 
 <body>
 
-<pre id="log">
-<b>oFORTH</b>/js live web object system
+<pre id=log>
+oFORTH/js live web object system
 (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
 github: https://github.com/ponyatov/o
 
 Here we will print log and program messages.
 </pre>
 
-<textarea id="pad" rows=3>
+<textarea id=pad rows=3>
 # enter your commands here
-we will use 3 lines in this field:
-it is enough to view and edit but not big
-and leave enough space for other element on mobile phone screen
+<b>oFORTH</b>/js live web object system (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt; github: https://github.com/ponyatov/o
 </textarea>
 
 </body>
