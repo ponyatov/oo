@@ -1,12 +1,13 @@
+<html>
+<head>
 <title>oFORTH/js</title>
 
 <style>
-html { width:100%; height: 100%; clip:auto; position:absolute; overflow:hidden; }
 * { font-family:"Lucida Console", monospace; font-size:3vmin; }
-body { color:white; background-color:black; }
-.log { font-size:4vmin; height: 50%; width:100%; }
-.pad { font-size:5vmin; height: 40%; width:100%; }
-textarea { width:99%; }
+html { width:auto; height: 100%; clip:auto; position:absolute; overflow:hidden; }
+body { color:white; background-color:black; width:auto; }
+#log { font-size:4vmin; height: 70%; width: auto; white-space: pre-wrap; }
+#pad { font-size:5vmin; height: 30%; width:100%; }
 </style>
 
 <script>
@@ -27,19 +28,24 @@ window.onload = function entry () { // system init entry point
 
 </script>
 
-<b>oFORTH</b>/js
-(c) Dmitry Ponyatov
-&lt;<a href="mailto:dponyatov@gmail.com">dponyatov@gmail.com</a>&gt;
-<p><hr>
+</head>
 
-<div class=log>
+<body>
+
+<pre id="log">
+<b>oFORTH</b>/js live web object system
+(c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
+github: https://github.com/ponyatov/o
+
 Here we will print log and program messages.
-</div>
+</pre>
 
-<div class=pad><textarea>
+<textarea id="pad" rows=3>
 # enter your commands here
 we will use 3 lines in this field:
-it is enought to view and edit but not big
-and leave enought space for other element on mobile phone screen
-</textarea></div>
+it is enough to view and edit but not big
+and leave enough space for other element on mobile phone screen
+</textarea>
 
+</body>
+</html>

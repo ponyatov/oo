@@ -31,7 +31,7 @@ W.bye = function bye() {}			// stop system
 \end{lstlisting}
 
 \begin{lstlisting}[language=c++]
-W.words = function words() {	// jast print vocab
+W.words = function words() {	// just print vocab
 	console.log(W); }
 
 window.onload = function entry () {	// system init
@@ -41,6 +41,41 @@ W['words'](); console.log(W.nop); }
 \begin{lstlisting}[language=c++]
 {nop: f, bye: f, words: f}		// vocabulary
 f nop() {}										// VM function
+\end{lstlisting}
+
+\pg Visual elements makes out interface must be embedded into .html 
+
+\begin{lstlisting}[language=html]
+<html>
+	<head>
+		<title>oFORTH/js</title>
+		<style> </style>
+		<script> // VM code here </script>
+	</head>
+	<body>
+		<pre      id="log"> </pre>
+		<textarea id="pad"> </textarea>
+	</body>
+</html>
+\end{lstlisting}
+
+\pg Visible window split into two areas:
+\begin{description}[nosep]
+\item[log] here we will print log and program messages.
+\item[pad] input commands, 3 lines will be enough to edit command codes, but
+will not be too big on a mobile phone screen.
+\end{description}
+\begin{lstlisting}[language=html]
+<pre id="log">
+<b>oFORTH</b>/js live web object system
+(c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
+github: https://github.com/ponyatov/o
+</pre>
+\end{lstlisting}
+\begin{lstlisting}[language=html]
+<textarea id="pad" rows=3>
+# enter your commands here
+</textarea>
 \end{lstlisting}
 
 \secup
