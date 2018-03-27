@@ -13,4 +13,19 @@ $ sudo pip install llvmlite
 If you are not friendly with bare LLVM, you can use online translator 
 \url{http://ellcc.org/demo/index.cgi}\ lets you convert C/\cpp\ code into
 LLVM assembly. And also you will need some entry tutorial on LLVM class model
-itself you can find in \cite{llvmcore}.
+itself you can find in \cite{llvmcore}. For simplicity, we'll use
+\verb|llvmlite| binding to \py, and use some metaprogramming.
+
+\pg
+First, we can create only empty LLVM module:
+\begin{lstlisting}[language=Python]
+import llvmlite.ir as ir
+# lol: Virtual FORTH Machine (LLVM portable)
+module = ir.Module('lol')
+print module
+\end{lstlisting}
+\begin{lstlisting}
+; ModuleID = "lol"
+target triple = "unknown-unknown-unknown"
+target datalayout = ""
+\end{lstlisting}
