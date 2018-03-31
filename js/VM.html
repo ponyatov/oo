@@ -35,12 +35,15 @@ var log;
 var pad;
 
 window.onload = function entry () { // system init entry point
-	log = document.getElementById('log'); log.onclick = W.words;
+	log = document.getElementById('log'); 
 	pad = document.getElementById('pad');
 	W.words();
 	console.log(W.nop);
+	log.onclick = W.word;
 }
 
+W.word = function word() {
+	log.innerHTML += '\n' + pad.value + '\n'; }
 
 </script>
 
@@ -51,13 +54,15 @@ window.onload = function entry () { // system init entry point
 <pre id=log>
 oFORTH/js live web object system
 (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
-github: https://github.com/ponyatov/o
 run this: https://ponyatov.github.io/o/js/VM.html
 
 Here we will print log and program messages.
 </pre>
 
-<textarea id=pad rows=5 placeholder="# enter your commands here"></textarea>
+<textarea id=pad rows=5 placeholder="# enter your commands here">
+# enter your commands here
+: init ( -- ) nop bye ;
+</textarea>
 
 </body>
 </html>

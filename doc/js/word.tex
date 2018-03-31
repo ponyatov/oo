@@ -1,0 +1,17 @@
+\clearpage\secrel{PAD input parsing (classical approach)}\label{jsword}\secdown
+
+Here we will expore classical \F\ approach used for user input parsing. As \F\
+syntax is extra simple, we can easily write WORD in a few lines of code able to
+read and parse PAD contents.
+
+\begin{lstlisting}
+W.word = function word() {
+	log.innerHTML += '\n' + pad.value + '\n'; }
+
+window.onload = function entry () {
+	log.onclick = W.word;
+\end{lstlisting}
+
+\noindent Clicking on LOG area you will get full text entered in PAD. 
+
+\secup
