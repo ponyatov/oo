@@ -1,4 +1,4 @@
-<html>
+<html manifest="cache.manifest">
 <head>
 <title>oFORTH/js</title>
 <link rel="icon" href="logo.png" type="image/png">
@@ -37,10 +37,12 @@ W.words = function words() {
 
 var log;
 var pad;
+var net;	// network status
 
 window.onload = function entry () { // system init entry point
 	log = document.getElementById('log'); 
 	pad = document.getElementById('pad');
+	net = document.getElementById('net'); net.src='offline.png';
 	W.words();
 	console.log(W.nop);
 	log.onclick = W.word;
@@ -48,6 +50,15 @@ window.onload = function entry () { // system init entry point
 
 W.word = function word() {
 	log.innerHTML += '\n' + pad.value + '\n'; }
+
+window.ononline = function () {
+	document.body.style.backgroundColor ='black';
+	net.src = 'online.png';
+	}
+window.onoffline = function () {
+	document.body.style.backgroundColor ='#330000';
+	net.src = 'offline.png';
+	}
 
 </script>
 
@@ -60,7 +71,9 @@ W.word = function word() {
 oFORTH/js live web object system
 (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
 <a href="http://ponyatov.github.io/o/js/VM.html">http://ponyatov.github.io/o/js/VM.html</a>
-</pre></td><td><img id=logo src="logo.png"></td></tr></table>
+</pre></td><td><img id=logo src="logo.png"></td>
+<td><img id=net width=64px src="online.png"></td>
+</tr></table>
 
 Here we will print log and program messages.
 </pre>

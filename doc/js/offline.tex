@@ -4,7 +4,36 @@ The big problem in \js\ application on mobile devices is an \emph{offline mode}.
 To solve this problem HTML5 has some hints we can use to manage data caching and
 synchronization. We'll use some info from
 \url{http://diveintohtml5.info/offline.html}\note{ru:
-http://htmlbook.ru/html5/offline}\ to do \term{web cache manifest}:
-\begin{lstlistong}
+http://htmlbook.ru/html5/offline}\ to do \term{web cache manifest}: it's a list
+of all resources required for offline work.
+\begin{lstlisting}[language=html]
+<html manifest="cache.manifest">
+\end{lstlisting}
 
-\end{lstlistong}
+\noindent To test this feature in Google Chrome, toggle
+\menu{F12>Network>Offline}.
+
+\clearpage
+\begin{lstlisting}[title=.htaccess]
+AddType text/cache-manifest .manifest
+\end{lstlisting}
+\begin{lstlisting}[title=cache.manifest]
+CACHE MANIFEST
+VM.html
+logo.png
+offline.png
+online.png
+\end{lstlisting}
+
+\bigskip
+\noindent All these files will be preloaded and will be automatically
+synced by a browser from a hosting server, so you does not care about it.
+
+\pg To catch and process online mode toggle, you need to catch this
+events in code:
+\begin{lstlisting}
+window.ononline = function () {
+ document.body.style.backgroundColor ='black'; }
+window.onoffline = function () {
+ document.body.style.backgroundColor ='#330000'; }
+\end{lstlisting}
