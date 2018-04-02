@@ -1,9 +1,11 @@
-<html>
+<html manifest="cache.manifest">
 <head>
 <title>oFORTH/js</title>
+<link rel="icon" href="logo.png" type="image/png">
 
 <style>
 * { font-family:"Lucida Console", monospace; font-size:3vmin; } 
+#logo { height:9vmin; }
 html,body {
 	/* full-screen */
 	margin:0; padding:0; height:100%; width:100%;
@@ -12,8 +14,10 @@ html,body {
 	/* black mono console */
 	color:white; background-color:black; }
 #log { border: 0.5vh double white; height:50%; overflow: auto; }
-#pad { font-size:4vmin; width:100%;
+#pad { font-size:5vmin; width:100%;
        position:absolute; bottom:0; }
+a { color:cyan; }
+.tab {  widht:100%; cellpadding:2vmin; border:.3vmin solid grey; }       
 </style>
 
 <script>
@@ -33,13 +37,28 @@ W.words = function words() {
 
 var log;
 var pad;
+var net;	// network status
 
 window.onload = function entry () { // system init entry point
-	log = document.getElementById('log'); log.onclick = W.words;
+	log = document.getElementById('log'); 
 	pad = document.getElementById('pad');
+	net = document.getElementById('net'); net.src='offline.png';
 	W.words();
 	console.log(W.nop);
+	log.onclick = W.word;
 }
+
+W.word = function word() {
+	log.innerHTML += '\n' + pad.value + '\n'; }
+
+window.ononline = function () {
+	document.body.style.backgroundColor ='black';
+	net.src = 'online.png';
+	}
+window.onoffline = function () {
+	document.body.style.backgroundColor ='#330000';
+	net.src = 'offline.png';
+	}
 
 </script>
 
@@ -48,14 +67,22 @@ window.onload = function entry () { // system init entry point
 <body>
 
 <pre id=log>
+<table class=tab><tr><td><pre>
 oFORTH/js live web object system
 (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
-run this: https://ponyatov.github.io/o/js/VM.html
+<a href="http://ponyatov.github.io/o/js/VM.html">http://ponyatov.github.io/o/js/VM.html</a>
+</pre></td><td><img id=logo src="logo.png"></td>
+<td><img id=net width=64px src="online.png"></td>
+</tr></table>
 
 Here we will print log and program messages.
 </pre>
 
-<textarea id=pad rows=5 placeholder="# enter your commands here"></textarea>
+<textarea id=pad rows=5 placeholder="# enter your commands here">
+# enter your commands here
+: init ( -- ) nop bye ;
+<img src=logo.png>
+</textarea>
 
 </body>
 </html>
