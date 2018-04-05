@@ -1,5 +1,9 @@
 %{
 #include "hpp.hpp"
 %}
-%options noyywrap yylineno
+%option noyywrap yylineno
 %%
+#[^\n]*			{}		// line comment
+[ \t\r\n]+		{}		// drop spaces
+
+.+		{ yylval.o = new Sym(yytext); return SYM; }

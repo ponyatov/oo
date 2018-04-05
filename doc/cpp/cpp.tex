@@ -67,10 +67,29 @@ Both .ypp/.lpp must have header:
 \end{lstlisting}
 
 \pg Source code from stdin goes into first stage: \term{lexer}, defined in
-lpp.lpp. This two options need for right lexer code, enables line nubbering:
+lpp.lpp. This two options need for right lexer code, also enables line
+nubbering:
 \begin{lstlisting}
-%options noyywrap yylineno
+%option noyywrap yylineno
+\end{lstlisting}
+\noindent lexer can process comments and space chars:
+\begin{lstlisting}
+#[^\n]*				{}		// line comment
+[ \t\r\n]+		{}		// drop spaces
+\end{lstlisting}
+\noindent Any other characters will be grouped into single generic
+\emph{Sym}bol:
+\begin{lstlisting}
+.+		{ yylval.o = new Sym(yytext); return SYM; }
 \end{lstlisting}
 
+\pg First syntax sample will use simplest word by word syntax\note{in BNF
+notation}\,in .ypp:
+\begin{lstlisting}
+REPL : | REPL SYM	{ cout << $2->dump() << endl; }
+\end{lstlisting}
+REPL\note{Read Eval Print Loop}\,expression is \verb$:$ empty or \verb$|$ REPL
+followed by single SYMbol. This BNF rule is \term{left-recursive} so \emph{most
+deep} SYM will be processed \emph{first} by \verb${}$ rule.
 
 \secup
