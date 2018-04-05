@@ -14,7 +14,63 @@ Makefile & make & build scripts \\
 \hline
 rc.rc & & (g)vim start helper \\
 bat.bat & & (g)vim start helper \\
+.gitignore & git & ignore file masks \\
 \end{tabular}
+
+\pg
+\begin{lstlisting}
+~/o/cpp$ touch src.src log.log \
+	ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile \
+	bat.bat rc.rc .gitignore
+\end{lstlisting}
+\begin{lstlisting}
+~/o/cpp$ echo "#!/bin/sh" > rc.rc
+~/o/cpp$ echo gvim -p src.src log.log \
+	ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile \
+	>> rc.rc ; chmod +x rc.rc	
+\end{lstlisting}
+\begin{lstlisting}[title=.gitignore]
+*~ *.swp
+*.exe *.log
+ypp.tab.?pp lex.yy.c
+\end{lstlisting}
+
+\clearpage
+\secrel{Makefile build script}
+\begin{lstlisting}
+log.log: src.src ./exe.exe
+	./exe.exe < $< > $@ && tail $(TAIL) $@
+C = cpp.cpp ypp.tab.cpp lex.yy.c
+H = hpp.hpp ypp.tab.hpp
+CXXFLAGS += -std=gnu++11
+./exe.exe: $(C) $(H) Makefile
+	$(CXX) $(CXXFLAGS) -o $@ $(C)
+ypp.tab.cpp ypp.tab.hpp: ypp.ypp
+	bison $<
+lex.yy.c: lpp.lpp
+	flex $<
+\end{lstlisting}
+
+\clearpage
+\secrel{Syntax parser using flex/bison}
+
+Using parser written user lex/yacc compiler code generator pair we can expand
+simple \F-like syntax with infix syntax structures used in mainstream languages,
+like math with parens, function calls, and complex structure definitions.
+
+\medskip\noindent
+Both .ypp/.lpp must have header:
+\begin{lstlisting}
+%{
+#include "hpp.hpp"
+%}
+\end{lstlisting}
+
+\pg Source code from stdin goes into first stage: \term{lexer}, defined in
+lpp.lpp. This two options need for right lexer code, enables line nubbering:
+\begin{lstlisting}
+%options noyywrap yylineno
+\end{lstlisting}
 
 
 \secup
