@@ -38,27 +38,40 @@ W.words = function words() {
 var log;
 var pad;
 var net;	// network status
+var logo;
 
 window.onload = function entry () { // system init entry point
-	log = document.getElementById('log'); 
-	pad = document.getElementById('pad');
-	net = document.getElementById('net'); net.src='offline.png';
+	log  = document.getElementById('log'); 
+	pad  = document.getElementById('pad');
+	logo = document.getElementById('logo');
 	W.words();
 	console.log(W.nop);
-	log.onclick = W.word;
+	log.onclick = W.interpret;
 }
 
+var PAD = '';				// here input script will be stored
+
 W.word = function word() {
-	log.innerHTML += '\n' + pad.value + '\n'; }
+	var SRC = pad.value ; console.log(SRC);			// input
+	var STATE = {		// finit automata states
+			TRAIL:0,	// trailing spaces
+			COMMENT:1,	// in comment
+			DATA:2		// parsing output data
+	};
+	console.log(SRC);
+}
+//	log.innerHTML += '\n' + pad.value + '\n'; }
+
+W.interpret = function interpret() {	// interpreter run on log click 
+	PAD = pad.value;					// copy script from input field
+	while (PAD != '')
+		log.innerHTML += WORD();
+}
 
 window.ononline = function () {
-	document.body.style.backgroundColor ='black';
-	net.src = 'online.png';
-	}
+	document.body.style.backgroundColor ='black'; }
 window.onoffline = function () {
-	document.body.style.backgroundColor ='#330000';
-	net.src = 'offline.png';
-	}
+	document.body.style.backgroundColor ='#440000'; }
 
 </script>
 
@@ -67,12 +80,11 @@ window.onoffline = function () {
 <body>
 
 <pre id=log>
-<table class=tab><tr><td><pre>
+<table class=tab width=100%><tr><td><pre>
 oFORTH/js live web object system
 (c) Dmitry Ponyatov &lt;dponyatov@gmail.com&gt;
 <a href="http://ponyatov.github.io/o/js/VM.html">http://ponyatov.github.io/o/js/VM.html</a>
-</pre></td><td><img id=logo src="logo.png"></td>
-<td><img id=net width=64px src="online.png"></td>
+</pre></td><td id=logocell><img id=logo src="logo.png"></td>
 </tr></table>
 
 Here we will print log and program messages.
