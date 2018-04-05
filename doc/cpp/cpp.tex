@@ -1,0 +1,20 @@
+\clearpage\secrel{Portable \cpp\ VM implementation}\label{cppvm}\secdown
+
+\secrel{Lexical skeleton: Project file structure}\label{skelex}
+
+\begin{tabular}{l l l}
+src.src & script & test/configure script \\
+log.log & & output log \\
+\hline
+ypp.ypp & yacc/bison & syntax grammar \\
+lpp.lpp & lex/flex & lexer \\
+cpp.cpp & \cpp & VM code \\
+hpp.hpp & \cpp & headers \\
+Makefile & make & build scripts \\
+\hline
+rc.rc & & (g)vim start helper \\
+bat.bat & & (g)vim start helper \\
+\end{tabular}
+
+
+\secup
