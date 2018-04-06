@@ -15,9 +15,9 @@ html,body {
 	overflow:hidden;
 	/* black mono console */
 	color:white; background-color:black; }
-#log { border: 0.5vh double white; height:50%; overflow: auto; }
-#pad { font-size:5vmin; width:100%;
-       position:absolute; bottom:0; }
+#log { border: 1vmin double white; height:50%; overflow: auto; }
+#pad { font-size:5vmin; width:100%; position:absolute; bottom:0;
+		font-family: inherit; }
 a { color:cyan; }
 .tab {  widht:100%; cellpadding:2vmin; border:.3vmin solid grey; }       
 </style>
@@ -40,7 +40,7 @@ Here we will print log and program messages.
 <textarea id=pad rows=5 placeholder="# enter your commands here">
 # enter your commands here
 : init ( -- ) nop bye ;
-<img src=logo.png>
+\ <img src=logo.png>
 </textarea>
 
 </body>

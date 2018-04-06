@@ -25,23 +25,54 @@ window.onload = function entry () { // system init entry point
 	log.onclick = W.interpret;
 }
 
-var PAD = '';				// here input script will be stored
+var PAD = '';			// here input script will be stored
 
 W.word = function word() {
-	var SRC = pad.value ; console.log(SRC);			// input
-	var STATE = {		// finit automata states
-			TRAIL:0,	// trailing spaces
-			COMMENT:1,	// in comment
-			DATA:2		// parsing output data
-	};
-	console.log(SRC);
+	WN = ''				// value will be returned
+	var STATE = {		// DFA automata states
+			TRAIL:0,		// trailing spaces
+			LCOMMENT:1,		// # line \ comment
+			BCOMMANE:11,	// ( block comment )
+			DATA:2,			// collect non-space chars
+			DONE:3,			// parsing done
+	}; var S = STATE.TRAIL;	// [S]tate
+	
+	function getch() {
+		var C = PAD[0] ; PAD = PAD.slice(1);
+	return C; }
+	
+	function space(C) {
+		if (C==' '|C=='\t'|C=='\n') return true;
+		else return false;
+	}
+	
+	while (S != STATE.DONE & PAD != '') {
+		console.log('state',S);
+		switch (S) {
+		case STATE.TRAIL:
+			var C = getch(); console.log('char',C);
+			if (space(C)) break; // ignore
+			if (C=='#'|C=='\\') { S=STATE.LCOMMENT; break; }
+			if (C=='(') { S=STATE.BCOMMENT; break; }
+			WN +=C; S = STATE.DATA; break;
+		case STATE.LCOMMENT:
+			if (getch()=='\n') S = STATE.TRAIL; break;
+		case STATE.DATA:
+			var C = getch(); console.log('char',C);
+			if (C==' '|C=='\t'|C=='\n') S=STATE.DONE; break;
+			else WN += C; break;
+		default: abort();
+		}
+	}
+	PAD=''
+	return WN
 }
 //	log.innerHTML += '\n' + pad.value + '\n'; }
 
 W.interpret = function interpret() {	// interpreter run on log click 
 	PAD = pad.value;					// copy script from input field
 	while (PAD != '')
-		log.innerHTML += WORD();
+		log.innerHTML += W.word();
 }
 
 window.ononline = function () {
