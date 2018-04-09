@@ -63,7 +63,7 @@ W.word = function word() {
 			if (getch()=='\n') S = STATE.TRAIL; break;
 		case STATE.DATA:
 			var C = getch(); console.log('char',C);
-			if (C==' '|C=='\t'|C=='\n') S=STATE.DONE; break;
+			if (C==' '|C=='\t'|C=='\n') { S=STATE.DONE; break; }
 			else WN += C; break;
 		default: abort();
 		}
