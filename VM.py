@@ -163,14 +163,14 @@ class Map(Container):
     def __lshift__(self,F): # operator<<
         try: self[F.value] = F # push object
         except AttributeError: # fallback for
-            self[F.__name__] = VM(F) # VM command
+            self[F.__name__] = Fn(F) # VM command
         return self # return modified Map
 
 def test_Map(): assert Map('map').attr == {}
 
 def test_Map_LL(): assert '%s' % \
     ( Map('LL') << test_Map_LL ) == \
-        '\n<map:LL>\n\ttest_Map_LL = <vm:test_Map_LL>'
+        '\n<map:LL>\n\ttest_Map_LL = <fn:test_Map_LL>'
         
 def test_Map_GetSet():
     M = Map('get/set') ; M['X'] = 'Y'
@@ -295,22 +295,6 @@ def test_D_dupswap():
     D << Integer(2) << W['SWAP'] ; W['EXECUTE'].execute()
     assert str(D) == '\n<stack:DATA>\n\t<integer:2>\n\t<integer:1>'
 
-###################################################################### callable
-
-def EXECUTE(): D.pop().execute()
-W << EXECUTE
-
-def test_callable_generic():
-    D.flush() << Object('callable') ; W['EXECUTE'].execute()
-    assert str(D) == '\n<stack:DATA>\n\t<object:callable>'
-
-def test_callable_literals():
-    D.flush()
-    D << Integer(1234) ; W['EXECUTE'].execute()
-    D << String('lit') ; W['EXECUTE'].execute()
-    assert str(D) == \
-        '\n<stack:DATA>\n\t<integer:1234>\n\t<string:lit>'
-
 def test_Active():
     D.flush()
     assert '%s' % Active('life').execute() == '\n<active:life>'
@@ -326,17 +310,22 @@ def test_Object_callable():
 ## @ingroup FVM
 
 def q(): print D
-W['?'] = VM(q)
+W['?'] = Fn(q)
 def qq(): print W ; print D ; BYE()
-W['??'] = VM(qq)
+W['??'] = Fn(qq)
 
 ########################################################################## misc
 
 def dot(): D.flush()
-W['.'] = VM(dot)
+W['.'] = Fn(dot)
 
-def BYE(): sys.exit(0)          # stop system
+## `BYE ( -- )` stop system
+def BYE(): sys.exit(0)
 W << BYE
+
+## `NOP ( -- )` do nothing
+def NOP(): pass
+W << NOP
 
 ## @defgroup interp Interpreter/Compiler
 ## @ingroup FVM
@@ -390,15 +379,35 @@ def t_WORD(t):
 
 lexer = lex.lex()                               # create lexer
 
-################################################################### Interpreter
+## @defgroup interp Interpreter
+## @ingroup FVM
+## @{
 
-########################################################################## WORD
+## `EXECUTE ( callable:xt -- ... )`
+## run executable definition via its execution token in stack
+## @ingroup interp
+def EXECUTE(): D.pop().execute()
+W << EXECUTE
 
+def test_callable_generic():
+    D.flush() << Object('callable') ; W['EXECUTE'].execute()
+    assert str(D) == '\n<stack:DATA>\n\t<object:callable>'
+
+def test_callable_literals():
+    D.flush()
+    D << Integer(1234) ; W['EXECUTE'].execute()
+    D << String('lit') ; W['EXECUTE'].execute()
+    assert str(D) == \
+        '\n<stack:DATA>\n\t<integer:1234>\n\t<string:lit>'
+
+## `WORD ( -- token:wordname )`
+## parse next word name from source code stream
 def WORD():
     D << lex.token() # get object right from lexer
     if not D.top(): D.pop() ; raise EOFError
 W << WORD
 
+## @test check comments and primitive literals
 test_STRING_4Interpreter = '''
 # line comment
 \ slash line comment
@@ -421,23 +430,26 @@ def test_WORD():
     try: WORD() ; assert False
     except EOFError: assert True # test ok
 
-########################################################################## FIND
-
+## `FIND ( wordname -- callable:xt )`
+## lookup execatable definition in vocabulary
 def FIND():
     WN = D.pop()            # get word name to be found
     try: D << W[WN.value]   # push result from vocabulary
-    except KeyError: raise SyntaxError(WN.value) # not found
+    except KeyError:
+        try: D << W[WN.value.upper()]
+        except KeyError: raise SyntaxError(WN.value) # not found
 
 def test_FIND():
     D << String('FIND') ; FIND()
-    assert D.pop().head() == '<vm:FIND>'
+    assert D.pop().head() == '<fn:FIND>'
     D << String('NOTFOUND')
     try: FIND() ;       assert False
     except SyntaxError: assert True
 W << FIND
 
-##################################################################### INTERPRET
-
+## `INTERPRET ( -- )`
+## [R]ead [E]val [P]rint [L]oop
+## @param[in] SRC source code should be interpreted
 def INTERPRET(SRC=''):
     lexer.input(SRC)                    # feed source input
     while True:                         # interpreter loop                     
@@ -451,10 +463,12 @@ def INTERPRET(SRC=''):
         else:       EXECUTE()           # or execute in place
 W << INTERPRET
 
+## @test empty source code
 def test_INTERPRET_null():
     D.flush() ; INTERPRET('')
     assert D.nest == []
 
+## @test using @ref test_STRING_4Interpreter
 def test_INTERPRET():
     def ThisMustBeFirst(): pass
     def Some(): pass
@@ -466,6 +480,8 @@ def test_INTERPRET():
     assert D.pop().head() == '<number:2.3>'
     assert D.pop().head() == '<integer:-1>'
     assert D.nest == []
+    
+## @}
 
 ## @defgroup compiler Compiler
 ## @ingroup FVM
@@ -478,10 +494,10 @@ def COMPILE_RST(): global COMPILE ; COMPILE = None
 
 ## `[` begin block
 def QL(): global COMPILE ; COMPILE = Vector('')
-W['['] = VM(QL)
+W['['] = Fn(QL)
 ## `]` end block 
 def QR(): D << COMPILE ; COMPILE_RST()
-W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag
+W[']'] = Fn(QR) ; W[']']['IMMED'] = T   # set immediate flag
 
 ## @test empty `[ block ]`
 def test_QLQR():
@@ -501,41 +517,49 @@ def test_COMPILE_emptyblock():
     # check execution of empty block
     EXECUTE()
     assert D.nest == []
-     
+## @test compile empty `[]` block via INTERPRET()
 def test_INTERPRET_state_transitions():
     D.flush() ; COMPILE_RST()   # cleanup
     INTERPRET('[')              # start compilation
     assert COMPILE.head() == '<vector:>'
     INTERPRET(']')              # stop
     assert COMPILE == None
-     
+## @test compile vector with number literals via INTERPRET()
 def test_vector_compile():
     D.flush(); COMPILE_RST()
     INTERPRET('[ 1 2 3 ]')
     assert str(D.top()) == \
         '\n<vector:>\n\t<integer:1>\n\t<integer:2>\n\t<integer:3>'
     # don't cleanup data stack
+## @test execute compiled block in test_vector_compile()
 def test_vector_exec():
     test_vector_compile() ; EXECUTE()
     assert str(D) == \
     '\n<stack:DATA>\n\t<integer:1>\n\t<integer:2>\n\t<integer:3>'
     
-## Colon definition
+## `: ( -- )` Start : colon definition ;
+##
+## We'll compile colon definitions into vectors,
+## but not memory image like classical FORTH systems does.
+## So ::Vector must has callable nature by defining special 
+## `__call__(self)` method
 def colon():
     WORD() ; WN = D.pop().value # fetch new word name
-    # 1) we'll compile colon definition into vectors,
-    #    but not memory image like classical FORTH 
-    # 2) push just created word into vocabulary:
-    #    it let as to use self word name for recursion
+    # push just created word into vocabulary:
+    # it let as to use self word name for recursion
     global COMPILE ; W[WN] = COMPILE = Vector(WN)
-     
-    print COMPILE,D,W
-    abort()
-W[':'] = VM(colon)
+W[':'] = Fn(colon)
 
+## `; ( -- )` Finish : colon definition ;
+def semicolon():
+    global COMPILE ; COMPILE = []
+W[';'] = Fn(semicolon) ; W[';']['IMMED'] = T
+
+## @test colon definition: ` : init ( -- ) nop bye ; `
 def test_colon_def():
     D.flush()
     INTERPRET(''' : init ( -- ) nop bye ; ''')
+    assert W['init'].dump() == '\n<vector:init>\n\t<fn:NOP>\n\t<fn:BYE>'
  
 if __name__ == "__main__":              # VM startup
     INTERPRET(open('src.src').read())   # feed src.src

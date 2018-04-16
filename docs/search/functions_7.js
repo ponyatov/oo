@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['word',['WORD',['../VM_8py.html#af1bb45305445e910fe2b154c8e546c2f',1,'VM']]]
+  ['ql',['QL',['../group__compiler.html#gaccacce05d925803aaad947e037ca0e7d',1,'VM']]],
+  ['qr',['QR',['../group__compiler.html#ga7728702a72c35e6f4a270a24ebacd541',1,'VM']]]
 ];

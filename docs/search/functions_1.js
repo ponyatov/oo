@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dot',['dot',['../VM_8py.html#adb3482e86655a382de1c538959b5c3db',1,'VM']]],
-  ['dup',['DUP',['../group__cmd.html#ga3da219ed6448a0362ac27f6b619353bc',1,'VM']]]
+  ['colon',['colon',['../group__compiler.html#ga4aa9e6a592875d2ecfb7ff877e63ce17',1,'VM']]],
+  ['compile_5frst',['COMPILE_RST',['../group__compiler.html#ga9787b1232d7a9b513cf4a14d8d4d1cb5',1,'VM']]]
 ];

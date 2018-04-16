@@ -1,6 +1,7 @@
 /** @file
+@brief manual main page 
 
-@mainpage oForth object system
+@mainpage oFORTH/py Virtual Machine (Python implementation)
 
 (c) Dmitry Ponyatov <<a href="mailto:dponyatov@gmail.com">dponyatov@gmail.com</a>>, GNU LesserGPL
 
@@ -8,25 +9,29 @@ github: https://github.com/ponyatov/o
 
 - object Forth Virtual Machine implementation (Python, embedded C++)
   - <a href="../js/VM.html">JavaScript</a> implementation
-- Forth-like language implementation guide
-- mix of Forth, SmallTalk and Actor model ideas
+- Forth-like language <a href="https://github.com/ponyatov/o/releases/latest">implementation guide in .PDF</a>
+- mix of Forth, SmallTalk and Actor model ideas:
+  - extra simple control language syntax
+  - objects and async message passing for distributed scalability
+  - live/persistent system image shared between VM instances
 
 @section TODO
 
-- live object/(hyper)graph database system
-  - multiplatform 
+- **live object/(hyper)graph** database system
+  - multiplatform
+  - **embeddable** into programs written on most mainstream programming languages
   - works on top of distributed computer grids
-  - has active data types can be used as script engine elements
+  - has **active data types** can be executed as script elements
 - computer science workbench
   - interactive modeling
   - algorithm and data structures vizualization
   - computer language design
     - dynamic runtime engine
     - syntax parser generators
-- meta- and transformational programming system
+- <b>meta-</b> and transformational <b>programming</b> system
   - code autogeneration for mainstream production languages
   - dynamic script language design framework
-  - managed compiler (LLVM cross/jit) for embedded systems
+  - **managed compiler** (LLVM cross/jit) for embedded systems
 - CAD/CAM/CAE platform
   - generic 2D sketching
   - EDA (electronics design)

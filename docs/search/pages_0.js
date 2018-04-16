@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['oforth_20object_20system',['oForth object system',['../index.html',1,'']]]
+  ['oforth_2fpy_20virtual_20machine_20_28python_20implementation_29',['oFORTH/py Virtual Machine (Python implementation)',['../index.html',1,'']]]
 ];

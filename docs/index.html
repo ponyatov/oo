@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>oFORTH: oForth object system</title>
+<title>oFORTH/py: oFORTH/py Virtual Machine (Python implementation)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">oFORTH
+   <div id="projectname">oFORTH/py
    </div>
   </td>
  </tr>
@@ -59,7 +59,7 @@ $(function() {
 
 <div class="header">
   <div class="headertitle">
-<div class="title">oForth object system </div>  </div>
+<div class="title">oFORTH/py Virtual Machine (Python implementation) </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>(c) Dmitry Ponyatov &lt;<a href="#" onclick="location.href='mai'+'lto:'+'dpo'+'ny'+'ato'+'v@'+'gma'+'il'+'.co'+'m'; return false;">dponyatov@gmail.com</a>&gt;, GNU LesserGPL</p>
@@ -69,16 +69,22 @@ $(function() {
 <li><a href="../js/VM.html">JavaScript</a> implementation</li>
 </ul>
 </li>
-<li>Forth-like language implementation guide</li>
-<li>mix of Forth, SmallTalk and Actor model ideas</li>
+<li>Forth-like language <a href="https://github.com/ponyatov/o/releases/latest">implementation guide in .PDF</a></li>
+<li>mix of Forth, SmallTalk and Actor model ideas:<ul>
+<li>extra simple control language syntax</li>
+<li>objects and async message passing for distributed scalability</li>
+<li>live/persistent system image shared between VM instances</li>
+</ul>
+</li>
 </ul>
 <h1><a class="anchor" id="TODO"></a>
 TODO</h1>
 <ul>
-<li>live object/(hyper)graph database system<ul>
+<li><b>live object/(hyper)graph</b> database system<ul>
 <li>multiplatform</li>
+<li><b>embeddable</b> into programs written on most mainstream programming languages</li>
 <li>works on top of distributed computer grids</li>
-<li>has active data types can be used as script engine elements</li>
+<li>has <b>active data types</b> can be executed as script elements</li>
 </ul>
 </li>
 <li>computer science workbench<ul>
@@ -91,10 +97,10 @@ TODO</h1>
 </li>
 </ul>
 </li>
-<li>meta- and transformational programming system<ul>
+<li><b>meta-</b> and transformational <b>programming</b> system<ul>
 <li>code autogeneration for mainstream production languages</li>
 <li>dynamic script language design framework</li>
-<li>managed compiler (LLVM cross/jit) for embedded systems</li>
+<li><b>managed compiler</b> (LLVM cross/jit) for embedded systems</li>
 </ul>
 </li>
 <li>CAD/CAM/CAE platform<ul>

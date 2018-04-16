@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['colon',['colon',['../group__compiler.html#ga4aa9e6a592875d2ecfb7ff877e63ce17',1,'VM']]],
-  ['compile_5frst',['COMPILE_RST',['../group__compiler.html#ga9787b1232d7a9b513cf4a14d8d4d1cb5',1,'VM']]]
+  ['bye',['BYE',['../VM_8py.html#a0aea3afc87b1ae52f303bc026e3b7e27',1,'VM']]]
 ];
