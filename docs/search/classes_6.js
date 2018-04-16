@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['map',['Map',['../classVM_1_1Map.html',1,'VM']]]
+  ['integer',['Integer',['../classVM_1_1Integer.html',1,'VM']]]
 ];

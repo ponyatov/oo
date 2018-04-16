@@ -177,8 +177,7 @@ def test_Map_GetSet():
     assert M.attr == {'X':'Y'}  # check set
     assert M['X'] == 'Y'        # check get
 
-######################################################################## Vector
-
+## ordered vector
 class Vector(Container):
     def execute(self):
         for op in self.nest: op.execute()
@@ -242,6 +241,33 @@ def test_Bool():
 ## @defgroup err Error
 ## exception and error processing
 ## @ingroup special
+
+## @defgroup grammar Grammar
+## elements specially for syntax parsing
+## @ingroup object
+## @{
+
+## Syntax elements
+class Syntax(Object):
+    pass
+
+## lexeme (token) = word name
+class Token(Syntax):
+    pass
+
+## Language grammar
+class Grammar(Syntax):
+    pass
+
+## @test token
+def test_token():
+    assert Token('wordname').head() == '<token:wordname>'
+
+## sungle BNF grammar rule
+class BNF(Grammar):
+    pass
+
+## @}
 
 ## @defgroup FVM oFORTH Virtual Machine
 ## @ingroup core
@@ -351,7 +377,7 @@ def t_COMMENT_slash(t):  r'\\.+'                # single line \comment
 def t_COMMENT_parens(t): r'\(.*?\)'             # block (comment)
 
 # list of used token (literal) types
-tokens = ['symbol','integer','number','hex','bin']
+tokens = ['token','integer','number','hex','bin']
 
 def t_NUMBER_exp(t):                            # float in exponential form
     r'[\+\-]?[0-9]+(\.[0-9]*)?[eE][\+\-]?[0-9]+'
@@ -375,7 +401,7 @@ def t_INTEGER(t):                               # generic integer
 
 def t_WORD(t):
     r'[a-zA-Z0-9_\?\.\[\]\:\;]+'
-    return Symbol(t.value)
+    return Token(t.value)
 
 lexer = lex.lex()                               # create lexer
 
@@ -420,13 +446,13 @@ ThisMustBeFirst
 
 def test_WORD():
     lexer.input(test_STRING_4Interpreter)
-    WORD() ; assert D.pop().head() == '<symbol:ThisMustBeFirst>'
+    WORD() ; assert D.pop().head() == '<token:ThisMustBeFirst>'
     WORD() ; assert D.pop().head() == '<integer:-1>'
     WORD() ; assert D.pop().head() == '<number:2.3>'
     WORD() ; assert D.pop().head() == '<number:4e-05>'
     WORD() ; assert D.pop().head() == '<hex:0xDeadBeef>'
     WORD() ; assert D.pop().head() == '<bin:0b1101>'
-    WORD() ; assert D.pop().head() == '<symbol:Some>'
+    WORD() ; assert D.pop().head() == '<token:Some>'
     try: WORD() ; assert False
     except EOFError: assert True # test ok
 
@@ -455,7 +481,7 @@ def INTERPRET(SRC=''):
     while True:                         # interpreter loop                     
         try: WORD()
         except EOFError: break
-        if D.top().type == 'symbol':    # need lookup
+        if D.top().type in ['token','symbol']:    # need lookup
             FIND()
             if D.top().attr.has_key('IMMED'):
                 EXECUTE() ; continue
@@ -504,7 +530,7 @@ def test_QLQR():
     COMPILE_RST();
     QL(); assert     COMPILE
     QR(); assert not COMPILE
-
+    
 ## @test empty block compilation
 def test_COMPILE_emptyblock():
     D.flush() ; COMPILE_RST()   # cleaup
@@ -565,3 +591,4 @@ if __name__ == "__main__":              # VM startup
     INTERPRET(open('src.src').read())   # feed src.src
 
 ## @}
+

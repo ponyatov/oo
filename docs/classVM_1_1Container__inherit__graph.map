@@ -1,7 +1,7 @@
 <map id="VM.Container" name="VM.Container">
 <area shape="rect" id="node3" href="$classVM_1_1Map.html" title="unordered key:value storage " alt="" coords="5,155,76,181"/>
 <area shape="rect" id="node4" href="$classVM_1_1Stack.html" title="LIFO Stack. " alt="" coords="101,155,181,181"/>
-<area shape="rect" id="node5" href="$classVM_1_1Vector.html" title="Vector. " alt="" coords="205,155,289,181"/>
+<area shape="rect" id="node5" href="$classVM_1_1Vector.html" title="ordered vector " alt="" coords="205,155,289,181"/>
 <area shape="rect" id="node2" href="$classVM_1_1Object.html" title="base Object " alt="" coords="99,5,183,32"/>
 <area shape="rect" id="node6" href="$classVM_1_1Queue.html" title="FIFO queue. " alt="" coords="205,229,289,256"/>
 </map>

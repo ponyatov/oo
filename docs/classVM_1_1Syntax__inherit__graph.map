@@ -1,0 +1,6 @@
+<map id="VM.Syntax" name="VM.Syntax">
+<area shape="rect" id="node3" href="$classVM_1_1Grammar.html" title="Language grammar. " alt="" coords="5,155,105,181"/>
+<area shape="rect" id="node5" href="$classVM_1_1Token.html" title="lexeme (token) = word name " alt="" coords="129,155,211,181"/>
+<area shape="rect" id="node2" href="$classVM_1_1Object.html" title="base Object " alt="" coords="71,5,155,32"/>
+<area shape="rect" id="node4" href="$classVM_1_1BNF.html" title="sungle BNF grammar rule " alt="" coords="19,229,92,256"/>
+</map>

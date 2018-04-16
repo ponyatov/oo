@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['semicolon',['semicolon',['../group__compiler.html#gab7d80c67ce9fd6269adbfecd3ac17ee0',1,'VM']]],
-  ['specials',['Specials',['../group__special.html',1,'']]],
-  ['stack',['Stack',['../classVM_1_1Stack.html',1,'VM']]],
-  ['string',['String',['../classVM_1_1String.html',1,'VM']]],
-  ['symbol',['Symbol',['../classVM_1_1Symbol.html',1,'VM']]],
-  ['syntax_20parser',['Syntax parser',['../group__syntax.html',1,'']]]
+  ['ql',['QL',['../group__compiler.html#gaccacce05d925803aaad947e037ca0e7d',1,'VM']]],
+  ['qr',['QR',['../group__compiler.html#ga7728702a72c35e6f4a270a24ebacd541',1,'VM']]],
+  ['queue',['Queue',['../classVM_1_1Queue.html',1,'VM']]]
 ];

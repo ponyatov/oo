@@ -102,7 +102,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">unordered key:value storage  <a href="classVM_1_1Map.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1Vector.html">VM.Vector</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classVM_1_1Vector.html" title="Vector. ">Vector</a>.  <a href="classVM_1_1Vector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ordered vector  <a href="classVM_1_1Vector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1Queue.html">VM.Queue</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIFO queue.  <a href="classVM_1_1Queue.html#details">More...</a><br /></td></tr>
@@ -117,6 +117,18 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1true.html">VM.true</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1false.html">VM.false</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1Syntax.html">VM.Syntax</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classVM_1_1Syntax.html" title="Syntax elements. ">Syntax</a> elements.  <a href="classVM_1_1Syntax.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1Token.html">VM.Token</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">lexeme (token) = word name  <a href="classVM_1_1Token.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1Grammar.html">VM.Grammar</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Language grammar.  <a href="classVM_1_1Grammar.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVM_1_1BNF.html">VM.BNF</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">sungle <a class="el" href="classVM_1_1BNF.html" title="sungle BNF grammar rule ">BNF</a> grammar rule  <a href="classVM_1_1BNF.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -199,6 +211,8 @@ def&#160;</td><td class="memItemRight" valign="bottom"><b>VM.test_Fn</b> ()</td>
 <tr class="memitem:a193d5621b549877d63fc332a80a01a6c"><td class="memItemLeft" align="right" valign="top"><a id="a193d5621b549877d63fc332a80a01a6c"></a>
 def&#160;</td><td class="memItemRight" valign="bottom"><b>VM.test_Bool</b> ()</td></tr>
 <tr class="separator:a193d5621b549877d63fc332a80a01a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa7c8a5cf1247067dcab4525b9d564c87"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__grammar.html#gaa7c8a5cf1247067dcab4525b9d564c87">VM.test_token</a> ()</td></tr>
+<tr class="separator:gaa7c8a5cf1247067dcab4525b9d564c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga59cd66d00ff33ea4e2ee4a5dc2e84494"><td class="memItemLeft" align="right" valign="top">
 def&#160;</td><td class="memItemRight" valign="bottom"><b>VM.test_FVM_W</b> ()</td></tr>
 <tr class="separator:ga59cd66d00ff33ea4e2ee4a5dc2e84494"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -351,7 +365,7 @@ Variables</h2></td></tr>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>VM.t_ignore</b> = ' \t\r\n'</td></tr>
 <tr class="separator:a27f70cad81f8ec642fbf9209065ba95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8877c8944a39f5d227dfc0a20b781804"><td class="memItemLeft" align="right" valign="top"><a id="a8877c8944a39f5d227dfc0a20b781804"></a>
-list&#160;</td><td class="memItemRight" valign="bottom"><b>VM.tokens</b> = ['symbol','integer','number','hex','bin']</td></tr>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>VM.tokens</b> = ['token','integer','number','hex','bin']</td></tr>
 <tr class="separator:a8877c8944a39f5d227dfc0a20b781804"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac75dc3163149dc844b075a5c05ec6336"><td class="memItemLeft" align="right" valign="top"><a id="ac75dc3163149dc844b075a5c05ec6336"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VM.lexer</b> = lex.lex()</td></tr>
