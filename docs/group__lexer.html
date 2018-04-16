@@ -58,23 +58,90 @@ $(function() {
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">Lexer<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a> &raquo; <a class="el" href="group__interp.html">Interpreter/Compiler</a> &raquo; <a class="el" href="group__syntax.html">Syntax parser</a></div></div>  </div>
+<div class="title">Lexer<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a> &raquo; <a class="el" href="group__interp.html">Interpreter/Compiler</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>regexp-based (lex)  
+<p>regexp-based (lex) made with PLY parser generator library  
 <a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for Lexer:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__lexer.png" border="0" alt="" usemap="#group____lexer"/>
 <map name="group____lexer" id="group____lexer">
-<area shape="rect" id="node1" href="group__syntax.html" title="based on PLY parser generator library " alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node1" href="group__interp.html" title="Interpreter/Compiler" alt="" coords="5,5,143,32"/>
 </map>
 </td></tr></table></center>
 </div>
-<p>regexp-based (lex) </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga8169194f6dfbbe977c330c306d61ef02"><td class="memItemLeft" align="right" valign="top"><a id="ga8169194f6dfbbe977c330c306d61ef02"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga8169194f6dfbbe977c330c306d61ef02">VM.t_error</a> (t)</td></tr>
+<tr class="memdesc:ga8169194f6dfbbe977c330c306d61ef02"><td class="mdescLeft">&#160;</td><td class="mdescRight">lexer error callback <br /></td></tr>
+<tr class="separator:ga8169194f6dfbbe977c330c306d61ef02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1269b580e0e6c783c2aa92b7aea308e6"><td class="memItemLeft" align="right" valign="top"><a id="ga1269b580e0e6c783c2aa92b7aea308e6"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga1269b580e0e6c783c2aa92b7aea308e6">VM.t_COMMENT_hash</a> (t)</td></tr>
+<tr class="memdesc:ga1269b580e0e6c783c2aa92b7aea308e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">single line <code>#comment</code> <br /></td></tr>
+<tr class="separator:ga1269b580e0e6c783c2aa92b7aea308e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga324551b362acf6972f54c7eb08d53937"><td class="memItemLeft" align="right" valign="top"><a id="ga324551b362acf6972f54c7eb08d53937"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga324551b362acf6972f54c7eb08d53937">VM.t_COMMENT_slash</a> (t)</td></tr>
+<tr class="memdesc:ga324551b362acf6972f54c7eb08d53937"><td class="mdescLeft">&#160;</td><td class="mdescRight">single line <code>\comment</code> <br /></td></tr>
+<tr class="separator:ga324551b362acf6972f54c7eb08d53937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga53f7a91dffe2ef52b0e8b44a10c0cbe0"><td class="memItemLeft" align="right" valign="top"><a id="ga53f7a91dffe2ef52b0e8b44a10c0cbe0"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga53f7a91dffe2ef52b0e8b44a10c0cbe0">VM.t_COMMENT_parens</a> (t)</td></tr>
+<tr class="memdesc:ga53f7a91dffe2ef52b0e8b44a10c0cbe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">block <code>(comment)</code> <br /></td></tr>
+<tr class="separator:ga53f7a91dffe2ef52b0e8b44a10c0cbe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga529a68ebf6872fdcb82446e3fe924a1e"><td class="memItemLeft" align="right" valign="top"><a id="ga529a68ebf6872fdcb82446e3fe924a1e"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga529a68ebf6872fdcb82446e3fe924a1e">VM.t_NUMBER_exp</a> (t)</td></tr>
+<tr class="memdesc:ga529a68ebf6872fdcb82446e3fe924a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">float in exponential form <br /></td></tr>
+<tr class="separator:ga529a68ebf6872fdcb82446e3fe924a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf18374ffdbd89b09c0e3b3d47888a44"><td class="memItemLeft" align="right" valign="top"><a id="gabf18374ffdbd89b09c0e3b3d47888a44"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gabf18374ffdbd89b09c0e3b3d47888a44">VM.t_NUMBER_point</a> (t)</td></tr>
+<tr class="memdesc:gabf18374ffdbd89b09c0e3b3d47888a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">float with point <br /></td></tr>
+<tr class="separator:gabf18374ffdbd89b09c0e3b3d47888a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaeaa199ab11cf5bce6a889dfd7af9bd6"><td class="memItemLeft" align="right" valign="top"><a id="gaaeaa199ab11cf5bce6a889dfd7af9bd6"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaaeaa199ab11cf5bce6a889dfd7af9bd6">VM.t_HEX</a> (t)</td></tr>
+<tr class="memdesc:gaaeaa199ab11cf5bce6a889dfd7af9bd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">machine number in hex <br /></td></tr>
+<tr class="separator:gaaeaa199ab11cf5bce6a889dfd7af9bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf91d69d05a08c14039f35b1fc1cf5304"><td class="memItemLeft" align="right" valign="top"><a id="gaf91d69d05a08c14039f35b1fc1cf5304"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaf91d69d05a08c14039f35b1fc1cf5304">VM.t_BIN</a> (t)</td></tr>
+<tr class="memdesc:gaf91d69d05a08c14039f35b1fc1cf5304"><td class="mdescLeft">&#160;</td><td class="mdescRight">binary bit string <br /></td></tr>
+<tr class="separator:gaf91d69d05a08c14039f35b1fc1cf5304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafefe45161561d38b89a76359d9e637c0"><td class="memItemLeft" align="right" valign="top"><a id="gafefe45161561d38b89a76359d9e637c0"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gafefe45161561d38b89a76359d9e637c0">VM.t_INTEGER</a> (t)</td></tr>
+<tr class="memdesc:gafefe45161561d38b89a76359d9e637c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">generic integer <br /></td></tr>
+<tr class="separator:gafefe45161561d38b89a76359d9e637c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga414ae2fb1861648548013ec2417faa3f"><td class="memItemLeft" align="right" valign="top"><a id="ga414ae2fb1861648548013ec2417faa3f"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga414ae2fb1861648548013ec2417faa3f">VM.t_WORD</a> (t)</td></tr>
+<tr class="memdesc:ga414ae2fb1861648548013ec2417faa3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">word name token made from any non-space chars <br /></td></tr>
+<tr class="separator:ga414ae2fb1861648548013ec2417faa3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1bb45305445e910fe2b154c8e546c2f"><td class="memItemLeft" align="right" valign="top"><a id="gaf1bb45305445e910fe2b154c8e546c2f"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaf1bb45305445e910fe2b154c8e546c2f">VM.WORD</a> ()</td></tr>
+<tr class="memdesc:gaf1bb45305445e910fe2b154c8e546c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>WORD ( -- token:wordname )</code> parse next word name from source code stream <br /></td></tr>
+<tr class="separator:gaf1bb45305445e910fe2b154c8e546c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga27f70cad81f8ec642fbf9209065ba95d"><td class="memItemLeft" align="right" valign="top"><a id="ga27f70cad81f8ec642fbf9209065ba95d"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga27f70cad81f8ec642fbf9209065ba95d">VM.t_ignore</a> = ' \t\r\n'</td></tr>
+<tr class="memdesc:ga27f70cad81f8ec642fbf9209065ba95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ignored chars: spaces <br /></td></tr>
+<tr class="separator:ga27f70cad81f8ec642fbf9209065ba95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8877c8944a39f5d227dfc0a20b781804"><td class="memItemLeft" align="right" valign="top"><a id="ga8877c8944a39f5d227dfc0a20b781804"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga8877c8944a39f5d227dfc0a20b781804">VM.tokens</a> = ['token','integer','number','hex','bin']</td></tr>
+<tr class="memdesc:ga8877c8944a39f5d227dfc0a20b781804"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of used token (literal) types <br /></td></tr>
+<tr class="separator:ga8877c8944a39f5d227dfc0a20b781804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac75dc3163149dc844b075a5c05ec6336"><td class="memItemLeft" align="right" valign="top"><a id="gac75dc3163149dc844b075a5c05ec6336"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gac75dc3163149dc844b075a5c05ec6336">VM.lexer</a> = lex.lex()</td></tr>
+<tr class="memdesc:gac75dc3163149dc844b075a5c05ec6336"><td class="mdescLeft">&#160;</td><td class="mdescRight">createsystem-wide lexer <br /></td></tr>
+<tr class="separator:gac75dc3163149dc844b075a5c05ec6336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>regexp-based (lex) made with PLY parser generator library </p>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

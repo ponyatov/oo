@@ -283,31 +283,30 @@ W = Map('FORTH')
 ## @ingroup voc
 def test_FVM_W(): assert W.head() == '<map:FORTH>'
 
-## global data stack
+## @defgroup stack Global data stack
+## all computations in FORTH use only stack (no registers or variables)
 ## @ingroup FVM
+## @{
+
+## global data stack register
 D = Stack('DATA')
 
+## @test empty stack dump
 def test_FVM_D(): assert '%s' % D == '\n<stack:DATA>'
 
-## @defgroup cmd Commands
-## @ingroup FVM
-
-## `dup ( o - o o )` duplicate top stack element
-## @ingroup cmd
-## @ingroup stack
+## `DUP ( o - o o )` duplicate top stack element
 def DUP(): D.dup()
 W << DUP
 
-## @ingroup FVM
-## @ingroup stack
+## `DROP ( o1 o2 -- o1 )` drop top element
 def DROP(): D.drop()
 W << DROP
 
-## @ingroup FVM
-## @ingroup stack
+## `SWAP ( o1 o2 -- o2 o1 )` swap 2 top elements
 def SWAP(): D.swap()
 W << SWAP
 
+## @test stack operations
 def test_D_dupswap():
     # check stack fluffing words in vocabulary
     assert W['DUP'].fn == DUP ; assert W['DROP'].fn == DROP
@@ -321,6 +320,8 @@ def test_D_dupswap():
     D << Integer(2) << W['SWAP'] ; W['EXECUTE'].execute()
     assert str(D) == '\n<stack:DATA>\n\t<integer:2>\n\t<integer:1>'
 
+## @}
+
 def test_Active():
     D.flush()
     assert '%s' % Active('life').execute() == '\n<active:life>'
@@ -333,15 +334,22 @@ def test_Object_callable():
     D.flush()
 
 ## @defgroup debug Debug
+## words and commands can be used for debug
 ## @ingroup FVM
+## @{
 
+## `? ( -- )` dump stack
 def q(): print D
 W['?'] = Fn(q)
+## `?? ( -- )` dump vocabulary, stack, end exit from system (end of script)
 def qq(): print W ; print D ; BYE()
 W['??'] = Fn(qq)
 
+## @}
+
 ########################################################################## misc
 
+## `. ( ... -- ) flush data stack
 def dot(): D.flush()
 W['.'] = Fn(dot)
 
@@ -356,57 +364,66 @@ W << NOP
 ## @defgroup interp Interpreter/Compiler
 ## @ingroup FVM
 
-## @defgroup syntax Syntax parser
-## @brief based on PLY parser generator library
-## @ingroup interp
-
 ## @defgroup lexer Lexer
-## @brief regexp-based (lex)
-## @ingroup syntax
+## @brief regexp-based (lex) made with PLY parser generator library
+## @ingroup interp
+## @{
 
 import ply.lex as lex
 
-# lexer error callback
+## lexer error callback
 def t_error(t): raise SyntaxError(t)
 
-# ignored chars: spaces
+## ignored chars: spaces
 t_ignore = ' \t\r\n'
 
-def t_COMMENT_hash(t):   r'\#.+'                # single line #comment
-def t_COMMENT_slash(t):  r'\\.+'                # single line \comment
-def t_COMMENT_parens(t): r'\(.*?\)'             # block (comment)
+## single line `#comment`
+def t_COMMENT_hash(t):   r'\#.+'
+## single line `\comment`
+def t_COMMENT_slash(t):  r'\\.+'
+## block `(comment)`
+def t_COMMENT_parens(t): r'\(.*?\)'
 
-# list of used token (literal) types
+## list of used token (literal) types
 tokens = ['token','integer','number','hex','bin']
 
-def t_NUMBER_exp(t):                            # float in exponential form
+## float in exponential form
+def t_NUMBER_exp(t):
     r'[\+\-]?[0-9]+(\.[0-9]*)?[eE][\+\-]?[0-9]+'
     return Number(t.value)
 
-def t_NUMBER_point(t):                          # float with point
+## float with point
+def t_NUMBER_point(t):
     r'[\+\-]?[0-9]+\.[0-9]*'
     return Number(t.value)
 
-def t_HEX(t):                                   # machine number in hex
+## machine number in hex
+def t_HEX(t):
     r'0x[0-9a-fA-F]+'
     return Hex(t.value)
 
-def t_BIN(t):                                   # binary bit string
+## binary bit string
+def t_BIN(t):
     r'0b[01]+'
     return Bin(t.value)
 
-def t_INTEGER(t):                               # generic integer
+## generic integer
+def t_INTEGER(t):
     r'[\+\-]?[0-9]+'
     return Integer(t.value)
 
+## word name token made from any non-space chars
 def t_WORD(t):
     r'[a-zA-Z0-9_\?\.\[\]\:\;]+'
     return Token(t.value)
 
-lexer = lex.lex()                               # create lexer
+## createsystem-wide lexer
+lexer = lex.lex()                               
+
+## @}
 
 ## @defgroup interp Interpreter
-## @ingroup FVM
+## @ingroup interp
 ## @{
 
 ## `EXECUTE ( callable:xt -- ... )`
@@ -428,6 +445,7 @@ def test_callable_literals():
 
 ## `WORD ( -- token:wordname )`
 ## parse next word name from source code stream
+## @ingroup lexer
 def WORD():
     D << lex.token() # get object right from lexer
     if not D.top(): D.pop() ; raise EOFError
@@ -510,7 +528,8 @@ def test_INTERPRET():
 ## @}
 
 ## @defgroup compiler Compiler
-## @ingroup FVM
+## compile definitions <b>into Active objects</b>
+## @ingroup interp
 ## @{
 
 COMPILE = None

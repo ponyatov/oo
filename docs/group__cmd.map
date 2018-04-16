@@ -1,3 +1,4 @@
 <map id="Commands" name="Commands">
 <area shape="rect" id="node1" href="$group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node2" href="$group__stackcmd.html" title="Stack" alt="" coords="360,5,416,32"/>
 </map>

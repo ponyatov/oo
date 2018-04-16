@@ -59,9 +59,7 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#groups">Modules</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#groups">Modules</a>  </div>
   <div class="headertitle">
 <div class="title">oFORTH Virtual Machine<div class="ingroups"><a class="el" href="group__core.html">Core</a></div></div>  </div>
 </div><!--header-->
@@ -71,12 +69,11 @@ Collaboration diagram for oFORTH Virtual Machine:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__FVM.png" border="0" alt="" usemap="#group____FVM"/>
 <map name="group____FVM" id="group____FVM">
-<area shape="rect" id="node1" href="group__compiler.html" title="Compiler" alt="" coords="353,5,427,32"/>
-<area shape="rect" id="node3" href="group__interp.html" title="Interpreter/Compiler" alt="" coords="321,56,459,83"/>
+<area shape="rect" id="node2" href="group__interp.html" title="Interpreter/Compiler" alt="" coords="321,5,459,32"/>
+<area shape="rect" id="node3" href="group__stack.html" title="all computations in FORTH use only stack (no registers or variables) " alt="" coords="328,56,452,83"/>
 <area shape="rect" id="node4" href="group__voc.html" title="holds global definitios " alt="" coords="347,107,433,133"/>
-<area shape="rect" id="node5" href="group__cmd.html" title="Commands" alt="" coords="345,157,435,184"/>
-<area shape="rect" id="node7" href="group__debug.html" title="Debug" alt="" coords="360,208,420,235"/>
-<area shape="rect" id="node6" href="group__core.html" title="Core" alt="" coords="5,107,56,133"/>
+<area shape="rect" id="node6" href="group__debug.html" title="words and commands can be used for debug " alt="" coords="360,157,420,184"/>
+<area shape="rect" id="node5" href="group__core.html" title="Core" alt="" coords="5,81,56,108"/>
 </map>
 </td></tr></table></center>
 </div>
@@ -86,30 +83,14 @@ Modules</h2></td></tr>
 <tr class="memitem:group__voc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__voc.html">Vocabulary</a></td></tr>
 <tr class="memdesc:group__voc"><td class="mdescLeft">&#160;</td><td class="mdescRight">holds global definitios <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__cmd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cmd.html">Commands</a></td></tr>
+<tr class="memitem:group__stack"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html">Global data stack</a></td></tr>
+<tr class="memdesc:group__stack"><td class="mdescLeft">&#160;</td><td class="mdescRight">all computations in FORTH use only stack (no registers or variables) <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__debug"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__debug.html">Debug</a></td></tr>
+<tr class="memdesc:group__debug"><td class="mdescLeft">&#160;</td><td class="mdescRight">words and commands can be used for debug <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__interp"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html">Interpreter/Compiler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__compiler"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compiler.html">Compiler</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:gab2aa5847761712aa3b3acff727526a91"><td class="memItemLeft" align="right" valign="top"><a id="gab2aa5847761712aa3b3acff727526a91"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>VM.DROP</b> ()</td></tr>
-<tr class="separator:gab2aa5847761712aa3b3acff727526a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7cc8baefec5d0e585ba0d86ed3dc5bc3"><td class="memItemLeft" align="right" valign="top"><a id="ga7cc8baefec5d0e585ba0d86ed3dc5bc3"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>VM.SWAP</b> ()</td></tr>
-<tr class="separator:ga7cc8baefec5d0e585ba0d86ed3dc5bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga9a87f8deed64684890a019e322f099fa"><td class="memItemLeft" align="right" valign="top"><a id="ga9a87f8deed64684890a019e322f099fa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__FVM.html#ga9a87f8deed64684890a019e322f099fa">VM.D</a> = <a class="el" href="classVM_1_1Stack.html">Stack</a>('DATA')</td></tr>
-<tr class="memdesc:ga9a87f8deed64684890a019e322f099fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">global data stack <br /></td></tr>
-<tr class="separator:ga9a87f8deed64684890a019e322f099fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->

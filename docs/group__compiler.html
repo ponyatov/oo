@@ -62,15 +62,18 @@ $(function() {
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">Compiler<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a></div></div>  </div>
+<div class="title">Compiler<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a> &raquo; <a class="el" href="group__interp.html">Interpreter/Compiler</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>compile definitions <b>into <a class="el" href="classVM_1_1Active.html">Active</a> objects</b>  
+<a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for Compiler:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__compiler.png" border="0" alt="" usemap="#group____compiler"/>
 <map name="group____compiler" id="group____compiler">
-<area shape="rect" id="node2" href="group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node2" href="group__interp.html" title="Interpreter/Compiler" alt="" coords="5,5,143,32"/>
 </map>
 </td></tr></table></center>
 </div>
@@ -116,6 +119,7 @@ Variables</h2></td></tr>
 <tr class="separator:gabd2a6a09e3118cfc4e1fee9d2adaf8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>compile definitions <b>into <a class="el" href="classVM_1_1Active.html">Active</a> objects</b> </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga4aa9e6a592875d2ecfb7ff877e63ce17"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga4aa9e6a592875d2ecfb7ff877e63ce17">&#9670;&nbsp;</a></span>colon()</h2>
@@ -151,7 +155,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000010">Test:</a></b></dt><dd>colon definition: <code>: init ( -- ) nop bye ;</code> </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000012">Test:</a></b></dt><dd>colon definition: <code>: init ( -- ) nop bye ;</code> </dd></dl>
 
 </div>
 </div>
@@ -169,7 +173,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000006">Test:</a></b></dt><dd>empty block compilation </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000008">Test:</a></b></dt><dd>empty block compilation </dd></dl>
 
 </div>
 </div>
@@ -187,7 +191,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000007">Test:</a></b></dt><dd>compile empty <code>[]</code> block via <a class="el" href="group__interp.html#ga97d9e6cb70d9bcb30158ab3d4ff57abf" title="INTERPRET ( -- ) [R]ead [E]val [P]rint [L]oop ">INTERPRET()</a> </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000009">Test:</a></b></dt><dd>compile empty <code>[]</code> block via <a class="el" href="group__interp.html#ga97d9e6cb70d9bcb30158ab3d4ff57abf" title="INTERPRET ( -- ) [R]ead [E]val [P]rint [L]oop ">INTERPRET()</a> </dd></dl>
 
 </div>
 </div>
@@ -205,7 +209,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000005">Test:</a></b></dt><dd>empty <code>[ block ]</code> </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000007">Test:</a></b></dt><dd>empty <code>[ block ]</code> </dd></dl>
 
 </div>
 </div>
@@ -223,7 +227,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000008">Test:</a></b></dt><dd>compile vector with number literals via <a class="el" href="group__interp.html#ga97d9e6cb70d9bcb30158ab3d4ff57abf" title="INTERPRET ( -- ) [R]ead [E]val [P]rint [L]oop ">INTERPRET()</a> </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000010">Test:</a></b></dt><dd>compile vector with number literals via <a class="el" href="group__interp.html#ga97d9e6cb70d9bcb30158ab3d4ff57abf" title="INTERPRET ( -- ) [R]ead [E]val [P]rint [L]oop ">INTERPRET()</a> </dd></dl>
 
 </div>
 </div>
@@ -241,7 +245,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000009">Test:</a></b></dt><dd>execute compiled block in <a class="el" href="group__compiler.html#ga705259cfb819083a71b038a39cd11208">test_vector_compile()</a> </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000011">Test:</a></b></dt><dd>execute compiled block in <a class="el" href="group__compiler.html#ga705259cfb819083a71b038a39cd11208">test_vector_compile()</a> </dd></dl>
 
 </div>
 </div>
