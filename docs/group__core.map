@@ -1,3 +1,4 @@
-<map id="Core System" name="Core System">
-<area shape="rect" id="node1" href="$group__sym.html" title="Symbolic Object tree" alt="" coords="152,5,296,32"/>
+<map id="Core" name="Core">
+<area shape="rect" id="node1" href="$group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="104,5,273,32"/>
+<area shape="rect" id="node2" href="$group__object.html" title="Object system" alt="" coords="135,56,242,83"/>
 </map>

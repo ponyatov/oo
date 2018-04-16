@@ -6,7 +6,8 @@
 
 github: https://github.com/ponyatov/o
 
-- object Forth Virtual Machine implementation (Python, JavaScript, embedded C++)
+- object Forth Virtual Machine implementation (Python, embedded C++)
+  - <a href="../js/VM.html">JavaScript</a> implementation
 - Forth-like language implementation guide
 - mix of Forth, SmallTalk and Actor model ideas
 

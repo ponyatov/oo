@@ -1,5 +1,5 @@
 <map id="Specials" name="Specials">
-<area shape="rect" id="node1" href="$group__sym.html" title="Symbolic Object tree" alt="" coords="5,31,149,57"/>
-<area shape="rect" id="node2" href="$group__err.html" title="Error" alt="" coords="327,5,377,32"/>
-<area shape="rect" id="node4" href="$group__bool.html" title="Boolean" alt="" coords="317,56,387,83"/>
+<area shape="rect" id="node1" href="$group__err.html" title="exception and error processing " alt="" coords="289,5,340,32"/>
+<area shape="rect" id="node2" href="$group__object.html" title="Object system" alt="" coords="5,31,112,57"/>
+<area shape="rect" id="node4" href="$group__bool.html" title="bool values " alt="" coords="280,56,349,83"/>
 </map>

@@ -1,12 +1,16 @@
 ## @file
 ## @brief object/stack oFORTH Virtual Machine
 
-## @defgroup core Core System
+## @defgroup core Core
 
 import os,sys,math
 
-## @defgroup sym Symbolic Object tree
+## @defgroup object Object system
 ## @ingroup core
+
+## @defgroup base Object
+## base class
+## @ingroup object
 
 ## base Object
 class Object:
@@ -63,7 +67,8 @@ def test_Object_nest(): assert \
     Object('nest[] test').nest == []
     
 ## @defgroup prim Primitive
-## @ingroup sym
+## Primitive types maps to machine-level (key feature: **evaluates to itself**)
+## @ingroup object
        
 class Primitive(Object): pass
 
@@ -118,7 +123,9 @@ class Bin(Integer):
     def __init__(self,V): Integer.__init__(self, '0') ; self.value = V
 
 ## @defgroup cont Container
-## @ingroup sym
+## data containers
+## @ingroup object
+## @{
 
 class Container(Object): pass
 
@@ -126,8 +133,7 @@ def test_Container():
     C = Container('with data')
     assert C.head() == '<container:with data>'
 
-######################################################################### Stack
-
+## LIFO Stack
 class Stack(Container): pass
 
 def test_Stack(): assert Stack('stack').nest == []
@@ -152,8 +158,7 @@ def test_Stack_dup(): assert \
 def test_Stack_swap(): assert \
     ( Stack('swap test') << 1 << 2 ).swap().nest == [2,1]
 
-########################################################################### Map
-
+## unordered key:value storage
 class Map(Container):
     def __lshift__(self,F): # operator<<
         try: self[F.value] = F # push object
@@ -186,8 +191,7 @@ def test_Vector_execute():
     assert str(D) == '\n<stack:DATA>\n\t<vector:empty>'
     EXECUTE() ; assert D.nest == []
 
-######################################################################### Queue
-
+## FIFO queue
 class Queue(Vector):
     def pop(self): return self.nest[0]
 
@@ -197,13 +201,17 @@ def test_Queue_pushpop():
     Q = Queue('queue') << 1 << 2 << 3
     assert Q.pop() == 1
 
-######################################################################## Active
+## @}
+
+## @defgroup active Active
+## items has only executional semantics
+## @ingroup object
+## @{
 
 class Active(Object):
     def execute(self): return self
-
-############################################################################ VM
-
+    
+## function compiled into VM
 class VM(Active):
     def __init__(self,F):
         Active.__init__(self, F.__name__)   # get name
@@ -212,10 +220,13 @@ class VM(Active):
 
 def test_VM(): assert VM(test_VM).head() == '<vm:test_VM>'
 
+## @}
+
 ## @defgroup special Specials
-## @ingroup sym
+## @ingroup object
 
 ## @defgroup bool Boolean
+## bool values
 ## @ingroup special
 
 class Bool(Object): pass
@@ -229,30 +240,45 @@ def test_Bool():
     assert F.head() == '<false:F>'
     
 ## @defgroup err Error
+## exception and error processing
 ## @ingroup special
 
-## @defgroup FVM oFORTH Virtual Machine    
+## @defgroup FVM oFORTH Virtual Machine
+## @ingroup core
 
-###################################################### global context registers
+## @defgroup voc Vocabulary
+## holds global definitios
+## @ingroup FVM
 
-#################################################################### Vocabulary
+## Vocabulary register
+## @ingroup voc
+W = Map('FORTH')
 
-W = Map('FORTH')    # global vocabulary register
-
+## @ingroup voc
 def test_FVM_W(): assert W.head() == '<map:FORTH>'
 
-#################################################################### data stack
-
-D = Stack('DATA')   # global data stack register
+## global data stack
+## @ingroup FVM
+D = Stack('DATA')
 
 def test_FVM_D(): assert '%s' % D == '\n<stack:DATA>'
 
+## @defgroup cmd Commands
+## @ingroup FVM
+
+## `dup ( o - o o )` duplicate top stack element
+## @ingroup cmd
+## @ingroup stack
 def DUP(): D.dup()
 W << DUP
 
+## @ingroup FVM
+## @ingroup stack
 def DROP(): D.drop()
 W << DROP
 
+## @ingroup FVM
+## @ingroup stack
 def SWAP(): D.swap()
 W << SWAP
 
@@ -440,22 +466,30 @@ def test_INTERPRET():
     assert D.pop().head() == '<number:2.3>'
     assert D.pop().head() == '<integer:-1>'
     assert D.nest == []
-    
-###################################################################### Compiler
+
+## @defgroup compiler Compiler
+## @ingroup FVM
+## @{
 
 COMPILE = None
+
+## reset COMPILEr
 def COMPILE_RST(): global COMPILE ; COMPILE = None
 
+## `[` begin block
 def QL(): global COMPILE ; COMPILE = Vector('')
-W['['] = VM(QL) 
+W['['] = VM(QL)
+## `]` end block 
 def QR(): D << COMPILE ; COMPILE_RST()
 W[']'] = VM(QR) ; W[']']['IMMED'] = T   # set immediate flag
 
+## @test empty `[ block ]`
 def test_QLQR():
     COMPILE_RST();
     QL(); assert     COMPILE
     QR(); assert not COMPILE
 
+## @test empty block compilation
 def test_COMPILE_emptyblock():
     D.flush() ; COMPILE_RST()   # cleaup
     # check bad syntax (must have spaces)
@@ -486,8 +520,7 @@ def test_vector_exec():
     assert str(D) == \
     '\n<stack:DATA>\n\t<integer:1>\n\t<integer:2>\n\t<integer:3>'
     
-############################################################## Colon definition
-
+## Colon definition
 def colon():
     WORD() ; WN = D.pop().value # fetch new word name
     # 1) we'll compile colon definition into vectors,
@@ -506,3 +539,5 @@ def test_colon_def():
  
 if __name__ == "__main__":              # VM startup
     INTERPRET(open('src.src').read())   # feed src.src
+
+## @}

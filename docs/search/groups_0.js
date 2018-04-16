@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boolean',['Boolean',['../group__bool.html',1,'']]]
+  ['active',['Active',['../group__active.html',1,'']]]
 ];

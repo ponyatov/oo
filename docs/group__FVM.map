@@ -1,4 +1,8 @@
 <map id="oFORTH Virtual Machine" name="oFORTH Virtual Machine">
-<area shape="rect" id="node2" href="$group__interp.html" title="Interpreter/Compiler" alt="" coords="223,5,360,32"/>
-<area shape="rect" id="node3" href="$group__debug.html" title="Debug" alt="" coords="261,56,321,83"/>
+<area shape="rect" id="node1" href="$group__compiler.html" title="Compiler" alt="" coords="353,5,427,32"/>
+<area shape="rect" id="node3" href="$group__interp.html" title="Interpreter/Compiler" alt="" coords="321,56,459,83"/>
+<area shape="rect" id="node4" href="$group__voc.html" title="holds global definitios " alt="" coords="347,107,433,133"/>
+<area shape="rect" id="node5" href="$group__cmd.html" title="Commands" alt="" coords="345,157,435,184"/>
+<area shape="rect" id="node7" href="$group__debug.html" title="Debug" alt="" coords="360,208,420,235"/>
+<area shape="rect" id="node6" href="$group__core.html" title="Core" alt="" coords="5,107,56,133"/>
 </map>
