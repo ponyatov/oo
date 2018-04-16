@@ -1,5 +1,5 @@
 ## @file
-## @brief object/stack oFORTH Virtual Machine
+## @brief object/stack oFORTH Virtual Machine (Python implementation)
 
 ## @defgroup core Core
 
@@ -212,13 +212,13 @@ class Active(Object):
     def execute(self): return self
     
 ## function compiled into VM
-class VM(Active):
+class Fn(Active):
     def __init__(self,F):
         Active.__init__(self, F.__name__)   # get name
         self.fn = F                 # special function pointer
     def execute(self): self.fn()
 
-def test_VM(): assert VM(test_VM).head() == '<vm:test_VM>'
+def test_Fn(): assert Fn(test_Fn).head() == '<fn:test_Fn>'
 
 ## @}
 
