@@ -1,9 +1,14 @@
-################################################## object/stack virtual machine
+## @file
+## @brief object/stack oFORTH Virtual Machine
+
+## @defgroup core Core System
 
 import os,sys,math
 
-################################################################### base Object
+## @defgroup sym Symbolic Object tree
+## @ingroup core
 
+## base Object
 class Object:
     def __init__(self,V):
         self.type = self.__class__.__name__.lower()
@@ -57,7 +62,8 @@ def test_Object_attr(): assert \
 def test_Object_nest(): assert \
     Object('nest[] test').nest == []
     
-#################################################################### Primitives
+## @defgroup prim Primitive
+## @ingroup sym
        
 class Primitive(Object): pass
 
@@ -111,7 +117,8 @@ class Hex(Integer):
 class Bin(Integer):
     def __init__(self,V): Integer.__init__(self, '0') ; self.value = V
 
-#################################################################### Containers
+## @defgroup cont Container
+## @ingroup sym
 
 class Container(Object): pass
 
@@ -205,9 +212,11 @@ class VM(Active):
 
 def test_VM(): assert VM(test_VM).head() == '<vm:test_VM>'
 
-###################################################################### Specials
+## @defgroup special Specials
+## @ingroup sym
 
-###################################################################### Booleans
+## @defgroup bool Boolean
+## @ingroup special
 
 class Bool(Object): pass
 class true(Bool): pass
@@ -218,8 +227,11 @@ T = true('T') ; F = false('F')
 def test_Bool():
     assert T.head() == '<true:T>'
     assert F.head() == '<false:F>'
+    
+## @defgroup err Error
+## @ingroup special
 
-######################################################### FORTH Virtual Machine
+## @defgroup FVM oFORTH Virtual Machine    
 
 ###################################################### global context registers
 
@@ -284,7 +296,8 @@ def test_Object_callable():
     T.execute() ; assert D.top() == T
     D.flush()
 
-######################################################################### debug
+## @defgroup debug Debug
+## @ingroup FVM
 
 def q(): print D
 W['?'] = VM(q)
@@ -299,7 +312,16 @@ W['.'] = VM(dot)
 def BYE(): sys.exit(0)          # stop system
 W << BYE
 
-######################################################################### lexer
+## @defgroup interp Interpreter/Compiler
+## @ingroup FVM
+
+## @defgroup syntax Syntax parser
+## @brief based on PLY parser generator library
+## @ingroup interp
+
+## @defgroup lexer Lexer
+## @brief regexp-based (lex)
+## @ingroup syntax
 
 import ply.lex as lex
 

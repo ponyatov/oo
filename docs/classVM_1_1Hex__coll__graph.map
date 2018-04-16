@@ -1,6 +1,6 @@
 <map id="VM.Hex" name="VM.Hex">
 <area shape="rect" id="node2" href="$classVM_1_1Integer.html" title="Integer. " alt="" coords="11,229,97,256"/>
 <area shape="rect" id="node3" href="$classVM_1_1Number.html" title="Numbers. " alt="" coords="8,155,100,181"/>
-<area shape="rect" id="node4" href="$classVM_1_1Primitive.html" title="Primitives. " alt="" coords="5,80,103,107"/>
+<area shape="rect" id="node4" href="$classVM_1_1Primitive.html" title="VM.Primitive" alt="" coords="5,80,103,107"/>
 <area shape="rect" id="node5" href="$classVM_1_1Object.html" title="base Object " alt="" coords="12,5,96,32"/>
 </map>

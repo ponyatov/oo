@@ -1,0 +1,34 @@
+/** @file
+
+@mainpage oForth object system
+
+(c) Dmitry Ponyatov <<a href="mailto:dponyatov@gmail.com">dponyatov@gmail.com</a>>, GNU LesserGPL
+
+github: https://github.com/ponyatov/o
+
+- object Forth Virtual Machine implementation (Python, JavaScript, embedded C++)
+- Forth-like language implementation guide
+- mix of Forth, SmallTalk and Actor model ideas
+
+@section TODO
+
+- live object/(hyper)graph database system
+  - multiplatform 
+  - works on top of distributed computer grids
+  - has active data types can be used as script engine elements
+- computer science workbench
+  - interactive modeling
+  - algorithm and data structures vizualization
+  - computer language design
+    - dynamic runtime engine
+    - syntax parser generators
+- meta- and transformational programming system
+  - code autogeneration for mainstream production languages
+  - dynamic script language design framework
+  - managed compiler (LLVM cross/jit) for embedded systems
+- CAD/CAM/CAE platform
+  - generic 2D sketching
+  - EDA (electronics design)
+  - 3D modeling
+  - FEM computations
+*/
