@@ -35,3 +35,7 @@ js: js/logo.png
 js/logo.png: doc/img/hedgehog_black.png Makefile
 	convert $< -scale 64x64 miff:- | convert - -extent 64x64 -background black -gravity center $@
 #	   -gravity center  $@
+
+PHONY: doxy
+doxy:
+	doxygen doxy.gen 

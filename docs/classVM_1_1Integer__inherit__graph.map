@@ -1,0 +1,7 @@
+<map id="VM.Integer" name="VM.Integer">
+<area shape="rect" id="node5" href="$classVM_1_1Bin.html" title="VM.Bin" alt="" coords="5,304,71,331"/>
+<area shape="rect" id="node6" href="$classVM_1_1Hex.html" title="VM.Hex" alt="" coords="95,304,165,331"/>
+<area shape="rect" id="node2" href="$classVM_1_1Number.html" title="Numbers. " alt="" coords="37,155,129,181"/>
+<area shape="rect" id="node3" href="$classVM_1_1Primitive.html" title="Primitives. " alt="" coords="35,80,132,107"/>
+<area shape="rect" id="node4" href="$classVM_1_1Object.html" title="base Object " alt="" coords="41,5,125,32"/>
+</map>
