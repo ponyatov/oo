@@ -1,0 +1,32 @@
+\clearpage
+\secrel{Threaded code in objectives}\label{threaded}\secdown
+
+\term{Threaded code} model was first introduced in 1973 by J.R.Bell
+\cite{jrbell}\ as \textit{method of fast and \emph{compact} replacement for
+machine code in case of \emph{code with deep subroutine callings}}. The deepest
+and detailed description of threaded code implementation can be found in
+R.G.Loeliger's book \cite{loeliger}. The problem is these methods have very low
+level down to machine code and memory bytes.
+
+As we need to make engine able to be embedded into any other program, we can
+implement threaded code in form of \textit{sequential lists of pointers to
+executable objects}. To make it work we also need some \term{threaded code
+interpreter} which will do tree-walker pattern running of every found element,
+or deep into next nested container.
+
+\pg
+In our case, we work totally with objects only, so it is possible to point few
+key features that every callable object \ref{callable} \emph{must} have to be
+\term{active object} in database:
+\begin{itemize}[nosep]
+  \item first it can be \term{proxy object} transfer execution out of our object
+  model scope (as a call to an external library)
+  \item it must be \emph{container} to allow nested executable elements to be
+  stored inside (degenerate cases are not considered)
+  \item it must be \emph{ordered} container as any program has internal
+  sequencing even in case of a program contains only few parallel sections
+  \item it must store \emph{pointers} to nested elements as they must be
+  shareable between multiple active objects
+\end{itemize}
+
+\secup
