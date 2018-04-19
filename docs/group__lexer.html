@@ -120,6 +120,14 @@ def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group
 def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga414ae2fb1861648548013ec2417faa3f">VM.t_WORD</a> (t)</td></tr>
 <tr class="memdesc:ga414ae2fb1861648548013ec2417faa3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">word name token made from any non-space chars <br /></td></tr>
 <tr class="separator:ga414ae2fb1861648548013ec2417faa3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2eb3881053712688b2b04266da534b5f"><td class="memItemLeft" align="right" valign="top"><a id="ga2eb3881053712688b2b04266da534b5f"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga2eb3881053712688b2b04266da534b5f">VM.t_eof</a> (t)</td></tr>
+<tr class="memdesc:ga2eb3881053712688b2b04266da534b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOF handling must pop top lexer from .include stack. <br /></td></tr>
+<tr class="separator:ga2eb3881053712688b2b04266da534b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5242a01bd65fd5b0af553f35906d98b"><td class="memItemLeft" align="right" valign="top"><a id="gaf5242a01bd65fd5b0af553f35906d98b"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaf5242a01bd65fd5b0af553f35906d98b">VM.include</a> ()</td></tr>
+<tr class="memdesc:gaf5242a01bd65fd5b0af553f35906d98b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>.inc &lt;filename&gt;</code> include file <br /></td></tr>
+<tr class="separator:gaf5242a01bd65fd5b0af553f35906d98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf1bb45305445e910fe2b154c8e546c2f"><td class="memItemLeft" align="right" valign="top"><a id="gaf1bb45305445e910fe2b154c8e546c2f"></a>
 def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gaf1bb45305445e910fe2b154c8e546c2f">VM.WORD</a> ()</td></tr>
 <tr class="memdesc:gaf1bb45305445e910fe2b154c8e546c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>WORD ( -- token:wordname )</code> parse next word name from source code stream <br /></td></tr>
@@ -132,13 +140,13 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gr
 <tr class="memdesc:ga27f70cad81f8ec642fbf9209065ba95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ignored chars: spaces <br /></td></tr>
 <tr class="separator:ga27f70cad81f8ec642fbf9209065ba95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8877c8944a39f5d227dfc0a20b781804"><td class="memItemLeft" align="right" valign="top"><a id="ga8877c8944a39f5d227dfc0a20b781804"></a>
-list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga8877c8944a39f5d227dfc0a20b781804">VM.tokens</a> = ['token','integer','number','hex','bin']</td></tr>
+list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga8877c8944a39f5d227dfc0a20b781804">VM.tokens</a> = ['token','integer','number','hex','bin','inc']</td></tr>
 <tr class="memdesc:ga8877c8944a39f5d227dfc0a20b781804"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of used token (literal) types <br /></td></tr>
 <tr class="separator:ga8877c8944a39f5d227dfc0a20b781804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac75dc3163149dc844b075a5c05ec6336"><td class="memItemLeft" align="right" valign="top"><a id="gac75dc3163149dc844b075a5c05ec6336"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#gac75dc3163149dc844b075a5c05ec6336">VM.lexer</a> = lex.lex()</td></tr>
-<tr class="memdesc:gac75dc3163149dc844b075a5c05ec6336"><td class="mdescLeft">&#160;</td><td class="mdescRight">createsystem-wide lexer <br /></td></tr>
-<tr class="separator:gac75dc3163149dc844b075a5c05ec6336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga218bf69a8e864a67a8637ab4d88f70db"><td class="memItemLeft" align="right" valign="top"><a id="ga218bf69a8e864a67a8637ab4d88f70db"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html#ga218bf69a8e864a67a8637ab4d88f70db">VM.lexer</a> = []</td></tr>
+<tr class="memdesc:ga218bf69a8e864a67a8637ab4d88f70db"><td class="mdescLeft">&#160;</td><td class="mdescRight">create system-wide lexers stack (used for .inc) <br /></td></tr>
+<tr class="separator:ga218bf69a8e864a67a8637ab4d88f70db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>regexp-based (lex) made with PLY parser generator library </p>

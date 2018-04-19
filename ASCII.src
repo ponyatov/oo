@@ -1,0 +1,9 @@
+# ASCII control symbols
+
+0x08 const BS	\ backspace
+0x09 const TAB
+0x20 const BL	\ space (BLank)
+0x0D const CR	\ \r carriage return
+0x0A const LF	\ \n line feed
+0x1B const ESC	\ [escape]
+0x7F const DEL	\ delete

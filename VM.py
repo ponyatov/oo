@@ -253,7 +253,9 @@ class Syntax(Object):
 
 ## lexeme (token) = word name
 class Token(Syntax):
-    pass
+    def __init__(self,V,FN):
+        Syntax.__init__(self, V)
+        self['filename'] = FN
 
 ## Language grammar
 class Grammar(Syntax):
@@ -372,7 +374,7 @@ W << NOP
 import ply.lex as lex
 
 ## lexer error callback
-def t_error(t): raise SyntaxError(t)
+def t_error(t): raise SyntaxError('%s in %s'%(t.lexer.filename,t))
 
 ## ignored chars: spaces
 t_ignore = ' \t\r\n'
@@ -385,7 +387,7 @@ def t_COMMENT_slash(t):  r'\\.+'
 def t_COMMENT_parens(t): r'\(.*?\)'
 
 ## list of used token (literal) types
-tokens = ['token','integer','number','hex','bin']
+tokens = ['token','integer','number','hex','bin','inc']
 
 ## float in exponential form
 def t_NUMBER_exp(t):
@@ -415,10 +417,31 @@ def t_INTEGER(t):
 ## word name token made from any non-space chars
 def t_WORD(t):
     r'[a-zA-Z0-9_\?\.\[\]\:\;]+'
-    return Token(t.value)
+    return Token(t.value,t.lexer.filename)
 
-## createsystem-wide lexer
-lexer = lex.lex()                               
+## EOF handling must pop top lexer from .include stack
+def t_eof(t):
+    lexer.pop()                 # drop top lexer
+    try:
+        return lexer[-1].token()# must return next token as `has data` marker
+    except IndexError:
+        return None             # mark end data
+
+## create system-wide lexers stack (used for .inc)
+lexer = []
+
+## `.inc <filename>` include file
+def include():
+    WORD() ; WN = D.pop().value
+    lexer.append(lex.lex())
+    try:
+        F = open(WN)
+        lexer[-1].filename = WN
+    except IOError:
+        F = open(WN+'.src')
+        lexer[-1].filename = WN+'.src'
+    lexer[-1].input(F.read()) 
+W['.inc'] = Fn(include) ; W['.inc']['IMMED'] = T
 
 ## @}
 
@@ -463,7 +486,7 @@ ThisMustBeFirst
     '''
 
 def test_WORD():
-    lexer.input(test_STRING_4Interpreter)
+    lexer[-1].input(test_STRING_4Interpreter)
     WORD() ; assert D.pop().head() == '<token:ThisMustBeFirst>'
     WORD() ; assert D.pop().head() == '<integer:-1>'
     WORD() ; assert D.pop().head() == '<number:2.3>'
@@ -481,7 +504,8 @@ def FIND():
     try: D << W[WN.value]   # push result from vocabulary
     except KeyError:
         try: D << W[WN.value.upper()]
-        except KeyError: raise SyntaxError(WN.value) # not found
+        except KeyError:    # not found
+            raise SyntaxError('%s in %s'%(WN.value,WN['filename']))
 
 def test_FIND():
     D << String('FIND') ; FIND()
@@ -493,9 +517,11 @@ W << FIND
 
 ## `INTERPRET ( -- )`
 ## [R]ead [E]val [P]rint [L]oop
-## @param[in] SRC source code should be interpreted
-def INTERPRET(SRC=''):
-    lexer.input(SRC)                    # feed source input
+## @param[in] SRC source file should be interpreted
+def INTERPRET(SRC):
+    global lexer ; lexer += [lex.lex()] # push new lexer
+    lexer[-1].filename = SRC            # set input filename
+    lexer[-1].input(open(SRC).read())   # feed source code
     while True:                         # interpreter loop                     
         try: WORD()
         except EOFError: break
@@ -605,9 +631,22 @@ def test_colon_def():
     D.flush()
     INTERPRET(''' : init ( -- ) nop bye ; ''')
     assert W['init'].dump() == '\n<vector:init>\n\t<fn:NOP>\n\t<fn:BYE>'
- 
+    
+## `CONST ( n -- )` define named constant
+def CONST():
+    WORD() ; WN = D.pop()
+    W[WN.value] = D.pop()
+W << CONST
+
+## `WORDS ( -- )` list vocabulary
+def WORDS(): print W
+W << WORDS
+
 if __name__ == "__main__":              # VM startup
-    INTERPRET(open('src.src').read())   # feed src.src
+    try:
+        SRC = sys.argv[1]               # feed file from command line
+    except IndexError:
+        SRC = 'src.src'                 # feed src.src
+    INTERPRET(SRC)
 
 ## @}
-
