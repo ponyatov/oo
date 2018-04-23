@@ -643,6 +643,6 @@ if __name__ == "__main__":              # VM startup
         SRC = sys.argv[1]               # feed file from command line
     except IndexError:
         SRC = 'src.src'                 # feed src.src
-    INTERPRET(SRC)
+    INTERPRET(open(SRC).read())
 
 ## @}
