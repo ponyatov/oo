@@ -253,9 +253,8 @@ class Syntax(Object):
 
 ## lexeme (token) = word name
 class Token(Syntax):
-    def __init__(self,V,FN):
+    def __init__(self,V):
         Syntax.__init__(self, V)
-        self['filename'] = FN
 
 ## Language grammar
 class Grammar(Syntax):
@@ -374,7 +373,7 @@ W << NOP
 import ply.lex as lex
 
 ## lexer error callback
-def t_error(t): raise SyntaxError('%s in %s'%(t.lexer.filename,t))
+def t_error(t): raise SyntaxError(t)
 
 ## ignored chars: spaces
 t_ignore = ' \t\r\n'
@@ -417,31 +416,28 @@ def t_INTEGER(t):
 ## word name token made from any non-space chars
 def t_WORD(t):
     r'[a-zA-Z0-9_\?\.\[\]\:\;]+'
-    return Token(t.value,t.lexer.filename)
+    return Token(t.value)
 
 ## EOF handling must pop top lexer from .include stack
 def t_eof(t):
-    lexer.pop()                 # drop top lexer
     try:
-        return lexer[-1].token()# must return next token as `has data` marker
+        lexer.pop()                 # drop top lexer
+        return lexer[-1].token()    # must return next token as `has data` marker
     except IndexError:
-        return None             # mark end data
+        return None                 # end of source marker
 
-## create system-wide lexers stack (used for .inc)
+## system-wide lexer stack will be used for .inc
 lexer = []
 
 ## `.inc <filename>` include file
-def include():
+def INC():
     WORD() ; WN = D.pop().value
-    lexer.append(lex.lex())
-    try:
-        F = open(WN)
-        lexer[-1].filename = WN
-    except IOError:
-        F = open(WN+'.src')
-        lexer[-1].filename = WN+'.src'
-    lexer[-1].input(F.read()) 
-W['.inc'] = Fn(include) ; W['.inc']['IMMED'] = T
+    try: F = open(WN)
+    except IOError: F = open(WN+'.src')
+    global lexer
+    lexer += [lex.lex()]        # new lexer
+    lexer[-1].input(F.read())   # feed lexer
+W['.inc'] = Fn(INC) ; W['.inc']['IMMED'] = T
 
 ## @}
 
@@ -470,7 +466,7 @@ def test_callable_literals():
 ## parse next word name from source code stream
 ## @ingroup lexer
 def WORD():
-    D << lex.token() # get object right from lexer
+    D << lexer[-1].token() # get object right from lexer
     if not D.top(): D.pop() ; raise EOFError
 W << WORD
 
@@ -486,6 +482,7 @@ ThisMustBeFirst
     '''
 
 def test_WORD():
+    global lexer ; lexer += [lex.lex()]
     lexer[-1].input(test_STRING_4Interpreter)
     WORD() ; assert D.pop().head() == '<token:ThisMustBeFirst>'
     WORD() ; assert D.pop().head() == '<integer:-1>'
@@ -505,7 +502,7 @@ def FIND():
     except KeyError:
         try: D << W[WN.value.upper()]
         except KeyError:    # not found
-            raise SyntaxError('%s in %s'%(WN.value,WN['filename']))
+            raise SyntaxError(WN.value)
 
 def test_FIND():
     D << String('FIND') ; FIND()
@@ -517,11 +514,10 @@ W << FIND
 
 ## `INTERPRET ( -- )`
 ## [R]ead [E]val [P]rint [L]oop
-## @param[in] SRC source file should be interpreted
-def INTERPRET(SRC):
+## @param[in] SRC source code should be interpreted
+def INTERPRET(SRC=''):
     global lexer ; lexer += [lex.lex()] # push new lexer
-    lexer[-1].filename = SRC            # set input filename
-    lexer[-1].input(open(SRC).read())   # feed source code
+    lexer[-1].input(SRC)                # feed source input
     while True:                         # interpreter loop                     
         try: WORD()
         except EOFError: break

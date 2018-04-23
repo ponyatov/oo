@@ -13,3 +13,7 @@ bye
 
 \ simple colon definition with VM commands
 : init ( -- ) nop bye ;
+
+.inc GUI
+
+?
