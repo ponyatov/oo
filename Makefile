@@ -1,10 +1,10 @@
+log.log: src.src VM.py
+	python VM.py < $< > $@ && tail $(TAIL) $@
+
 default: doc/manual.pdf
 # log.log
 # micro
 # log.log micro/log.log android
-
-log.log: src.src VM.py
-	python VM.py < $< > $@ && tail $(TAIL) $@
 
 TODAY = $(shell date +%d%m%y)
 PDF = oFORTH_$(TODAY).pdf
