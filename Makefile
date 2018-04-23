@@ -1,4 +1,4 @@
-log.log: src.src VM.py
+log.log: src.src GUI.src VM.py
 	python VM.py < $< > $@ && tail $(TAIL) $@
 
 default: doc/manual.pdf

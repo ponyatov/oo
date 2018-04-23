@@ -4,6 +4,7 @@ var searchData=
   ['t_5fcomment_5fhash',['t_COMMENT_hash',['../group__lexer.html#ga1269b580e0e6c783c2aa92b7aea308e6',1,'VM']]],
   ['t_5fcomment_5fparens',['t_COMMENT_parens',['../group__lexer.html#ga53f7a91dffe2ef52b0e8b44a10c0cbe0',1,'VM']]],
   ['t_5fcomment_5fslash',['t_COMMENT_slash',['../group__lexer.html#ga324551b362acf6972f54c7eb08d53937',1,'VM']]],
+  ['t_5feof',['t_eof',['../group__lexer.html#ga2eb3881053712688b2b04266da534b5f',1,'VM']]],
   ['t_5ferror',['t_error',['../group__lexer.html#ga8169194f6dfbbe977c330c306d61ef02',1,'VM']]],
   ['t_5fhex',['t_HEX',['../group__lexer.html#gaaeaa199ab11cf5bce6a889dfd7af9bd6',1,'VM']]],
   ['t_5fignore',['t_ignore',['../group__lexer.html#ga27f70cad81f8ec642fbf9209065ba95d',1,'VM']]],

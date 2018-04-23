@@ -417,8 +417,23 @@ def t_WORD(t):
     r'[a-zA-Z0-9_\?\.\[\]\:\;]+'
     return Token(t.value)
 
-## createsystem-wide lexer
-lexer = lex.lex()                               
+## process end of .included file
+def t_eof(t):
+    try: lexer.pop() ; return lexer[-1].token() # must return next token
+    except IndexError: return None              # end of source marker
+
+## system-wide lexer stack will be used for .inc
+lexer = []
+
+## `.inc <filename>` include directory
+def INC():
+    WORD() ; WN = D.pop().value
+    try: F = open(WN)
+    except IOError: F = open(WN+'.src')
+    global lexer
+    lexer += [lex.lex()] # new lexer
+    lexer[-1].input(F.read())
+W['.inc'] = Fn(INC)
 
 ## @}
 
@@ -447,7 +462,7 @@ def test_callable_literals():
 ## parse next word name from source code stream
 ## @ingroup lexer
 def WORD():
-    D << lex.token() # get object right from lexer
+    D << lexer[-1].token() # get object right from lexer
     if not D.top(): D.pop() ; raise EOFError
 W << WORD
 
@@ -463,7 +478,8 @@ ThisMustBeFirst
     '''
 
 def test_WORD():
-    lexer.input(test_STRING_4Interpreter)
+    global lexer ; lexer += [lex.lex()]
+    lexer[-1].input(test_STRING_4Interpreter)
     WORD() ; assert D.pop().head() == '<token:ThisMustBeFirst>'
     WORD() ; assert D.pop().head() == '<integer:-1>'
     WORD() ; assert D.pop().head() == '<number:2.3>'
@@ -495,7 +511,8 @@ W << FIND
 ## [R]ead [E]val [P]rint [L]oop
 ## @param[in] SRC source code should be interpreted
 def INTERPRET(SRC=''):
-    lexer.input(SRC)                    # feed source input
+    global lexer ; lexer += [lex.lex()] # create new lexer
+    lexer[-1].input(SRC)                # feed source input
     while True:                         # interpreter loop                     
         try: WORD()
         except EOFError: break
