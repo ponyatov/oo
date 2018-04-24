@@ -6,8 +6,7 @@
 \end{lstlisting}
 
 \noindent This \term{colon definition} creates new word with name placed after
-colon. Two names before ; are not word names but primitive VM commands should be
-detected by parser as predefined names, and compiled as bytecodes.
+colon. 
 
 \begin{lstlisting}[language=Python]
 def t_WORD(t):
@@ -15,7 +14,7 @@ def t_WORD(t):
     return Symbol(t.value)
 \end{lstlisting}
 
-\pg 
+% \pg 
 
 \begin{lstlisting}[language=Python]
 def test_colon_def():
@@ -23,5 +22,20 @@ def test_colon_def():
     INTERPRET(''' : init ( -- ) nop bye ; ''')
 \end{lstlisting}
 
+\begin{lstlisting}[language=Python]
+def colon():
+	# fetch new word name
+	WORD() ; WN = D.pop().value
+	# non-empty COMPILE points to compilation mode
+	global COMPILE ; W[WN] = COMPILE = Vector(WN)
+W[':'] = Fn(colon)
+\end{lstlisting}
+
 \medskip\noindent
-: word start new definition placing \emph{named} vector
+: word starts new definition with placing \emph{named} vector in vocabulary. As
+current definition already pushed in vocabulary before definition ended, we can
+use its name for compiling recursion calls.
+
+We'll compile colon definitions into vectors, but not memory image like
+classical \F\ systems does. Any callable object can be executed if it has
+special \verb|__call__(self)| method.

@@ -1,10 +1,11 @@
+default: doc/manual.pdf
+
 SRC  = src.src
 SRC += ASCII.src
 
 log.log: $(SRC) VM.py Makefile
 	python VM.py $< > $@ && tail $(TAIL) $@
 
-default: doc/manual.pdf
 # log.log
 # micro
 # log.log micro/log.log android

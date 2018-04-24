@@ -613,7 +613,8 @@ def test_vector_exec():
 def colon():
     WORD() ; WN = D.pop().value # fetch new word name
     # push just created word into vocabulary:
-    # it let as to use self word name for recursion
+    # it let us to use self word name for recursion
+    # non-empty COMPILE points to compilation mode
     global COMPILE ; W[WN] = COMPILE = Vector(WN)
 W[':'] = Fn(colon)
 
