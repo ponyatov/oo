@@ -1,9 +1,9 @@
-default: doc/manual.pdf
+#default: doc/manual.pdf
 
 SRC  = src.src
 SRC += ASCII.src
 
-log.log: $(SRC) VM.py Makefile
+log.log: $(SRC) FVM.py SYS.py GUI.py Makefile
 	python VM.py $< > $@ && tail $(TAIL) $@
 
 # log.log

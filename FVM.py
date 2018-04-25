@@ -5,6 +5,8 @@
 
 import os,sys,math
 
+from SYS import *
+
 ## @defgroup object Object system
 ## @ingroup core
 
@@ -361,6 +363,8 @@ W << BYE
 ## `NOP ( -- )` do nothing
 def NOP(): pass
 W << NOP
+
+from GUI import *
 
 ## @defgroup interp Interpreter/Compiler
 ## @ingroup FVM

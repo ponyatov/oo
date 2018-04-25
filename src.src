@@ -1,10 +1,10 @@
 # metasystem
 
+.inc GUI
+
+?? 
+
 .inc ASCII
-
-??
-
-bye
 
 [ -01 002.3 +04e-05 ] ? EXECUTE ?
 
@@ -13,7 +13,3 @@ bye
 
 \ simple colon definition with VM commands
 : init ( -- ) nop bye ;
-
-.inc GUI
-
-??
