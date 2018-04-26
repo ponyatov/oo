@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['inc',['INC',['../group__lexer.html#gacaf60bfe4ff063aadd85d5d492127743',1,'VM']]],
-  ['interpret',['INTERPRET',['../group__interp.html#ga97d9e6cb70d9bcb30158ab3d4ff57abf',1,'VM']]]
+  ['inc',['INC',['../group__lexer.html#ga4ccebd6a58ae5b0f09b55493da58284f',1,'FVM']]],
+  ['interpret',['INTERPRET',['../group__interp.html#gaae9d0a1ab1c71dbc440d93d1f1ed7222',1,'FVM']]]
 ];

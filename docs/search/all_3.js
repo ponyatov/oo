@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['d',['D',['../group__stack.html#ga9a87f8deed64684890a019e322f099fa',1,'VM']]],
+  ['d',['D',['../group__stack.html#gab65d4155b9fa3df0874786dcf838177a',1,'FVM']]],
   ['debug',['Debug',['../group__debug.html',1,'']]],
-  ['dot',['dot',['../VM_8py.html#adb3482e86655a382de1c538959b5c3db',1,'VM']]],
-  ['drop',['DROP',['../group__stack.html#gab2aa5847761712aa3b3acff727526a91',1,'VM']]],
-  ['dup',['DUP',['../group__stack.html#ga3da219ed6448a0362ac27f6b619353bc',1,'VM']]]
+  ['dot',['dot',['../FVM_8py.html#a9c74f562b6758084399dd86d62707673',1,'FVM']]],
+  ['drop',['DROP',['../group__stack.html#ga8b7b2347e7510112b3b9fb079d2cb929',1,'FVM']]],
+  ['dup',['DUP',['../group__stack.html#ga3443253aef6b3685e8c32fffade6d92d',1,'FVM']]]
 ];

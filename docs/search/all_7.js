@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hex',['Hex',['../classVM_1_1Hex.html',1,'VM']]]
+  ['help',['help',['../classGUI_1_1GUI.html#a51a8bd58e63c5c7c8d5714c9b4b4d1ec',1,'GUI::GUI']]],
+  ['hex',['Hex',['../classSYM_1_1Hex.html',1,'SYM']]]
 ];

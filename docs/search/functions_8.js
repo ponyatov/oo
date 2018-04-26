@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['semicolon',['semicolon',['../group__compiler.html#gab7d80c67ce9fd6269adbfecd3ac17ee0',1,'VM']]],
-  ['swap',['SWAP',['../group__stack.html#ga7cc8baefec5d0e585ba0d86ed3dc5bc3',1,'VM']]]
+  ['semicolon',['semicolon',['../group__compiler.html#ga71f7ffcf74581ecb3e3f3fb24082e2d1',1,'FVM']]],
+  ['swap',['SWAP',['../group__stack.html#ga0f2695067f6699abbfbd4c2dd396db4a',1,'FVM']]]
 ];

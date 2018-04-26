@@ -1,0 +1,7 @@
+<map id="SYM.Container" name="SYM.Container">
+<area shape="rect" id="node3" href="$classSYM_1_1Map.html" title="unordered key:value storage " alt="" coords="5,155,85,181"/>
+<area shape="rect" id="node4" href="$classSYM_1_1Stack.html" title="LIFO Stack. " alt="" coords="110,155,199,181"/>
+<area shape="rect" id="node5" href="$classSYM_1_1Vector.html" title="ordered vector " alt="" coords="224,155,317,181"/>
+<area shape="rect" id="node2" href="$classSYM_1_1Object.html" title="base Object " alt="" coords="108,5,201,32"/>
+<area shape="rect" id="node6" href="$classSYM_1_1Queue.html" title="FIFO queue. " alt="" coords="224,229,317,256"/>
+</map>

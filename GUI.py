@@ -1,6 +1,9 @@
 ## @file
 ## @brief GUI egnine /wxPython/
 
+## @defgroup gui GUI subsystem
+## @{
+
 import sys
 import wx
 import threading
@@ -24,7 +27,7 @@ class GUI(threading.Thread):
         self.help = wx.Menu()
         self.menubar.Append(self.help,'&Help')
         ## help/about
-        self.help.Append(wx.ID_ABOUT,'&About\tF1')
+        self.about = self.help.Append(wx.ID_ABOUT,'&About\tF1')
     def run(self):
         self.frame.SetMenuBar(self.menubar)
         self.frame.Show()
@@ -35,3 +38,5 @@ gui = GUI()
 if __name__ == "__main__":
     gui.start()
     gui.join()
+
+## @}

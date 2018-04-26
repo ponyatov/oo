@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['bin',['Bin',['../classVM_1_1Bin.html',1,'VM']]],
-  ['bnf',['BNF',['../classVM_1_1BNF.html',1,'VM']]],
-  ['bool',['Bool',['../classVM_1_1Bool.html',1,'VM.Bool'],['../group__bool.html',1,'(Global Namespace)']]],
-  ['bye',['BYE',['../VM_8py.html#a0aea3afc87b1ae52f303bc026e3b7e27',1,'VM']]]
+  ['bin',['Bin',['../classSYM_1_1Bin.html',1,'SYM']]],
+  ['bnf',['BNF',['../classFVM_1_1BNF.html',1,'FVM']]],
+  ['bool',['Bool',['../classFVM_1_1Bool.html',1,'FVM.Bool'],['../group__bool.html',1,'(Global Namespace)']]],
+  ['bye',['BYE',['../FVM_8py.html#aed31cc443e4e563c927cf52b0a1c48e2',1,'FVM']]]
 ];

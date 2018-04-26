@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['integer',['Integer',['../classVM_1_1Integer.html',1,'VM']]]
+  ['integer',['Integer',['../classSYM_1_1Integer.html',1,'SYM']]]
 ];

@@ -1,0 +1,9 @@
+<map id="SYM.Primitive" name="SYM.Primitive">
+<area shape="rect" id="node3" href="$classSYM_1_1Number.html" title="Numbers. " alt="" coords="43,155,144,181"/>
+<area shape="rect" id="node7" href="$classSYM_1_1String.html" title="String. " alt="" coords="169,155,258,181"/>
+<area shape="rect" id="node8" href="$classSYM_1_1Symbol.html" title="Symbol ( generic ID ) " alt="" coords="283,155,381,181"/>
+<area shape="rect" id="node2" href="$classSYM_1_1Object.html" title="base Object " alt="" coords="167,5,260,32"/>
+<area shape="rect" id="node4" href="$classSYM_1_1Integer.html" title="Integer. " alt="" coords="46,229,141,256"/>
+<area shape="rect" id="node5" href="$classSYM_1_1Bin.html" title="SYM.Bin" alt="" coords="5,304,80,331"/>
+<area shape="rect" id="node6" href="$classSYM_1_1Hex.html" title="SYM.Hex" alt="" coords="105,304,183,331"/>
+</map>
