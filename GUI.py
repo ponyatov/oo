@@ -11,9 +11,22 @@ class GUI(threading.Thread):
         threading.Thread.__init__(self)
         ## wx application
         self.app = wx.App()
-        ##
+        ## main window
         self.frame = wx.Frame(None,wx.ID_ANY,str(sys.argv))
+        ## menu
+        self.menubar = wx.MenuBar()
+        ## file
+        self.file = wx.Menu()
+        self.menubar.Append(self.file,'&File')
+        ## file/exit
+        self.exit = self.file.Append(wx.ID_EXIT,'E&xit')
+        ## help
+        self.help = wx.Menu()
+        self.menubar.Append(self.help,'&Help')
+        ## help/about
+        self.help.Append(wx.ID_ABOUT,'&About\tF1')
     def run(self):
+        self.frame.SetMenuBar(self.menubar)
         self.frame.Show()
         self.app.MainLoop()
 
