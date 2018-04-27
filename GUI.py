@@ -1,7 +1,7 @@
 ## @file
 ## @brief GUI egnine /wxPython/
 
-## @defgroup gui GUI subsystem
+## @defgroup gui GUI engine
 ## @{
 
 import sys
