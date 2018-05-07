@@ -1,27 +1,4 @@
 
-## ordered vector
-class Vector(Container):
-    def execute(self,D):
-        for op in self.nest: op.execute(D)
-
-def test_Vector(): assert \
-    ( Vector('ordered') << 1 << 2 << 3 ).nest == [1,2,3]
-    
-## FIFO queue
-class Queue(Vector):
-    def pop(self): return self.nest[0]
-
-def test_Queue(): assert Queue('queue').nest == []
-
-def test_Queue_pushpop():
-    Q = Queue('queue') << 1 << 2 << 3
-    assert Q.pop() == 1
-
-## @}
-
-
-## @}
-
 ## @defgroup special Specials
 ## @ingroup object
 
