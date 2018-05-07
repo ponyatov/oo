@@ -1,5 +1,5 @@
 <map id="oFORTH.Object" name="oFORTH.Object">
-<area shape="rect" id="node2" href="$classoFORTH_1_1Active.html" title="active object " alt="" coords="37,80,153,107"/>
+<area shape="rect" id="node2" href="$classoFORTH_1_1Active.html" title="active callable object " alt="" coords="37,80,153,107"/>
 <area shape="rect" id="node4" href="$classoFORTH_1_1Container.html" title="any data container " alt="" coords="224,80,359,107"/>
 <area shape="rect" id="node7" href="$classoFORTH_1_1Primitive.html" title="oFORTH.Primitive" alt="" coords="407,80,538,107"/>
 <area shape="rect" id="node3" href="$classoFORTH_1_1Fn.html" title="function wrapper " alt="" coords="5,155,100,181"/>

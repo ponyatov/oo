@@ -19,22 +19,6 @@ def test_Queue_pushpop():
 
 ## @}
 
-## @defgroup active Active
-## items has only executional semantics
-## @ingroup object
-## @{
-
-class Active(Object):
-    def execute(self): return self
-    
-## function compiled into VM
-class Fn(Active):
-    def __init__(self,F):
-        Active.__init__(self, F.__name__)   # get name
-        self.fn = F                 # special function pointer
-    def execute(self,D): self.fn()
-
-def test_Fn(): assert Fn(test_Fn).head() == '<fn:test_Fn>'
 
 ## @}
 

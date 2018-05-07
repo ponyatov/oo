@@ -303,7 +303,7 @@ def test_Map_getset():
 ## @ingroup sym
 ## @{
 
-## active object
+## active callable object
 class Active(Object): pass
 
 ## function wrapper
@@ -313,6 +313,14 @@ class Fn(Active):
         Active.__init__(self,F.__name__)
         ## wrapped function pointer
         self.fn = F
+    ## implement execution semantics (callable object)
+    def __call__(self): return self.fn()
+
+## @test function without call        
+def test_Fn(): assert Fn(test_Fn).head() == '<fn:test_Fn>'
+
+## @test function with call
+def test_Fn_call(): assert Fn(lambda:True) () == True
 
 ## @}
 
