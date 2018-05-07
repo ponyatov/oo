@@ -1,3 +1,5 @@
-<map id="Container" name="Container">
-<area shape="rect" id="node1" href="$group__object.html" title="Object system" alt="" coords="5,5,112,32"/>
+<map id="Containers" name="Containers">
+<area shape="rect" id="node1" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,31,168,57"/>
+<area shape="rect" id="node2" href="$group__map.html" title="container holds elements indexed by string key /unordered associative array/ " alt="" coords="354,5,401,32"/>
+<area shape="rect" id="node3" href="$group__stack.html" title="Stack supports push/pop operations and Last In First Out discipline. " alt="" coords="349,56,405,83"/>
 </map>

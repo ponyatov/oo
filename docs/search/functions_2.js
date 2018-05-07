@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['head',['head',['../group__dump.html#gac4a107f9d96a9408841eb508c9e79120',1,'oFORTH::Object']]]
+  ['flush',['flush',['../classoFORTH_1_1Object.html#ac8b99cc2f52731375e8fcaa94f35a13d',1,'oFORTH::Object']]]
 ];

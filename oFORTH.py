@@ -30,8 +30,13 @@ class Object:
         ## @ingroup attr
         self.attr = {}
         ## store `nest[]`ed elements (ordered) / stack
-        ## @ingroup nest
         self.nest = []
+        ## create nested/stack
+        self.flush()
+    ## clear stack
+    def flush(self):
+        ## @ingroup nest
+        self.nest = [] ; return self
         
     ## @defgroup dump Dump
     ## @brief dump object in human-readable form for debugging
@@ -66,7 +71,10 @@ class Object:
     ## @{
     
     ## `sym[key]=o` operator: store attributes in form of key/value
-    def __setitem__(self,key,o): self.attr[key] = o ; return self
+    def __setitem__(self,key,o):
+        if type(o) == type(''): self.attr[key] = String(o)  # wrap string 
+        else: self.attr[key] = o
+        return self
     ## `sym[key]` operator: fetch object by its name
     def __getitem__(self,key): return self.attr[key]
     ## @}    
@@ -77,12 +85,23 @@ class Object:
     ## data in order, and use it in a stack-like way (push/pop/...)
     ## @{
     
+    ## `obeject << any` operator adds object to `nest[]`ed
+    def __lshift__(self,o): return self.push(o)
     ## push element stack-like
     def push(self,o): self.nest.append(o) ; return self
     ## pop top (end) value
     def pop(self): return self.nest.pop()
-    ## @return top element without pop
-    def top(self): return self.nest[-1]    
+    ## @return top element without invasive pop
+    def top(self): return self.nest[-1]
+    ## duplicate top element
+    def dup(self): self.nest.append(self.top()) ; return self
+    ## remove top element
+    def drop(self): del self.nest[-1] ; return self
+    ## swap topmost two elements
+    def swap(self):
+        B = self.pop() ; A = self.pop()
+        self.push(B) ; self.push(A)
+        return self
     
 ## @defgroup symtests Tests
 ## run tests using `py.test -v oFORTH.py`
@@ -191,6 +210,109 @@ class Bin(Integer):
     
 ## @test binary number reading
 def test_Bin(): assert Bin('0b1101').val == 0b1101
+
+## @}
+
+## @defgroup cont Containers
+## data containers
+## @ingroup sym
+## @{
+
+## any data container
+class Container(Object): pass
+
+## @test generic container
+def test_Container():
+    assert Container('with some data').head() == '<container:with some data>'
+
+## @}
+
+## @defgroup stack Stack
+## Stack supports push/pop operations and Last In First Out discipline
+## @ingroup cont
+## @{
+
+## LIFO Stack
+class Stack(Container): pass
+
+## @test empty stack
+def test_Stack(): assert Stack('stack').nest == []
+
+## @test flush
+def test_Stack_flush(): assert Stack('flush test').flush().nest == []
+
+## @test push
+def test_Stack_push(): assert \
+    ( Stack('push test') << 1 << 2 << 3 ).nest == [1,2,3]
+
+## @test pop
+def test_Stack_pop():
+    S = Stack('pop test') << 1 << 2
+    assert S.pop() == 2 ; assert S.nest == [1]
+
+## @test top
+def test_Stack_top():
+    assert ( Stack('top test') << 1 << 2 ).top() == 2
+
+## @test drop
+def test_Stack_drop():
+    S = Stack('drop test') << 1 << 2 ; S.drop() ; assert len(S.nest) == 1
+
+## @test dup
+def test_Stack_dup():
+    assert ( Stack('dup test') << 1 ).dup().nest == [1,1]
+
+## @test swap
+def test_Stack_swap():
+    assert ( Stack('swap test') << 1 << 2 ).swap().nest == [2,1]
+
+## @}
+
+## @defgroup map Map
+## container holds elements indexed by string key /unordered associative array/
+## @ingroup cont
+## @{
+
+## unordered key:value storage should be used as FORTH vocabulary 
+class Map(Container):
+    ## `map << object` operator stores object using its name as key
+    def __lshift__(self,o):
+        # treat as symbolic object
+        try: self[o.val] = o
+        # fallback in case of map << python function
+        except AttributeError: self[o.__name__] = Fn(o)
+        return self
+
+## @test empty map
+def test_Map(): assert Map('map').attr == {}
+
+## @test pushing to map with `<<` operator
+def test_Map_lshift():
+    M = Map('set') << test_Map_lshift ; print M
+    assert M.dump() == '\n<map:set>\n\ttest_Map_lshift = <fn:test_Map_lshift>'
+    
+## @test fetch and store using string keys
+def test_Map_getset():
+    M = Map('get/set') ; M['X'] = 'Y'
+    assert M['X'].tag == 'string' and M['X'].val == 'Y'
+
+## @}
+
+## @defgroup active Active
+## executable objects wrapped from Python VM and modules
+## @ingroup sym
+## @{
+
+## active object
+class Active(Object): pass
+
+## function wrapper
+class Fn(Active):
+    ## wrap function
+    def __init__(self,F):
+        Active.__init__(self,F.__name__)
+        ## wrapped function pointer
+        self.fn = F
 
 ## @}
 

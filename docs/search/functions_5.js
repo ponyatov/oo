@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['inc',['INC',['../group__lexer.html#ga4ccebd6a58ae5b0f09b55493da58284f',1,'FVM']]],
-  ['interpret',['INTERPRET',['../group__interp.html#gaae9d0a1ab1c71dbc440d93d1f1ed7222',1,'FVM']]]
+  ['swap',['swap',['../group__nest.html#gab05017b50ff66c62c2cd6511cf4f99a7',1,'oFORTH::Object']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['primitive',['Primitive',['../group__prim.html',1,'']]]
+  ['tests',['Tests',['../group__symtests.html',1,'']]]
 ];

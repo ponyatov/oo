@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>oFORTH/py: Global data stack</title>
+<title>oFORTH/py object metasystem: Stack</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">oFORTH/py
+   <div id="projectname">oFORTH/py object metasystem
    </div>
   </td>
  </tr>
@@ -59,87 +60,194 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Global data stack<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a></div></div>  </div>
+<div class="title">Stack<div class="ingroups"><a class="el" href="group__sym.html">Symbolic object system</a> &raquo; <a class="el" href="group__cont.html">Containers</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>all computations in FORTH use only stack (no registers or variables)  
+<p><a class="el" href="classoFORTH_1_1Stack.html" title="LIFO Stack. ">Stack</a> supports push/pop operations and Last In First Out discipline.  
 <a href="#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for Global data stack:</div>
+Collaboration diagram for Stack:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__stack.png" border="0" alt="" usemap="#group____stack"/>
 <map name="group____stack" id="group____stack">
-<area shape="rect" id="node1" href="group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node2" href="group__cont.html" title="data containers " alt="" coords="5,5,91,32"/>
 </map>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoFORTH_1_1Stack.html">oFORTH.Stack</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">LIFO <a class="el" href="classoFORTH_1_1Stack.html" title="LIFO Stack. ">Stack</a>.  <a href="classoFORTH_1_1Stack.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga5eaa023319ecf26d8ef0d19caa2ffcd0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga5eaa023319ecf26d8ef0d19caa2ffcd0">FVM.test_FVM_D</a> ()</td></tr>
-<tr class="separator:ga5eaa023319ecf26d8ef0d19caa2ffcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3443253aef6b3685e8c32fffade6d92d"><td class="memItemLeft" align="right" valign="top"><a id="ga3443253aef6b3685e8c32fffade6d92d"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga3443253aef6b3685e8c32fffade6d92d">FVM.DUP</a> ()</td></tr>
-<tr class="memdesc:ga3443253aef6b3685e8c32fffade6d92d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>DUP ( o - o o )</code> duplicate top stack element <br /></td></tr>
-<tr class="separator:ga3443253aef6b3685e8c32fffade6d92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b7b2347e7510112b3b9fb079d2cb929"><td class="memItemLeft" align="right" valign="top"><a id="ga8b7b2347e7510112b3b9fb079d2cb929"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga8b7b2347e7510112b3b9fb079d2cb929">FVM.DROP</a> ()</td></tr>
-<tr class="memdesc:ga8b7b2347e7510112b3b9fb079d2cb929"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>DROP ( o1 o2 -- o1 )</code> drop top element <br /></td></tr>
-<tr class="separator:ga8b7b2347e7510112b3b9fb079d2cb929"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0f2695067f6699abbfbd4c2dd396db4a"><td class="memItemLeft" align="right" valign="top"><a id="ga0f2695067f6699abbfbd4c2dd396db4a"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga0f2695067f6699abbfbd4c2dd396db4a">FVM.SWAP</a> ()</td></tr>
-<tr class="memdesc:ga0f2695067f6699abbfbd4c2dd396db4a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>SWAP ( o1 o2 -- o2 o1 )</code> swap 2 top elements <br /></td></tr>
-<tr class="separator:ga0f2695067f6699abbfbd4c2dd396db4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7e9f94742b3209a2b6d0d69e99605025"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga7e9f94742b3209a2b6d0d69e99605025">FVM.test_D_dupswap</a> ()</td></tr>
-<tr class="separator:ga7e9f94742b3209a2b6d0d69e99605025"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:gab65d4155b9fa3df0874786dcf838177a"><td class="memItemLeft" align="right" valign="top"><a id="gab65d4155b9fa3df0874786dcf838177a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gab65d4155b9fa3df0874786dcf838177a">FVM.D</a> = <a class="el" href="classSYM_1_1Stack.html">Stack</a>('DATA')</td></tr>
-<tr class="memdesc:gab65d4155b9fa3df0874786dcf838177a"><td class="mdescLeft">&#160;</td><td class="mdescRight">global data stack register <br /></td></tr>
-<tr class="separator:gab65d4155b9fa3df0874786dcf838177a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5baf589155f9f03ac51a8ee22958ec9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gab5baf589155f9f03ac51a8ee22958ec9">oFORTH.test_Stack</a> ()</td></tr>
+<tr class="separator:gab5baf589155f9f03ac51a8ee22958ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd0384fd808c17841ad5285094ec3525"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gafd0384fd808c17841ad5285094ec3525">oFORTH.test_Stack_flush</a> ()</td></tr>
+<tr class="separator:gafd0384fd808c17841ad5285094ec3525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea39191432bc99cd6f6c82855a1ff809"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gaea39191432bc99cd6f6c82855a1ff809">oFORTH.test_Stack_push</a> ()</td></tr>
+<tr class="separator:gaea39191432bc99cd6f6c82855a1ff809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf73e28e580f2601a9a0ac813543ca71e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gaf73e28e580f2601a9a0ac813543ca71e">oFORTH.test_Stack_pop</a> ()</td></tr>
+<tr class="separator:gaf73e28e580f2601a9a0ac813543ca71e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacfecdad270a60e81d07c940b7c49874b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gacfecdad270a60e81d07c940b7c49874b">oFORTH.test_Stack_top</a> ()</td></tr>
+<tr class="separator:gacfecdad270a60e81d07c940b7c49874b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a93be2ca286929fc40cc1897a440314"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga9a93be2ca286929fc40cc1897a440314">oFORTH.test_Stack_drop</a> ()</td></tr>
+<tr class="separator:ga9a93be2ca286929fc40cc1897a440314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga04bf1621808a07133cba2b926b97f9e0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#ga04bf1621808a07133cba2b926b97f9e0">oFORTH.test_Stack_dup</a> ()</td></tr>
+<tr class="separator:ga04bf1621808a07133cba2b926b97f9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab6ab7d04b8fd9298a3ea99042a3d0fc9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__stack.html#gab6ab7d04b8fd9298a3ea99042a3d0fc9">oFORTH.test_Stack_swap</a> ()</td></tr>
+<tr class="separator:gab6ab7d04b8fd9298a3ea99042a3d0fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>all computations in FORTH use only stack (no registers or variables) </p>
+<p><a class="el" href="classoFORTH_1_1Stack.html" title="LIFO Stack. ">Stack</a> supports push/pop operations and Last In First Out discipline. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga7e9f94742b3209a2b6d0d69e99605025"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7e9f94742b3209a2b6d0d69e99605025">&#9670;&nbsp;</a></span>test_D_dupswap()</h2>
+<a id="gab5baf589155f9f03ac51a8ee22958ec9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab5baf589155f9f03ac51a8ee22958ec9">&#9670;&nbsp;</a></span>test_Stack()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def FVM.test_D_dupswap </td>
+          <td class="memname">def oFORTH.test_Stack </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000002">Test:</a></b></dt><dd>stack operations </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000013">Test:</a></b></dt><dd>empty stack </dd></dl>
 
 </div>
 </div>
-<a id="ga5eaa023319ecf26d8ef0d19caa2ffcd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5eaa023319ecf26d8ef0d19caa2ffcd0">&#9670;&nbsp;</a></span>test_FVM_D()</h2>
+<a id="ga9a93be2ca286929fc40cc1897a440314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a93be2ca286929fc40cc1897a440314">&#9670;&nbsp;</a></span>test_Stack_drop()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def FVM.test_FVM_D </td>
+          <td class="memname">def oFORTH.test_Stack_drop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000001">Test:</a></b></dt><dd>empty stack dump </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000018">Test:</a></b></dt><dd>drop </dd></dl>
+
+</div>
+</div>
+<a id="ga04bf1621808a07133cba2b926b97f9e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga04bf1621808a07133cba2b926b97f9e0">&#9670;&nbsp;</a></span>test_Stack_dup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.test_Stack_dup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000019">Test:</a></b></dt><dd>dup </dd></dl>
+
+</div>
+</div>
+<a id="gafd0384fd808c17841ad5285094ec3525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd0384fd808c17841ad5285094ec3525">&#9670;&nbsp;</a></span>test_Stack_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.test_Stack_flush </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000014">Test:</a></b></dt><dd>flush </dd></dl>
+
+</div>
+</div>
+<a id="gaf73e28e580f2601a9a0ac813543ca71e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf73e28e580f2601a9a0ac813543ca71e">&#9670;&nbsp;</a></span>test_Stack_pop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.test_Stack_pop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000016">Test:</a></b></dt><dd>pop </dd></dl>
+
+</div>
+</div>
+<a id="gaea39191432bc99cd6f6c82855a1ff809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaea39191432bc99cd6f6c82855a1ff809">&#9670;&nbsp;</a></span>test_Stack_push()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.test_Stack_push </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000015">Test:</a></b></dt><dd>push </dd></dl>
+
+</div>
+</div>
+<a id="gab6ab7d04b8fd9298a3ea99042a3d0fc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab6ab7d04b8fd9298a3ea99042a3d0fc9">&#9670;&nbsp;</a></span>test_Stack_swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.test_Stack_swap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000020">Test:</a></b></dt><dd>swap </dd></dl>
+
+</div>
+</div>
+<a id="gacfecdad270a60e81d07c940b7c49874b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacfecdad270a60e81d07c940b7c49874b">&#9670;&nbsp;</a></span>test_Stack_top()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.test_Stack_top </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000017">Test:</a></b></dt><dd>top </dd></dl>
 
 </div>
 </div>

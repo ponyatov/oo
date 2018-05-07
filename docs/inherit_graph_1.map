@@ -1,24 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classSYM_1_1Object.html" title="base Object " alt="" coords="5,208,99,235"/>
-<area shape="rect" id="node2" href="$classSYM_1_1Active.html" title="SYM.Active" alt="" coords="156,31,248,57"/>
-<area shape="rect" id="node4" href="$classSYM_1_1Bool.html" title="SYM.Bool" alt="" coords="161,107,243,133"/>
-<area shape="rect" id="node7" href="$classSYM_1_1Container.html" title="SYM.Container" alt="" coords="147,208,257,235"/>
-<area shape="rect" id="node12" href="$classSYM_1_1Primitive.html" title="SYM.Primitive" alt="" coords="149,335,255,361"/>
-<area shape="rect" id="node19" href="$classSYM_1_1Syntax.html" title="Syntax elements. " alt="" coords="154,461,250,488"/>
-<area shape="rect" id="node3" href="$classSYM_1_1Fn.html" title="function compiled into VM " alt="" coords="325,5,395,32"/>
-<area shape="rect" id="node5" href="$classSYM_1_1false.html" title="SYM.false" alt="" coords="319,56,401,83"/>
-<area shape="rect" id="node6" href="$classSYM_1_1true.html" title="SYM.true" alt="" coords="321,107,399,133"/>
-<area shape="rect" id="node8" href="$classSYM_1_1Map.html" title="unordered key:value storage " alt="" coords="320,157,400,184"/>
-<area shape="rect" id="node9" href="$classSYM_1_1Stack.html" title="LIFO Stack. " alt="" coords="315,208,405,235"/>
-<area shape="rect" id="node10" href="$classSYM_1_1Vector.html" title="ordered vector " alt="" coords="313,259,407,285"/>
-<area shape="rect" id="node11" href="$classSYM_1_1Queue.html" title="FIFO queue. " alt="" coords="463,259,557,285"/>
-<area shape="rect" id="node13" href="$classSYM_1_1Number.html" title="Numbers. " alt="" coords="309,309,411,336"/>
-<area shape="rect" id="node17" href="$classSYM_1_1String.html" title="String. " alt="" coords="315,360,405,387"/>
-<area shape="rect" id="node18" href="$classSYM_1_1Symbol.html" title="Symbol ( generic ID ) " alt="" coords="311,411,409,437"/>
-<area shape="rect" id="node14" href="$classSYM_1_1Integer.html" title="Integer. " alt="" coords="463,309,557,336"/>
-<area shape="rect" id="node15" href="$classSYM_1_1Bin.html" title="SYM.Bin" alt="" coords="607,284,682,311"/>
-<area shape="rect" id="node16" href="$classSYM_1_1Hex.html" title="SYM.Hex" alt="" coords="605,335,684,361"/>
-<area shape="rect" id="node20" href="$classSYM_1_1Grammar.html" title="Language grammar. " alt="" coords="305,461,415,488"/>
-<area shape="rect" id="node22" href="$classSYM_1_1Token.html" title="lexeme (token) = word name " alt="" coords="315,512,405,539"/>
-<area shape="rect" id="node21" href="$classSYM_1_1BNF.html" title="sungle BNF grammar rule " alt="" coords="469,461,551,488"/>
+<area shape="rect" id="node1" href="$classoFORTH_1_1Object.html" title="unversal base object can hold single data element or work as data container " alt="" coords="5,81,123,108"/>
+<area shape="rect" id="node2" href="$classoFORTH_1_1Container.html" title="any data container " alt="" coords="171,56,305,83"/>
+<area shape="rect" id="node5" href="$classoFORTH_1_1Primitive.html" title="oFORTH.Primitive" alt="" coords="173,132,303,159"/>
+<area shape="rect" id="node3" href="$classoFORTH_1_1Map.html" title="unordered key:value storage should be used as FORTH vocabulary " alt="" coords="364,5,468,32"/>
+<area shape="rect" id="node4" href="$classoFORTH_1_1Stack.html" title="LIFO Stack. " alt="" coords="359,56,473,83"/>
+<area shape="rect" id="node6" href="$classoFORTH_1_1Number.html" title="floating point number " alt="" coords="353,107,479,133"/>
+<area shape="rect" id="node10" href="$classoFORTH_1_1String.html" title="string " alt="" coords="359,157,473,184"/>
+<area shape="rect" id="node11" href="$classoFORTH_1_1Symbol.html" title="Symbol targets to name any entity. " alt="" coords="355,208,477,235"/>
+<area shape="rect" id="node7" href="$classoFORTH_1_1Integer.html" title="integer " alt="" coords="527,107,645,133"/>
+<area shape="rect" id="node8" href="$classoFORTH_1_1Bin.html" title="binary (machine) number " alt="" coords="695,81,794,108"/>
+<area shape="rect" id="node9" href="$classoFORTH_1_1Hex.html" title="hexadecimal (machine) number " alt="" coords="693,132,796,159"/>
 </map>

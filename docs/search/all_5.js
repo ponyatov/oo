@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['head',['head',['../group__dump.html#gac4a107f9d96a9408841eb508c9e79120',1,'oFORTH::Object']]],
-  ['hex',['Hex',['../classoFORTH_1_1Hex.html',1,'oFORTH']]]
+  ['flush',['flush',['../classoFORTH_1_1Object.html#ac8b99cc2f52731375e8fcaa94f35a13d',1,'oFORTH::Object']]],
+  ['fn',['Fn',['../classoFORTH_1_1Fn.html',1,'oFORTH.Fn'],['../group__nest.html#ga41cd7ee677f0b4c1604083bf29e7bb2d',1,'oFORTH.Fn.fn()']]]
 ];

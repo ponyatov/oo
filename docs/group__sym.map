@@ -1,4 +1,6 @@
 <map id="Symbolic object system" name="Symbolic object system">
-<area shape="rect" id="node2" href="$group__prim.html" title="key feature: evaluates to itself " alt="" coords="235,5,345,32"/>
-<area shape="rect" id="node3" href="$group__object.html" title="can hold single data element or work as data container " alt="" coords="216,56,364,83"/>
+<area shape="rect" id="node2" href="$group__active.html" title="executable objects wrapped from Python VM and modules " alt="" coords="261,5,319,32"/>
+<area shape="rect" id="node3" href="$group__prim.html" title="key feature: evaluates to itself " alt="" coords="235,56,345,83"/>
+<area shape="rect" id="node4" href="$group__object.html" title="can hold single data element or work as data container " alt="" coords="216,107,364,133"/>
+<area shape="rect" id="node5" href="$group__cont.html" title="data containers " alt="" coords="247,157,333,184"/>
 </map>

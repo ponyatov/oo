@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['oforth_20virtual_20machine',['oFORTH Virtual Machine',['../group__FVM.html',1,'']]]
+  ['map',['Map',['../group__map.html',1,'']]]
 ];

@@ -1,5 +1,30 @@
 var searchData=
 [
-  ['val',['val',['../group__nest.html#ga9bbe1fc81f5b09b7cc78a5bb22c09e92',1,'oFORTH.Object.val()'],['../group__nest.html#ga82935c59f393b3da2dc63b60024979ac',1,'oFORTH.Integer.val()']]],
-  ['value',['value',['../group__nest.html#gaa7606a00c1bdc46ac2ba4d7f27f6792b',1,'oFORTH::Number']]]
+  ['tests',['Tests',['../group__symtests.html',1,'']]],
+  ['tag',['tag',['../group__nest.html#ga72a18fd6189eaa5ca9a9dded5811df27',1,'oFORTH::Object']]],
+  ['test_20list',['Test List',['../test.html',1,'']]],
+  ['test_5fbin',['test_Bin',['../group__number.html#ga585f7551ef606f8d81800d816c49888f',1,'oFORTH']]],
+  ['test_5fcontainer',['test_Container',['../group__cont.html#ga5ce5f80b080a25c50e18c50d11b525ca',1,'oFORTH']]],
+  ['test_5fhex',['test_Hex',['../group__number.html#ga4ee58af9023602c8a232d6228a2aaddc',1,'oFORTH']]],
+  ['test_5finteger',['test_Integer',['../group__number.html#ga4c88e901558467f620cf07d7c6157f99',1,'oFORTH']]],
+  ['test_5fmap',['test_Map',['../group__map.html#gaf4c76d762fc0ebb0b0f178bd3cdec542',1,'oFORTH']]],
+  ['test_5fmap_5fgetset',['test_Map_getset',['../group__map.html#ga86e9260d04b342cd384bcab075e7916a',1,'oFORTH']]],
+  ['test_5fmap_5flshift',['test_Map_lshift',['../group__map.html#ga2b1bed785c26d988d2940000982ff238',1,'oFORTH']]],
+  ['test_5fnumber_5fexp',['test_Number_exp',['../group__number.html#ga1d40df8af6a218188e83e103f24b4111',1,'oFORTH']]],
+  ['test_5fnumber_5fpoint',['test_Number_point',['../group__number.html#ga3bf43c2c81613312b9aa3cbfe0c7b9b6',1,'oFORTH']]],
+  ['test_5fobject',['test_Object',['../group__symtests.html#gabf435a620e8c494f042b301fbe2dc29c',1,'oFORTH']]],
+  ['test_5fobject_5fattr',['test_Object_attr',['../group__symtests.html#gafb55ba75bbaf3627c91aec8b680ca676',1,'oFORTH']]],
+  ['test_5fobject_5fnest',['test_Object_nest',['../group__symtests.html#ga202f6a58a58088b0e5d87b63ead6c47a',1,'oFORTH']]],
+  ['test_5fprimiteve',['test_Primiteve',['../group__prim.html#gaae7ce78e434cb63db15536f7ad5978d9',1,'oFORTH']]],
+  ['test_5fstack',['test_Stack',['../group__stack.html#gab5baf589155f9f03ac51a8ee22958ec9',1,'oFORTH']]],
+  ['test_5fstack_5fdrop',['test_Stack_drop',['../group__stack.html#ga9a93be2ca286929fc40cc1897a440314',1,'oFORTH']]],
+  ['test_5fstack_5fdup',['test_Stack_dup',['../group__stack.html#ga04bf1621808a07133cba2b926b97f9e0',1,'oFORTH']]],
+  ['test_5fstack_5fflush',['test_Stack_flush',['../group__stack.html#gafd0384fd808c17841ad5285094ec3525',1,'oFORTH']]],
+  ['test_5fstack_5fpop',['test_Stack_pop',['../group__stack.html#gaf73e28e580f2601a9a0ac813543ca71e',1,'oFORTH']]],
+  ['test_5fstack_5fpush',['test_Stack_push',['../group__stack.html#gaea39191432bc99cd6f6c82855a1ff809',1,'oFORTH']]],
+  ['test_5fstack_5fswap',['test_Stack_swap',['../group__stack.html#gab6ab7d04b8fd9298a3ea99042a3d0fc9',1,'oFORTH']]],
+  ['test_5fstack_5ftop',['test_Stack_top',['../group__stack.html#gacfecdad270a60e81d07c940b7c49874b',1,'oFORTH']]],
+  ['test_5fstring',['test_String',['../group__string.html#ga1eac783110ad9d7cd2a37e74dcd7cbae',1,'oFORTH']]],
+  ['test_5fsymbol',['test_Symbol',['../group__symbol.html#gae9f7eb88464e77d15aa7ef693d7f0eeb',1,'oFORTH']]],
+  ['top',['top',['../group__nest.html#gacfa344f98eac7f8c87056c844aeb4420',1,'oFORTH::Object']]]
 ];

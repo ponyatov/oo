@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tests',['Tests',['../group__symtests.html',1,'']]]
+  ['primitive_20types',['Primitive types',['../group__prim.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['string',['String',['../classoFORTH_1_1String.html',1,'oFORTH']]],
-  ['symbol',['Symbol',['../classoFORTH_1_1Symbol.html',1,'oFORTH']]]
+  ['map',['Map',['../classoFORTH_1_1Map.html',1,'oFORTH']]]
 ];
