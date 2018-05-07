@@ -4,5 +4,7 @@ var searchData=
   ['oforth_2fpy_20object_20metasystem_20_2fpython_20implementation_2f',['oFORTH/py object metasystem /Python implementation/',['../index.html',1,'']]],
   ['object',['Object',['../classoFORTH_1_1Object.html',1,'oFORTH']]],
   ['oforth_2epy',['oFORTH.py',['../oFORTH_8py.html',1,'']]],
-  ['onabout',['onAbout',['../group__nest.html#gad31f93ab4882542c536d9bd00654407a',1,'oFORTH::GUI_thread']]]
+  ['onabout',['onAbout',['../group__nest.html#gad31f93ab4882542c536d9bd00654407a',1,'oFORTH::GUI_thread']]],
+  ['onchar',['onChar',['../group__nest.html#gac5ec1b47cf566c288821f0f9b3fa9a71',1,'oFORTH::GUI_thread']]],
+  ['onsave',['onSave',['../group__nest.html#ga3afa174c8a2a551039251ab516ff931c',1,'oFORTH::GUI_thread']]]
 ];

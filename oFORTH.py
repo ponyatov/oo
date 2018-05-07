@@ -1,7 +1,7 @@
 ## @file
 ## @brief `oFORTH/py` object metasystem /Python implementation/
 
-import os,sys
+import os,sys,time
 
 # wxPython
 import wx,wx.stc
@@ -34,6 +34,8 @@ class Object:
         self.nest = []
         ## create nested/stack
         self.flush()
+        ## immediate flag
+        self.immed = False
     ## clear stack
     def flush(self):
         ## @ingroup nest
@@ -46,11 +48,17 @@ class Object:
     
     ## `print sym` in readable form
     def __repr__(self): return self.dump()
+    
     ## dump object in full tree form
     ## @param[in] depth tree depth for recursive dump
     ## @param[in] onlystack flag used for stack dump (disable `attr{}` dump)
     def dump(self,depth=0,onlystack=False):
-        S = '\n'+self.pad(depth)+self.head()
+        if depth==0:
+            ## list of dumped obejcts, block infty recursion
+            self.dumped = []
+        S = '\n'+self.pad(depth)+self.head()    # dump header
+        if self in self.dumped: return '...'    # break recursion
+        else: self.dumped.append(self)          # mark current object
         if not onlystack:
             for i in self.attr:
                 S += '\n' + self.pad(depth+1) + self.attr[i].head(prefix='%s = '%i)
@@ -497,8 +505,10 @@ def INTERPRET(SRC=''):
         if not WORD(): break                # parse and exit on EOF
         if D.top().tag in ['symbol']:
             FIND()                          # look up in vocabulary
+        if not COMPILE or D.top().immed:
             EXECUTE()                       # run found callable object
-        print D
+        else:
+            COMPILE << D.pop()              # compile
 
 ## @test empty script
 def test_INTERPRET_empty():
@@ -522,6 +532,17 @@ def test_INTERPRET_numbers():
 ## compilation register = interpret/compile state flag
 COMPILE = None
 
+## `: ( -- )` start colon definition
+def colon():
+    WORD() ; WN = D.pop().val                       # lex forward new word name
+    global COMPILE ; W[WN] = COMPILE = Vector(WN)   # can use name for recurse
+W[':'] = Fn(colon)
+
+## `; ( -- )` stop colon definition
+def semicolon():
+    global COMPILE ; COMPILE = None
+W[';'] = Fn(semicolon) ; W[';'].immed = True
+
 ## @}
 
 ## @defgroup debug Debug
@@ -540,11 +561,30 @@ W['??'] = Fn(DumpFVM)
 def DropAll(): D.flush()
 W['.'] = Fn(DropAll) 
 
+## `?dis <wordname> ( -- )` disassemble `<wordname>`
+def dis(): WORD() ; FIND() ; print D.pop()
+W['?dis'] = Fn(dis)
+
 ## @}
 
 ## @defgroup gui GUI engine
 ## `wxPython`
 ## @{
+
+## command processing queue
+CMD = Queue('CMD')
+
+## interpreter will run in background
+class CMD_thread(threading.Thread):
+    ## infty loop on command queue processing
+    def run(self):
+        while True:
+            try: INTERPRET(CMD.pop())       # process next command
+            except:                         # don't stop thread on errors
+                COMPILE = []                # drop compilation mode
+                print sys.exc_info()        # print error frame
+## command processing singleton thread
+cmd_thread = CMD_thread()
 
 ## GUI processing in separate thread
 class GUI_thread(threading.Thread):
@@ -567,7 +607,7 @@ class GUI_thread(threading.Thread):
         self.file = wx.Menu() ; self.menubar.Append(self.file,'&File')
         ## file/save
         self.save = self.file.Append(wx.ID_SAVE,'&Save')
-#         self.main.Bind(wx.EVT_MENU, self.onSave, self.save)
+        self.main.Bind(wx.EVT_MENU, self.onSave, self.save)
         ## file/export
         self.export = self.file.Append(wx.ID_CONVERT,'Ex&port') 
         self.file.AppendSeparator()
@@ -581,7 +621,36 @@ class GUI_thread(threading.Thread):
         self.main.Bind(wx.EVT_MENU, self.onAbout, self.about)
     ## configure editor
     def SetupEditor(self):
-        pass
+        ## editor: use StyledText widget with rich syntax coloring
+        self.editor = self.main.control = wx.stc.StyledTextCtrl(self.main)
+        self.ReOpen(None)
+        ## configure font size
+        W,H = self.main.GetClientSize()
+        self.editor.StyleSetFont(wx.stc.STC_STYLE_DEFAULT, \
+            wx.Font(H>>4, wx.FONTFAMILY_MODERN, wx.NORMAL, wx.NORMAL))
+    ## reopen file in editor
+    def ReOpen(self,e,filename='src.src'):
+        ## save used file name
+        self.filename = filename
+        F = open(filename) ; self.editor.SetValue(F.read()) ; F.close()
+        ## left margin with line numbers
+        self.editor.SetMargins(5,0)
+        self.editor.SetMarginType(1,wx.stc.STC_MARGIN_NUMBER)
+        self.editor.SetMarginWidth(1,33)
+        # bind keys
+        ## font scaling Ctrl +/-
+        self.editor.CmdKeyAssign(ord('='),wx.stc.STC_SCMOD_CTRL,wx.stc.STC_CMD_ZOOMIN )
+        self.editor.CmdKeyAssign(ord('-'),wx.stc.STC_SCMOD_CTRL,wx.stc.STC_CMD_ZOOMOUT)
+        ## run code on Ctrl-Enter
+        self.editor.Bind(wx.EVT_CHAR,self.onChar)
+    ## save handler
+    def onSave(self,e):
+        F = open(self.filename,'w') ; F.write( self.editor.GetValue() ) ; F.close()
+    ## event handler: process keyboard events
+    def onChar(self,e):
+        key = e.GetKeyCode() ; ctrl = e.CmdDown() ; shift = e.ShiftDown()
+        if key == 13 and ( ctrl or shift ): CMD.push(self.editor.GetSelectedText())
+        else: e.Skip()
     ## about event handler
     def onAbout(self,e):
         F = open('README.md') ; wx.MessageBox(F.read(166)) ; F.close()
@@ -594,10 +663,12 @@ class GUI_thread(threading.Thread):
 ## GUI thread singleton
 gui_thread = GUI_thread()
 
-## @test run GUI
-def test_GUI(): gui_thread.start()
-
 ## @}
 
+import pickle
+
 if __name__ == '__main__':
-    print Sym('test')
+    gui_thread.start()
+    cmd_thread.start()
+    gui_thread.join()
+    

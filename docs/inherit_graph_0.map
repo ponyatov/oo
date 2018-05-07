@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classoFORTH_1_1GUI__thread.html" title="GUI processing in separate thread. " alt="" coords="5,29,152,56"/>
+<area shape="rect" id="node1" href="$classoFORTH_1_1CMD__thread.html" title="interpreter will run in background " alt="" coords="5,29,159,56"/>
+<area shape="rect" id="node2" href="$classoFORTH_1_1GUI__thread.html" title="GUI processing in separate thread. " alt="" coords="207,29,353,56"/>
 </map>

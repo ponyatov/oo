@@ -1,5 +1,10 @@
 # metasystem
 
+: nop ; ?dis nop
+: init nop init nop ; ?dis init
+
+ ??
+
 .inc GUI
 
 ?? 

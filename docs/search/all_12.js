@@ -15,7 +15,6 @@ var searchData=
   ['test_5ffn_5fcall',['test_Fn_call',['../group__active.html#ga64af1ab25de251a24b47b4f8b50018ad',1,'oFORTH']]],
   ['test_5ffvm_5fd',['test_FVM_D',['../group__fvmstack.html#ga70cbb1e09cd6241a35fb7716522cd587',1,'oFORTH']]],
   ['test_5ffvm_5fw',['test_FVM_W',['../group__voc.html#ga829c90fc0d1682c1c678283406530242',1,'oFORTH']]],
-  ['test_5fgui',['test_GUI',['../group__gui.html#ga28ec02aa7e66279bb19b316bc9a7edc6',1,'oFORTH']]],
   ['test_5fhex',['test_Hex',['../group__number.html#ga4ee58af9023602c8a232d6228a2aaddc',1,'oFORTH']]],
   ['test_5finteger',['test_Integer',['../group__number.html#ga4c88e901558467f620cf07d7c6157f99',1,'oFORTH']]],
   ['test_5finterpret_5fcomments',['test_INTERPRET_comments',['../group__interp.html#gae3cab4d3a5b14d0f16ac80b94a0e73e4',1,'oFORTH']]],

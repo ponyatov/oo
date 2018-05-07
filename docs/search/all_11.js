@@ -2,6 +2,7 @@ var searchData=
 [
   ['syntax_20parser_20_2flexer_20only_2f',['Syntax parser /lexer only/',['../group__ply.html',1,'']]],
   ['save',['save',['../group__nest.html#ga07da5e6e129b6bb2b79e05cbdb6529d7',1,'oFORTH::GUI_thread']]],
+  ['semicolon',['semicolon',['../group__interp.html#ga87f0a3c7dab755bc654b298d1d2d81a0',1,'oFORTH']]],
   ['setupeditor',['SetupEditor',['../group__nest.html#gada1ffaa901460d63b9337f51ec3528dd',1,'oFORTH::GUI_thread']]],
   ['setupmenu',['SetupMenu',['../group__nest.html#ga72767c1a8bce819cdc1ba8be2b0e2af2',1,'oFORTH::GUI_thread']]],
   ['stack',['Stack',['../classoFORTH_1_1Stack.html',1,'oFORTH.Stack'],['../group__stack.html',1,'(Global Namespace)']]],

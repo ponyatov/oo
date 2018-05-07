@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['interpret',['INTERPRET',['../group__interp.html#gab94f30ad756e58cffbab594d63f2efe2',1,'oFORTH']]]
+  ['head',['head',['../group__dump.html#gac4a107f9d96a9408841eb508c9e79120',1,'oFORTH::Object']]]
 ];
