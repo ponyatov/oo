@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tests',['Tests',['../group__symtests.html',1,'']]]
+  ['queue',['Queue',['../group__queue.html',1,'']]]
 ];

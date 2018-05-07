@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>oFORTH/py: Interpreter/Compiler</title>
+<title>oFORTH/py object metasystem: Interpreter/Compiler</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">oFORTH/py
+   <div id="projectname">oFORTH/py object metasystem
    </div>
   </td>
  </tr>
@@ -63,7 +64,7 @@ $(function() {
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">Interpreter/Compiler<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a></div></div>  </div>
+<div class="title">Interpreter/Compiler<div class="ingroups"><a class="el" href="group__FVM.html">oFORTH Virtual Machine</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -71,86 +72,58 @@ Collaboration diagram for Interpreter/Compiler:</div>
 <div class="dyncontent">
 <center><table><tr><td><img src="group__interp.png" border="0" alt="" usemap="#group____interp"/>
 <map name="group____interp" id="group____interp">
-<area shape="rect" id="node1" href="group__compiler.html" title="compile definitions into Active objects " alt="" coords="408,5,483,32"/>
-<area shape="rect" id="node2" href="group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,31,175,57"/>
-<area shape="rect" id="node4" href="group__lexer.html" title="regexp&#45;based (lex) made with PLY parser generator library " alt="" coords="418,56,473,83"/>
+<area shape="rect" id="node1" href="group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,13,175,39"/>
+<area shape="rect" id="node2" href="group__ply.html" title="made with PLY parser generator library " alt="" coords="408,5,547,47"/>
 </map>
 </td></tr></table></center>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
 Modules</h2></td></tr>
-<tr class="memitem:group__lexer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__lexer.html">Lexer</a></td></tr>
-<tr class="memdesc:group__lexer"><td class="mdescLeft">&#160;</td><td class="mdescRight">regexp-based (lex) made with PLY parser generator library <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:group__compiler"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__compiler.html">Compiler</a></td></tr>
-<tr class="memdesc:group__compiler"><td class="mdescLeft">&#160;</td><td class="mdescRight">compile definitions <b>into Active objects</b> <br /></td></tr>
+<tr class="memitem:group__ply"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ply.html">Syntax parser /lexer only/</a></td></tr>
+<tr class="memdesc:group__ply"><td class="mdescLeft">&#160;</td><td class="mdescRight">made with PLY parser generator library <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gabfb5a9993bfb0cfaea4d5c02c9d82b4d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gabfb5a9993bfb0cfaea4d5c02c9d82b4d">FVM.EXECUTE</a> ()</td></tr>
-<tr class="memdesc:gabfb5a9993bfb0cfaea4d5c02c9d82b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">`EXECUTE ( callable:xt &ndash; ...  <a href="group__interp.html#gabfb5a9993bfb0cfaea4d5c02c9d82b4d">More...</a><br /></td></tr>
-<tr class="separator:gabfb5a9993bfb0cfaea4d5c02c9d82b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac0a7d32ade4dea7a8e571d671daffdc1"><td class="memItemLeft" align="right" valign="top"><a id="gac0a7d32ade4dea7a8e571d671daffdc1"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>FVM.test_callable_generic</b> ()</td></tr>
-<tr class="separator:gac0a7d32ade4dea7a8e571d671daffdc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga77d2184f9bbee72293bd42fd494897f8"><td class="memItemLeft" align="right" valign="top"><a id="ga77d2184f9bbee72293bd42fd494897f8"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>FVM.test_callable_literals</b> ()</td></tr>
-<tr class="separator:ga77d2184f9bbee72293bd42fd494897f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2712cc498fe27d9ba74d39b44a1e7aa2"><td class="memItemLeft" align="right" valign="top"><a id="ga2712cc498fe27d9ba74d39b44a1e7aa2"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>FVM.test_WORD</b> ()</td></tr>
-<tr class="separator:ga2712cc498fe27d9ba74d39b44a1e7aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga732f18527725e2dfc9a4cdc795d9a351"><td class="memItemLeft" align="right" valign="top"><a id="ga732f18527725e2dfc9a4cdc795d9a351"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#ga732f18527725e2dfc9a4cdc795d9a351">FVM.FIND</a> ()</td></tr>
-<tr class="memdesc:ga732f18527725e2dfc9a4cdc795d9a351"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>FIND ( wordname -- callable:xt )</code> lookup execatable definition in vocabulary <br /></td></tr>
-<tr class="separator:ga732f18527725e2dfc9a4cdc795d9a351"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac82f5e1b19636df5a7a7b91bf5ce4df5"><td class="memItemLeft" align="right" valign="top"><a id="gac82f5e1b19636df5a7a7b91bf5ce4df5"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>FVM.test_FIND</b> ()</td></tr>
-<tr class="separator:gac82f5e1b19636df5a7a7b91bf5ce4df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaae9d0a1ab1c71dbc440d93d1f1ed7222"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gaae9d0a1ab1c71dbc440d93d1f1ed7222">FVM.INTERPRET</a> (SRC='')</td></tr>
-<tr class="memdesc:gaae9d0a1ab1c71dbc440d93d1f1ed7222"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>INTERPRET ( -- )</code> [R]ead [E]val [P]rint [L]oop  <a href="group__interp.html#gaae9d0a1ab1c71dbc440d93d1f1ed7222">More...</a><br /></td></tr>
-<tr class="separator:gaae9d0a1ab1c71dbc440d93d1f1ed7222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1180056a187b8bb5bba4b87365db8132"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#ga1180056a187b8bb5bba4b87365db8132">FVM.test_INTERPRET_null</a> ()</td></tr>
-<tr class="separator:ga1180056a187b8bb5bba4b87365db8132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf213e68de589966b9f90134a67665ffc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gaf213e68de589966b9f90134a67665ffc">FVM.test_INTERPRET</a> ()</td></tr>
-<tr class="separator:gaf213e68de589966b9f90134a67665ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa9cb31b1cd75e56d57065adea9760bfa"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gaa9cb31b1cd75e56d57065adea9760bfa">oFORTH.WORD</a> ()</td></tr>
+<tr class="memdesc:gaa9cb31b1cd75e56d57065adea9760bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>WORD ( -- symbol:wordname )</code> parse next word name from source code stream  <a href="group__interp.html#gaa9cb31b1cd75e56d57065adea9760bfa">More...</a><br /></td></tr>
+<tr class="separator:gaa9cb31b1cd75e56d57065adea9760bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga588429ebac9eb2e78dd948b59b31a7d5"><td class="memItemLeft" align="right" valign="top"><a id="ga588429ebac9eb2e78dd948b59b31a7d5"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#ga588429ebac9eb2e78dd948b59b31a7d5">oFORTH.FIND</a> ()</td></tr>
+<tr class="memdesc:ga588429ebac9eb2e78dd948b59b31a7d5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>FIND ( wordname -- callable:xt )</code> lookup execatable definition in vocabulary <br /></td></tr>
+<tr class="separator:ga588429ebac9eb2e78dd948b59b31a7d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade1df1e07e1723a5feae9a55b0b4852f"><td class="memItemLeft" align="right" valign="top"><a id="gade1df1e07e1723a5feae9a55b0b4852f"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gade1df1e07e1723a5feae9a55b0b4852f">oFORTH.EXECUTE</a> ()</td></tr>
+<tr class="memdesc:gade1df1e07e1723a5feae9a55b0b4852f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>EXECUTE ( xt -- )</code> run object with executable semantics <br /></td></tr>
+<tr class="separator:gade1df1e07e1723a5feae9a55b0b4852f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab94f30ad756e58cffbab594d63f2efe2"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gab94f30ad756e58cffbab594d63f2efe2">oFORTH.INTERPRET</a> (SRC='')</td></tr>
+<tr class="memdesc:gab94f30ad756e58cffbab594d63f2efe2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>INTERPRET ( -- )</code> [R]ead [E]val [P]rint [L]oop  <a href="group__interp.html#gab94f30ad756e58cffbab594d63f2efe2">More...</a><br /></td></tr>
+<tr class="separator:gab94f30ad756e58cffbab594d63f2efe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga70d71c78ea9cb2b5bd848ed12c90207c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#ga70d71c78ea9cb2b5bd848ed12c90207c">oFORTH.test_INTERPRET_empty</a> ()</td></tr>
+<tr class="separator:ga70d71c78ea9cb2b5bd848ed12c90207c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae3cab4d3a5b14d0f16ac80b94a0e73e4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gae3cab4d3a5b14d0f16ac80b94a0e73e4">oFORTH.test_INTERPRET_comments</a> ()</td></tr>
+<tr class="separator:gae3cab4d3a5b14d0f16ac80b94a0e73e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77cbe88ae32931fb2754f550f47ca17d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#ga77cbe88ae32931fb2754f550f47ca17d">oFORTH.test_INTERPRET_numbers</a> ()</td></tr>
+<tr class="separator:ga77cbe88ae32931fb2754f550f47ca17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:gaf194b71a062356102cf2e30b1808758b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gaf194b71a062356102cf2e30b1808758b">FVM.test_STRING_4Interpreter</a></td></tr>
-<tr class="separator:gaf194b71a062356102cf2e30b1808758b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7eda4a5d1f67ef061a004d88a99c672"><td class="memItemLeft" align="right" valign="top"><a id="gac7eda4a5d1f67ef061a004d88a99c672"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interp.html#gac7eda4a5d1f67ef061a004d88a99c672">oFORTH.COMPILE</a> = None</td></tr>
+<tr class="memdesc:gac7eda4a5d1f67ef061a004d88a99c672"><td class="mdescLeft">&#160;</td><td class="mdescRight">compilation register = interpret/compile state flag <br /></td></tr>
+<tr class="separator:gac7eda4a5d1f67ef061a004d88a99c672"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gabfb5a9993bfb0cfaea4d5c02c9d82b4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabfb5a9993bfb0cfaea4d5c02c9d82b4d">&#9670;&nbsp;</a></span>EXECUTE()</h2>
+<a id="gab94f30ad756e58cffbab594d63f2efe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab94f30ad756e58cffbab594d63f2efe2">&#9670;&nbsp;</a></span>INTERPRET()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def FVM.EXECUTE </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>`EXECUTE ( callable:xt &ndash; ... </p>
-<p>)` run executable definition via its execution token in stack </p>
-
-</div>
-</div>
-<a id="gaae9d0a1ab1c71dbc440d93d1f1ed7222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaae9d0a1ab1c71dbc440d93d1f1ed7222">&#9670;&nbsp;</a></span>INTERPRET()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def FVM.INTERPRET </td>
+          <td class="memname">def oFORTH.INTERPRET </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>SRC</em> = <code>''</code></td><td>)</td>
@@ -169,55 +142,77 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="gaf213e68de589966b9f90134a67665ffc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf213e68de589966b9f90134a67665ffc">&#9670;&nbsp;</a></span>test_INTERPRET()</h2>
+<a id="gae3cab4d3a5b14d0f16ac80b94a0e73e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3cab4d3a5b14d0f16ac80b94a0e73e4">&#9670;&nbsp;</a></span>test_INTERPRET_comments()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def FVM.test_INTERPRET </td>
+          <td class="memname">def oFORTH.test_INTERPRET_comments </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000005">Test:</a></b></dt><dd>using test_STRING_4Interpreter </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000033">Test:</a></b></dt><dd>numbers </dd></dl>
 
 </div>
 </div>
-<a id="ga1180056a187b8bb5bba4b87365db8132"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1180056a187b8bb5bba4b87365db8132">&#9670;&nbsp;</a></span>test_INTERPRET_null()</h2>
+<a id="ga70d71c78ea9cb2b5bd848ed12c90207c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga70d71c78ea9cb2b5bd848ed12c90207c">&#9670;&nbsp;</a></span>test_INTERPRET_empty()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def FVM.test_INTERPRET_null </td>
+          <td class="memname">def oFORTH.test_INTERPRET_empty </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd>empty source code </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000032">Test:</a></b></dt><dd>empty script </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="gaf194b71a062356102cf2e30b1808758b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf194b71a062356102cf2e30b1808758b">&#9670;&nbsp;</a></span>test_STRING_4Interpreter</h2>
+<a id="ga77cbe88ae32931fb2754f550f47ca17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77cbe88ae32931fb2754f550f47ca17d">&#9670;&nbsp;</a></span>test_INTERPRET_numbers()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string FVM.test_STRING_4Interpreter</td>
+          <td class="memname">def oFORTH.test_INTERPRET_numbers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;=  <span class="stringliteral">&#39;&#39;&#39;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="stringliteral"># line comment</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="stringliteral">\ slash line comment</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral">( block comment )</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral">ThisMustBeFirst</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">-01 002.3 +04e-05 0xDeadBeef 0b1101 ( lot of numbers )</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">#this tightly inputted code can&#39;t be parsed by classical FORTH, lexer only</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="stringliteral">(And)Some\Symbols</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    &#39;&#39;&#39;</span></div></div><!-- fragment --><dl class="test"><dt><b><a class="el" href="test.html#_test000003">Test:</a></b></dt><dd>check comments and primitive literals </dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000034">Test:</a></b></dt><dd>numbers </dd></dl>
+
+</div>
+</div>
+<a id="gaa9cb31b1cd75e56d57065adea9760bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa9cb31b1cd75e56d57065adea9760bfa">&#9670;&nbsp;</a></span>WORD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.WORD </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><code>WORD ( -- symbol:wordname )</code> parse next word name from source code stream </p>
+<dl class="section return"><dt>Returns</dt><dd>token will be empty on EOF </dd></dl>
 
 </div>
 </div>

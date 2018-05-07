@@ -1,5 +1,7 @@
 <map id="Containers" name="Containers">
-<area shape="rect" id="node1" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,31,168,57"/>
-<area shape="rect" id="node2" href="$group__map.html" title="container holds elements indexed by string key /unordered associative array/ " alt="" coords="354,5,401,32"/>
-<area shape="rect" id="node3" href="$group__stack.html" title="Stack supports push/pop operations and Last In First Out discipline. " alt="" coords="349,56,405,83"/>
+<area shape="rect" id="node1" href="$group__queue.html" title="LIFO ordered container friendly with Python threading. " alt="" coords="349,5,409,32"/>
+<area shape="rect" id="node2" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,81,168,108"/>
+<area shape="rect" id="node3" href="$group__map.html" title="container holds elements indexed by string key /unordered associative array/ " alt="" coords="356,56,403,83"/>
+<area shape="rect" id="node4" href="$group__vector.html" title="ordered container with integer index /has executable semantics for oFORTH callable code blocks/ ..." alt="" coords="349,107,409,133"/>
+<area shape="rect" id="node5" href="$group__stack.html" title="Stack supports push/pop operations and Last In First Out discipline. " alt="" coords="351,157,407,184"/>
 </map>

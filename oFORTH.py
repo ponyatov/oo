@@ -7,7 +7,8 @@ import os,sys
 import wx,wx.stc
 
 # we'll use threaded VM/GUI/HTTP to avoid lockups and system falls
-import threading,Queue
+import threading
+import Queue as pyQueue
 
 ## @defgroup sym Symbolic object system
 ## was first conceived for knowledge representation and symbolic computation
@@ -53,8 +54,11 @@ class Object:
         if not onlystack:
             for i in self.attr:
                 S += '\n' + self.pad(depth+1) + self.attr[i].head(prefix='%s = '%i)
-        for j in self.nest:
-            S += j.dump(depth+1)
+        return S + self.dumpnest(depth)
+    ## dump `nest[]`ed only
+    def dumpnest(self,depth=0):
+        S = ''
+        for j in self.nest: S += j.dump(depth+1)
         return S
     ## dump object in short header-only `<T:V>` form
     ## @param[in] prefix optional string will be put before `<T:V>`
@@ -171,17 +175,17 @@ class Number(Primitive):
     def __init__(self,V):
         Primitive.__init__(self, V)
         ## wrap python float
-        self.value = float(V)
+        self.val = float(V)
 
 ## @test type/value for wrapped dotted number
 def test_Number_point(): assert \
-    type(Number('-0123.45').value) == type(-123.45) and \
-    abs( Number('-0123.45').value - (-123.45) ) < 1e-6
+    type(Number('-0123.45').val) == type(-123.45) and \
+    abs( Number('-0123.45').val - (-123.45) ) < 1e-6
 
 ## @test type/value for wrapped exponential number
 def test_Number_exp(): assert \
-    type(Number('-01.23e+45').value) == type(-123.45) and \
-    abs( Number('-01.23E+45').value - (-1.23e45) ) < 1e-6
+    type(Number('-01.23e+45').val) == type(-123.45) and \
+    abs( Number('-01.23E+45').val - (-1.23e45) ) < 1e-6
         
 ## integer
 class Integer(Number):
@@ -298,6 +302,62 @@ def test_Map_getset():
 
 ## @}
 
+## @defgroup vector Vector
+## ordered container with integer index
+## /<b>has executable semantics</b> for oFORTH callable code blocks/
+## @ingroup cont
+## @{
+
+## ordered vector
+class Vector(Container):
+    ## vector is callable as it used for sequential code blocks in oFORTH
+    def __call__(self):
+        for i in self.nest: i()
+
+## @test vector creation        
+def test_Vector():
+    assert ( Vector('ordered') << 1 << 2 << 3 ).nest == [1,2,3]
+    
+## @test vector execute
+def test_Vector_execute():
+    V = Vector('empty')
+    assert V.dump() == '\n<vector:empty>'
+    V()
+    assert V.dump() == '\n<vector:empty>'
+
+## @}
+
+## @defgroup queue Queue
+## LIFO ordered container friendly with Python threading
+## @ingroup cont
+## @{
+
+## queue wraps threading-friendly Queue
+class Queue(Container):
+    ## construct wrapped Queue 
+    def __init__(self,V):
+        Container.__init__(self, V)
+        ## wrap Python Queue
+        self.nest = pyQueue.Queue()
+    ## dump queue as size:n
+    def dumpnest(self, depth=0):
+        return '\n'+self.pad(depth+1)+'size:%s'%self.nest.qsize()
+    ## put element
+    def push(self,o): self.nest.put(o) ; return self
+    ## pop element
+    def pop(self): return self.nest.get()
+
+## @test empty queue creation
+def test_Queue():
+    assert Queue('SRC').dump() == '\n<queue:SRC>\n\tsize:0'
+
+## @test queue push/pop    
+def test_Queue_pushpop():
+    Q = Queue('queue') << 1 << 2 << 3
+    assert Q.pop() == 1
+
+## @}
+
 ## @defgroup active Active
 ## executable objects wrapped from Python VM and modules
 ## @ingroup sym
@@ -326,8 +386,218 @@ def test_Fn_call(): assert Fn(lambda:True) () == True
 
 ## @defgroup FVM oFORTH Virtual Machine
 
+## @defgroup voc Vocabulary
+## holds global definitios
+## @ingroup FVM
+## @{
+
+## global vocabulary register
+W = Map('FORTH')
+
+## @test global vocabulary
+def test_FVM_W(): assert W.head() == '<map:FORTH>'
+
+## @}
+
+## @defgroup fvmstack Global data stack
+## all computations in FORTH use only stack (no registers or variables)
+## @ingroup FVM
+## @{
+
+## global data stack register
+D = Stack('DATA')
+
+## @test empty stack dump
+def test_FVM_D(): assert D.dump() == '\n<stack:DATA>'
+
+## `DUP ( o - o o )` duplicate top stack element
+def DUP(): D.dup()
+W << DUP
+
+## `DROP ( o1 o2 -- o1 )` drop top element
+def DROP(): D.drop()
+W << DROP
+
+## `SWAP ( o1 o2 -- o2 o1 )` swap 2 top elements
+def SWAP(): D.swap()
+W << SWAP
+
+## @}
+
+## @defgroup interp Interpreter/Compiler
+## @ingroup FVM
+## @{
+
+## @defgroup ply Syntax parser /lexer only/
+## made with PLY parser generator library
+## @ingroup interp
+## @{
+
+import ply.lex as lex
+
+## list of supported token types
+tokens = ['SYM','NUM']
+
+## ignored chars: spaces
+t_ignore = ' \t\r\n'
+
+## line comments can start with `#` and `\` , and ( block comments ) in parens
+t_ignore_COMMENT = r'[\#\\].*|\(.*?\)'
+
+## count line numbers
+def t_newline(t):
+    r'\n'
+    t.lexer.lineno += 1
+    
+## numbers
+def t_NUM(t):
+    r'[\+\-]?[0-9]+(\.[0-9]*)?([eE][\+\-]?[0-9]+)?'
+    t.value = Number(t.value) ; return t
+    
+## symbol lexer rule
+def t_SYM(t):
+    r'[a-zA-Z0-9_\?\:\;\.\+\-]+'
+    t.value = Symbol(t.value) ; return t
+    
+## lexer error callabck
+def t_error(t): raise SyntaxError(t)
+
+## global lexer
+lexer = lex.lex()
+
+## @}
+
+## `WORD ( -- symbol:wordname )`
+## parse next word name from source code stream
+## @returns token will be empty on EOF
+## @ingroup lexer
+def WORD():
+    token = lexer.token()                   # call syntax parser /lexer/
+    if token: D << token.value              # push parsed object to data stack
+    return token                            # PLY token will be empty on EOL
+W << WORD
+
+## `FIND ( wordname -- callable:xt )`
+## lookup execatable definition in vocabulary
+def FIND():
+    o = D.pop() ; WN = o.val                # pop name to be found
+    try: D.push(W[WN])                      # lookup in vocabulary
+    except KeyError: raise SyntaxError(o)
+    
+## `EXECUTE ( xt -- )` run object with executable semantics
+def EXECUTE(): D.pop()()
+W << EXECUTE    
+
+## `INTERPRET ( -- )`
+## [R]ead [E]val [P]rint [L]oop
+## @param[in] SRC source code should be interpreted
+def INTERPRET(SRC=''):
+    lexer.input(SRC)                        # feed lexer
+    while True:
+        if not WORD(): break                # parse and exit on EOF
+        if D.top().tag in ['symbol']:
+            FIND()                          # look up in vocabulary
+            EXECUTE()                       # run found callable object
+        print D
+
+## @test empty script
+def test_INTERPRET_empty():
+    assert D.nest == [] ; INTERPRET('') ; assert D.nest == []
+    
+## @test numbers
+def test_INTERPRET_comments():
+    assert D.nest == []
+    INTERPRET('# line comment \n ( block comment )')
+    assert D.nest == []
+
+## @test numbers
+def test_INTERPRET_numbers():
+    assert D.nest == []
+    INTERPRET('( numbers ) +01 -002.3 -4e+05')
+    assert D.pop().val == -4e+05
+    assert D.pop().val == -2.3
+    assert D.pop().val == +1
+    assert D.nest == []
+    
+## compilation register = interpret/compile state flag
+COMPILE = None
+
+## @}
+
+## @defgroup debug Debug
+## @ingroup FVM
+## @{
+
+## `? ( -- )` dump data stack
+def DumpStack(): print D
+W['?'] = Fn(DumpStack)
+
+## `?? ( -- )` dump full FVM state
+def DumpFVM(): print W ; print D
+W['??'] = Fn(DumpFVM)
+
+## '. ( ... -- )` clear system state (data stack)
+def DropAll(): D.flush()
+W['.'] = Fn(DropAll) 
+
+## @}
+
 ## @defgroup gui GUI engine
 ## `wxPython`
+## @{
+
+## GUI processing in separate thread
+class GUI_thread(threading.Thread):
+    ## run GUI in background
+    def __init__(self):
+        threading.Thread.__init__(self)
+        ## wx application
+        self.app = wx.App()
+        ## main window
+        self.main = wx.Frame(None,wx.ID_ANY,str(sys.argv))
+        ## menu
+        self.SetupMenu()
+        ## editor area
+        self.SetupEditor()
+    ## condifure menu
+    def SetupMenu(self):
+        ## menu bar
+        self.menubar = wx.MenuBar() ; self.main.SetMenuBar(self.menubar)
+        ## file menu
+        self.file = wx.Menu() ; self.menubar.Append(self.file,'&File')
+        ## file/save
+        self.save = self.file.Append(wx.ID_SAVE,'&Save')
+#         self.main.Bind(wx.EVT_MENU, self.onSave, self.save)
+        ## file/export
+        self.export = self.file.Append(wx.ID_CONVERT,'Ex&port') 
+        self.file.AppendSeparator()
+        ## file/exit
+        self.exit = self.file.Append(wx.ID_EXIT,'E&xit')
+        self.main.Bind(wx.EVT_MENU, lambda e:self.main.Close(), self.exit)
+        ## help menu
+        self.help = wx.Menu() ; self.menubar.Append(self.help,'&Help')
+        ## help/about
+        self.about = self.help.Append(wx.ID_ABOUT,'&About\tF1')
+        self.main.Bind(wx.EVT_MENU, self.onAbout, self.about)
+    ## configure editor
+    def SetupEditor(self):
+        pass
+    ## about event handler
+    def onAbout(self,e):
+        F = open('README.md') ; wx.MessageBox(F.read(166)) ; F.close()
+    ## activate GUI elements only on thread start
+    ## (interpreter system can run in headless mode)
+    def run(self):
+        self.main.Show()
+        self.app.MainLoop()
+        
+## GUI thread singleton
+gui_thread = GUI_thread()
+
+## @test run GUI
+def test_GUI(): gui_thread.start()
+
+## @}
 
 if __name__ == '__main__':
     print Sym('test')

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['pad',['pad',['../group__dump.html#ga8c6b1687b0b0d6d60fed16459cc78d9f',1,'oFORTH::Object']]],
-  ['pop',['pop',['../group__nest.html#gae2926bfacd702a48dcf0c57ea25f75f3',1,'oFORTH::Object']]],
-  ['push',['push',['../group__nest.html#gaaed2952c43a1a9db64c9636166ef155e',1,'oFORTH::Object']]]
+  ['head',['head',['../group__dump.html#gac4a107f9d96a9408841eb508c9e79120',1,'oFORTH::Object']]]
 ];

@@ -1,5 +1,4 @@
 <map id="Interpreter/Compiler" name="Interpreter/Compiler">
-<area shape="rect" id="node1" href="$group__compiler.html" title="compile definitions into Active objects " alt="" coords="408,5,483,32"/>
-<area shape="rect" id="node2" href="$group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,31,175,57"/>
-<area shape="rect" id="node4" href="$group__lexer.html" title="regexp&#45;based (lex) made with PLY parser generator library " alt="" coords="418,56,473,83"/>
+<area shape="rect" id="node1" href="$group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="5,13,175,39"/>
+<area shape="rect" id="node2" href="$group__ply.html" title="made with PLY parser generator library " alt="" coords="408,5,547,47"/>
 </map>

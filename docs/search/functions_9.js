@@ -1,25 +1,6 @@
 var searchData=
 [
-  ['t_5fbin',['t_BIN',['../group__lexer.html#ga322bbd5841a230f77553702ee24d338b',1,'FVM']]],
-  ['t_5fcomment_5fhash',['t_COMMENT_hash',['../group__lexer.html#ga6fc452e68a4e7d95696e467e56570bff',1,'FVM']]],
-  ['t_5fcomment_5fparens',['t_COMMENT_parens',['../group__lexer.html#ga83db00a07d9ce2cba1a9e966d2e621fd',1,'FVM']]],
-  ['t_5fcomment_5fslash',['t_COMMENT_slash',['../group__lexer.html#ga05a09bc2cc90ddc2d51b61419ec80eba',1,'FVM']]],
-  ['t_5feof',['t_eof',['../group__lexer.html#ga647f1de8c93fa36020a15fe14fa8d1d7',1,'FVM']]],
-  ['t_5ferror',['t_error',['../group__lexer.html#gafe14a23e6acc21b032740d9ebf4d1541',1,'FVM']]],
-  ['t_5fhex',['t_HEX',['../group__lexer.html#ga365705a80950ba55c90fd78de9d3cf99',1,'FVM']]],
-  ['t_5finteger',['t_INTEGER',['../group__lexer.html#gabcf87655d369397cdc03e9d7aaee46a3',1,'FVM']]],
-  ['t_5fnumber_5fexp',['t_NUMBER_exp',['../group__lexer.html#ga154b3950709d317275b8d9cd142f746e',1,'FVM']]],
-  ['t_5fnumber_5fpoint',['t_NUMBER_point',['../group__lexer.html#ga7e4017b2524572bb8839b67aaed29561',1,'FVM']]],
-  ['t_5fword',['t_WORD',['../group__lexer.html#ga3d3c03697fb9dd316bd4ef7a5586cedb',1,'FVM']]],
-  ['test_5fcolon_5fdef',['test_colon_def',['../group__compiler.html#ga9e0a0011e0a6324a4fbb260df5ffc64c',1,'FVM']]],
-  ['test_5fcompile_5femptyblock',['test_COMPILE_emptyblock',['../group__compiler.html#gae7c22b5eca114280cf2e528aad7dd955',1,'FVM']]],
-  ['test_5fd_5fdupswap',['test_D_dupswap',['../group__stack.html#ga7e9f94742b3209a2b6d0d69e99605025',1,'FVM']]],
-  ['test_5ffvm_5fd',['test_FVM_D',['../group__stack.html#ga5eaa023319ecf26d8ef0d19caa2ffcd0',1,'FVM']]],
-  ['test_5finterpret',['test_INTERPRET',['../group__interp.html#gaf213e68de589966b9f90134a67665ffc',1,'FVM']]],
-  ['test_5finterpret_5fnull',['test_INTERPRET_null',['../group__interp.html#ga1180056a187b8bb5bba4b87365db8132',1,'FVM']]],
-  ['test_5finterpret_5fstate_5ftransitions',['test_INTERPRET_state_transitions',['../group__compiler.html#ga9253c9ff62c0b23f70a77374fd465d98',1,'FVM']]],
-  ['test_5fqlqr',['test_QLQR',['../group__compiler.html#ga64ea6c5508d8a83da920ae37ef8a26e0',1,'FVM']]],
-  ['test_5ftoken',['test_token',['../group__grammar.html#ga5ac636bd8e130a18203f53f6d7a6a19d',1,'SYM']]],
-  ['test_5fvector_5fcompile',['test_vector_compile',['../group__compiler.html#ga1be1859d827824a8ceac833546d66934',1,'FVM']]],
-  ['test_5fvector_5fexec',['test_vector_exec',['../group__compiler.html#ga760e3e92a0d25daae96738c0f01ab19a',1,'FVM']]]
+  ['setupeditor',['SetupEditor',['../group__nest.html#gada1ffaa901460d63b9337f51ec3528dd',1,'oFORTH::GUI_thread']]],
+  ['setupmenu',['SetupMenu',['../group__nest.html#ga72767c1a8bce819cdc1ba8be2b0e2af2',1,'oFORTH::GUI_thread']]],
+  ['swap',['swap',['../group__nest.html#gab05017b50ff66c62c2cd6511cf4f99a7',1,'oFORTH.Object.swap()'],['../group__fvmstack.html#gaf1b573353a7e24d6c66171c7da9f244a',1,'oFORTH.SWAP()']]]
 ];

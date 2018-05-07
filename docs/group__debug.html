@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>oFORTH/py: Debug</title>
+<title>oFORTH/py object metasystem: Debug</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,8 +20,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">oFORTH/py
+   <div id="projectname">oFORTH/py object metasystem
    </div>
   </td>
  </tr>
@@ -61,12 +62,9 @@ $(function() {
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Debug<div class="ingroups"><a class="el" href="group__core.html">Core</a> &raquo; <a class="el" href="group__FVM.html">oFORTH Virtual Machine</a></div></div>  </div>
+<div class="title">Debug<div class="ingroups"><a class="el" href="group__FVM.html">oFORTH Virtual Machine</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>words and commands can be used for debug  
-<a href="#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for Debug:</div>
 <div class="dyncontent">
@@ -79,17 +77,40 @@ Collaboration diagram for Debug:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga1b8d04485c6e665d46f0f7b4868cd30d"><td class="memItemLeft" align="right" valign="top"><a id="ga1b8d04485c6e665d46f0f7b4868cd30d"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__debug.html#ga1b8d04485c6e665d46f0f7b4868cd30d">FVM.q</a> ()</td></tr>
-<tr class="memdesc:ga1b8d04485c6e665d46f0f7b4868cd30d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>? ( -- )</code> dump stack <br /></td></tr>
-<tr class="separator:ga1b8d04485c6e665d46f0f7b4868cd30d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab3df7f38599558b3899ecc28dcc711d0"><td class="memItemLeft" align="right" valign="top"><a id="gab3df7f38599558b3899ecc28dcc711d0"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__debug.html#gab3df7f38599558b3899ecc28dcc711d0">FVM.qq</a> ()</td></tr>
-<tr class="memdesc:gab3df7f38599558b3899ecc28dcc711d0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>?? ( -- )</code> dump vocabulary, stack, end exit from system (end of script) <br /></td></tr>
-<tr class="separator:gab3df7f38599558b3899ecc28dcc711d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a7286df73573184453bd316a6cb1564"><td class="memItemLeft" align="right" valign="top"><a id="ga1a7286df73573184453bd316a6cb1564"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__debug.html#ga1a7286df73573184453bd316a6cb1564">oFORTH.DumpStack</a> ()</td></tr>
+<tr class="memdesc:ga1a7286df73573184453bd316a6cb1564"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>? ( -- )</code> dump data stack <br /></td></tr>
+<tr class="separator:ga1a7286df73573184453bd316a6cb1564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1db5ba91f0d63cf0b8d5d1db666cc1f4"><td class="memItemLeft" align="right" valign="top"><a id="ga1db5ba91f0d63cf0b8d5d1db666cc1f4"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__debug.html#ga1db5ba91f0d63cf0b8d5d1db666cc1f4">oFORTH.DumpFVM</a> ()</td></tr>
+<tr class="memdesc:ga1db5ba91f0d63cf0b8d5d1db666cc1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>?? ( -- )</code> dump full FVM state <br /></td></tr>
+<tr class="separator:ga1db5ba91f0d63cf0b8d5d1db666cc1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed351fdf16877cfe4d0f1eebb1b6254d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__debug.html#gaed351fdf16877cfe4d0f1eebb1b6254d">oFORTH.DropAll</a> ()</td></tr>
+<tr class="memdesc:gaed351fdf16877cfe4d0f1eebb1b6254d"><td class="mdescLeft">&#160;</td><td class="mdescRight">'.  <a href="group__debug.html#gaed351fdf16877cfe4d0f1eebb1b6254d">More...</a><br /></td></tr>
+<tr class="separator:gaed351fdf16877cfe4d0f1eebb1b6254d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>words and commands can be used for debug </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaed351fdf16877cfe4d0f1eebb1b6254d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed351fdf16877cfe4d0f1eebb1b6254d">&#9670;&nbsp;</a></span>DropAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def oFORTH.DropAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>'. </p>
+<p>( ... &ndash; )` clear system state (data stack) </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

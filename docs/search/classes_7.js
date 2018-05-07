@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['number',['Number',['../classoFORTH_1_1Number.html',1,'oFORTH']]]
+  ['map',['Map',['../classoFORTH_1_1Map.html',1,'oFORTH']]]
 ];

@@ -1,3 +1,6 @@
 <map id="oFORTH Virtual Machine" name="oFORTH Virtual Machine">
-<area shape="rect" id="node2" href="$group__core.html" title="Core" alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node2" href="$group__interp.html" title="Interpreter/Compiler" alt="" coords="223,5,360,32"/>
+<area shape="rect" id="node3" href="$group__fvmstack.html" title="all computations in FORTH use only stack (no registers or variables) " alt="" coords="229,56,353,83"/>
+<area shape="rect" id="node4" href="$group__voc.html" title="holds global definitios " alt="" coords="248,107,335,133"/>
+<area shape="rect" id="node5" href="$group__debug.html" title="Debug" alt="" coords="261,157,321,184"/>
 </map>

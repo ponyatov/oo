@@ -1,41 +1,3 @@
-## @file
-## @brief object/stack oFORTH Virtual Machine (Python implementation)
-
-from SYM import *
-
-## @defgroup voc Vocabulary
-## holds global definitios
-## @ingroup FVM
-
-## Vocabulary register
-## @ingroup voc
-W = Map('FORTH')
-
-## @ingroup voc
-def test_FVM_W(): assert W.head() == '<map:FORTH>'
-
-## @defgroup stack Global data stack
-## all computations in FORTH use only stack (no registers or variables)
-## @ingroup FVM
-## @{
-
-## global data stack register
-D = Stack('DATA')
-
-## @test empty stack dump
-def test_FVM_D(): assert '%s' % D == '\n<stack:DATA>'
-
-## `DUP ( o - o o )` duplicate top stack element
-def DUP(): D.dup()
-W << DUP
-
-## `DROP ( o1 o2 -- o1 )` drop top element
-def DROP(): D.drop()
-W << DROP
-
-## `SWAP ( o1 o2 -- o2 o1 )` swap 2 top elements
-def SWAP(): D.swap()
-W << SWAP
 
 ## @test stack operations
 def test_D_dupswap():
@@ -58,11 +20,6 @@ def test_Active():
     assert '%s' % Active('life').execute() == '\n<active:life>'
     assert '%s' % D == '\n<stack:DATA>'
 
-def test_Vector_execute():
-    D << Vector('empty')
-    assert str(D) == '\n<stack:DATA>\n\t<vector:empty>'
-    EXECUTE() ; assert D.nest == []
-    
 def test_Object_callable():
     D.flush()
     T = Object('callable')
@@ -99,21 +56,13 @@ W << NOP
 
 from GUI import *
 
-## @defgroup interp Interpreter/Compiler
-## @ingroup FVM
-
 ## @defgroup lexer Lexer
 ## @brief regexp-based (lex) made with PLY parser generator library
 ## @ingroup interp
 ## @{
 
-import ply.lex as lex
-
 ## lexer error callback
 def t_error(t): raise SyntaxError(t)
-
-## ignored chars: spaces
-t_ignore = ' \t\r\n'
 
 ## single line `#comment`
 def t_COMMENT_hash(t):   r'\#.+'
@@ -122,8 +71,6 @@ def t_COMMENT_slash(t):  r'\\.+'
 ## block `(comment)`
 def t_COMMENT_parens(t): r'\(.*?\)'
 
-## list of used token (literal) types
-tokens = ['token','integer','number','hex','bin','inc']
 
 ## float in exponential form
 def t_NUMBER_exp(t):
@@ -182,11 +129,7 @@ W['.inc'] = Fn(INC) ; W['.inc']['IMMED'] = T
 ## @ingroup interp
 ## @{
 
-## `EXECUTE ( callable:xt -- ... )`
-## run executable definition via its execution token in stack
-## @ingroup interp
-def EXECUTE(): D.pop().execute(D)
-W << EXECUTE
+
 
 def test_callable_generic():
     D.flush() << Object('callable') ; W['EXECUTE'].execute(D)
@@ -198,14 +141,6 @@ def test_callable_literals():
     D << String('lit') ; W['EXECUTE'].execute(D)
     assert str(D) == \
         '\n<stack:DATA>\n\t<integer:1234>\n\t<string:lit>'
-
-## `WORD ( -- token:wordname )`
-## parse next word name from source code stream
-## @ingroup lexer
-def WORD():
-    D << lexer[-1].token() # get object right from lexer
-    if not D.top(): D.pop() ; raise EOFError
-W << WORD
 
 ## @test check comments and primitive literals
 test_STRING_4Interpreter = '''
@@ -231,9 +166,7 @@ def test_WORD():
     try: WORD() ; assert False
     except EOFError: assert True # test ok
 
-## `FIND ( wordname -- callable:xt )`
-## lookup execatable definition in vocabulary
-def FIND():
+
     WN = D.pop()            # get word name to be found
     try: D << W[WN.value]   # push result from vocabulary
     except KeyError:
@@ -249,11 +182,7 @@ def test_FIND():
     except SyntaxError: assert True
 W << FIND
 
-## `INTERPRET ( -- )`
-## [R]ead [E]val [P]rint [L]oop
-## @param[in] SRC source code should be interpreted
-def INTERPRET(SRC=''):
-    global lexer ; lexer += [lex.lex()] # push new lexer
+    += [lex.lex()] # push new lexer
     lexer[-1].input(SRC)                # feed source input
     while True:                         # interpreter loop                     
         try: WORD()

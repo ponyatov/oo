@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vocabulary',['Vocabulary',['../group__voc.html',1,'']]]
+  ['tests',['Tests',['../group__symtests.html',1,'']]]
 ];

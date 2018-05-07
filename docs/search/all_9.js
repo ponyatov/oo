@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['main_2edoxy',['main.doxy',['../main_8doxy.html',1,'']]],
-  ['map',['Map',['../classoFORTH_1_1Map.html',1,'oFORTH.Map'],['../group__map.html',1,'(Global Namespace)']]]
+  ['integer',['Integer',['../classoFORTH_1_1Integer.html',1,'oFORTH']]],
+  ['interpreter_2fcompiler',['Interpreter/Compiler',['../group__interp.html',1,'']]],
+  ['interpret',['INTERPRET',['../group__interp.html#gab94f30ad756e58cffbab594d63f2efe2',1,'oFORTH']]]
 ];

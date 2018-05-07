@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['q',['q',['../group__debug.html#ga1b8d04485c6e665d46f0f7b4868cd30d',1,'FVM']]],
-  ['ql',['QL',['../group__compiler.html#ga83b8894e835c5e4fbe67caf866836327',1,'FVM']]],
-  ['qq',['qq',['../group__debug.html#gab3df7f38599558b3899ecc28dcc711d0',1,'FVM']]],
-  ['qr',['QR',['../group__compiler.html#gac1789fe6ba813b13a56762763a688e40',1,'FVM']]]
+  ['pad',['pad',['../group__dump.html#ga8c6b1687b0b0d6d60fed16459cc78d9f',1,'oFORTH::Object']]],
+  ['pop',['pop',['../group__nest.html#gae2926bfacd702a48dcf0c57ea25f75f3',1,'oFORTH.Object.pop()'],['../group__nest.html#ga2319e8c3de8e98e0714835b03f73aaab',1,'oFORTH.Queue.pop()']]],
+  ['push',['push',['../group__nest.html#gaaed2952c43a1a9db64c9636166ef155e',1,'oFORTH.Object.push()'],['../group__nest.html#ga90a6a8c3422d310d72dd9c425fa78e66',1,'oFORTH.Queue.push()']]]
 ];

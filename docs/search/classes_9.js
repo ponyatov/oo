@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['primitive',['Primitive',['../classoFORTH_1_1Primitive.html',1,'oFORTH']]]
+  ['object',['Object',['../classoFORTH_1_1Object.html',1,'oFORTH']]]
 ];

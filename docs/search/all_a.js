@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['nest',['nest',['../group__nest.html#gad4a569f9557f3c6337e045a7c0ea2fe0',1,'oFORTH.Object.nest()'],['../group__nest.html',1,'(Global Namespace)']]],
-  ['number',['Number',['../classoFORTH_1_1Number.html',1,'oFORTH.Number'],['../group__number.html',1,'(Global Namespace)']]]
+  ['lexer',['lexer',['../group__ply.html#ga39df94e2d5e74b7a30e4f0ceba9aac97',1,'oFORTH']]]
 ];

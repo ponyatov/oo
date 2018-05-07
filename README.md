@@ -5,6 +5,8 @@
 
 github: https://github.com/ponyatov/o
 
+manual: http://ponyatov.github.io/o/
+
 * object Forth Virtual Machine implementation in Python
 * Forth-like language implementation guide
 * mix of Forth, SmallTalk and Actor model ideas

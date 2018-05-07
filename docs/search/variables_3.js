@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tag',['tag',['../group__nest.html#ga72a18fd6189eaa5ca9a9dded5811df27',1,'oFORTH::Object']]]
+  ['exit',['exit',['../group__nest.html#gafa97628eceb1918e5e83eb8c125d4bee',1,'oFORTH::GUI_thread']]],
+  ['export',['export',['../group__nest.html#ga30e9849692e893e1484b050c7f1d2d82',1,'oFORTH::GUI_thread']]]
 ];
