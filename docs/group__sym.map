@@ -1,6 +1,4 @@
-<map id="Symbolic Object tree" name="Symbolic Object tree">
-<area shape="rect" id="node2" href="$group__prim.html" title="Primitive" alt="" coords="347,5,420,32"/>
-<area shape="rect" id="node3" href="$group__special.html" title="Specials" alt="" coords="347,56,419,83"/>
-<area shape="rect" id="node4" href="$group__cont.html" title="Container" alt="" coords="344,107,423,133"/>
-<area shape="rect" id="node5" href="$group__core.html" title="Core System" alt="" coords="5,56,104,83"/>
+<map id="Symbolic object system" name="Symbolic object system">
+<area shape="rect" id="node2" href="$group__prim.html" title="key feature: evaluates to itself " alt="" coords="235,5,345,32"/>
+<area shape="rect" id="node3" href="$group__object.html" title="can hold single data element or work as data container " alt="" coords="216,56,364,83"/>
 </map>

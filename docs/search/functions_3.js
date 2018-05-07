@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['execute',['execute',['../classSYM_1_1Object.html#af8802a0ab19e9f4a6a03c8285d7f9512',1,'SYM.Object.execute()'],['../group__interp.html#gabfb5a9993bfb0cfaea4d5c02c9d82b4d',1,'FVM.EXECUTE()']]]
+  ['pad',['pad',['../group__dump.html#ga8c6b1687b0b0d6d60fed16459cc78d9f',1,'oFORTH::Object']]],
+  ['pop',['pop',['../group__nest.html#gae2926bfacd702a48dcf0c57ea25f75f3',1,'oFORTH::Object']]],
+  ['push',['push',['../group__nest.html#gaaed2952c43a1a9db64c9636166ef155e',1,'oFORTH::Object']]]
 ];

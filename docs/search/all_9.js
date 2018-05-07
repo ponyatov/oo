@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lexer',['lexer',['../group__lexer.html#ga1901e8e0eea2096e121030a5dab81c79',1,'FVM.lexer()'],['../group__lexer.html',1,'(Global Namespace)']]]
+  ['symbolic_20object_20system',['Symbolic object system',['../group__sym.html',1,'']]],
+  ['symbol',['Symbol',['../classoFORTH_1_1Symbol.html',1,'oFORTH.Symbol'],['../group__symbol.html',1,'(Global Namespace)']]]
 ];

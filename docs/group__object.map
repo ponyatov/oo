@@ -1,9 +1,7 @@
-<map id="Object system" name="Object system">
-<area shape="rect" id="node1" href="$group__active.html" title="items has only executional semantics " alt="" coords="269,5,327,32"/>
-<area shape="rect" id="node2" href="$group__prim.html" title="Primitive types maps to machine&#45;level (key feature: evaluates to itself) " alt="" coords="261,56,335,83"/>
-<area shape="rect" id="node3" href="$group__base.html" title="base class " alt="" coords="268,107,328,133"/>
-<area shape="rect" id="node4" href="$group__grammar.html" title="elements specially for syntax parsing " alt="" coords="260,157,336,184"/>
-<area shape="rect" id="node6" href="$group__special.html" title="Specials" alt="" coords="262,208,334,235"/>
-<area shape="rect" id="node7" href="$group__cont.html" title="data containers " alt="" coords="259,259,337,285"/>
-<area shape="rect" id="node8" href="$group__core.html" title="Core" alt="" coords="5,132,56,159"/>
+<map id="Universal base object" name="Universal base object">
+<area shape="rect" id="node1" href="$group__nest.html" title="any object can hold nested elements (AST tree), data in order, and use it in a stack&#45;like way (push/p..." alt="" coords="412,5,585,47"/>
+<area shape="rect" id="node2" href="$group__attr.html" title="any object can be used as associative array, or can have slots to implement OOP mechanics ..." alt="" coords="434,71,563,112"/>
+<area shape="rect" id="node3" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,107,168,134"/>
+<area shape="rect" id="node4" href="$group__symtests.html" title="run tests using py.test &#45;v oFORTH.py " alt="" coords="471,137,526,163"/>
+<area shape="rect" id="node5" href="$group__dump.html" title="dump object in human&#45;readable form for debugging " alt="" coords="470,187,527,214"/>
 </map>

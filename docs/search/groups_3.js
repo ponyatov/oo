@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debug',['Debug',['../group__debug.html',1,'']]]
+  ['nested_20elements_20_3d_20vector_20_3d_20stack',['Nested elements = vector = stack',['../group__nest.html',1,'']]]
 ];

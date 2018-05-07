@@ -1,14 +1,7 @@
 ## @file
 ## @brief object/stack oFORTH Virtual Machine (Python implementation)
 
-## @defgroup core Core
-
-import os,sys,math
-
 from SYM import *
-
-## @defgroup FVM oFORTH Virtual Machine
-## @ingroup core
 
 ## @defgroup voc Vocabulary
 ## holds global definitios

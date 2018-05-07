@@ -1,12 +1,10 @@
 ## @file
 ## @brief GUI egnine /wxPython/
 
-## @defgroup gui GUI engine
 ## @{
 
 import sys
-import wx
-import threading
+
 
 ## GUI thread
 class GUI(threading.Thread):

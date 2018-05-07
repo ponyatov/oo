@@ -1,3 +1,4 @@
-<map id="Primitive" name="Primitive">
-<area shape="rect" id="node2" href="$group__object.html" title="Object system" alt="" coords="5,5,112,32"/>
+<map id="Primitive types" name="Primitive types">
+<area shape="rect" id="node1" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node3" href="$group__symbol.html" title="generic identifier targets to name any entity " alt="" coords="373,5,440,32"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="Core" name="Core">
-<area shape="rect" id="node1" href="$group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="104,5,273,32"/>
-<area shape="rect" id="node2" href="$group__object.html" title="Object system" alt="" coords="135,56,242,83"/>
+<area shape="rect" id="node1" href="$group__gui.html" title="wxPython " alt="" coords="147,5,235,32"/>
+<area shape="rect" id="node2" href="$group__FVM.html" title="oFORTH Virtual Machine" alt="" coords="107,56,276,83"/>
+<area shape="rect" id="node3" href="$group__sym.html" title="[Sym]bolic Object System" alt="" coords="104,107,279,133"/>
 </map>
