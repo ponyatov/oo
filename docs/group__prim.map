@@ -1,4 +1,6 @@
 <map id="Primitive types" name="Primitive types">
-<area shape="rect" id="node1" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,5,168,32"/>
-<area shape="rect" id="node3" href="$group__symbol.html" title="generic identifier targets to name any entity " alt="" coords="373,5,440,32"/>
+<area shape="rect" id="node1" href="$group__sym.html" title="was first conceived for knowledge representation and symbolic computation " alt="" coords="5,56,168,83"/>
+<area shape="rect" id="node2" href="$group__string.html" title="text string " alt="" coords="383,5,439,32"/>
+<area shape="rect" id="node4" href="$group__number.html" title="floating point, integers, hex/binary, complex,... " alt="" coords="373,56,448,83"/>
+<area shape="rect" id="node5" href="$group__symbol.html" title="generic identifier targets to name any entity " alt="" coords="377,107,444,133"/>
 </map>

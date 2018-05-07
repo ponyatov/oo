@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hex',['Hex',['../classSYM_1_1Hex.html',1,'SYM']]]
+  ['primitive',['Primitive',['../classoFORTH_1_1Primitive.html',1,'oFORTH']]]
 ];

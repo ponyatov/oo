@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['symbol',['Symbol',['../classoFORTH_1_1Symbol.html',1,'oFORTH']]]
+  ['integer',['Integer',['../classoFORTH_1_1Integer.html',1,'oFORTH']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gui_20engine',['GUI engine',['../group__gui.html',1,'']]]
+  ['dump',['dump',['../group__dump.html#ga5780e1d6b12b9257ac1ccfc42f160024',1,'oFORTH.Object.dump()'],['../group__dump.html',1,'(Global Namespace)']]]
 ];

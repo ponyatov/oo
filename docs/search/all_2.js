@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dump',['dump',['../group__dump.html#ga5780e1d6b12b9257ac1ccfc42f160024',1,'oFORTH.Object.dump()'],['../group__dump.html',1,'(Global Namespace)']]]
+  ['bin',['Bin',['../classoFORTH_1_1Bin.html',1,'oFORTH']]]
 ];

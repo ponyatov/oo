@@ -9,48 +9,6 @@
     ## @pram[in] D context data stack
     def execute(self,D): D << self ; return self
     
-######################################################### Symbol ( generic ID )
-
-    
-######################################################################## String
-
-class String(Primitive): pass
-
-def test_String(): assert '%s' % \
-    String('hello') == '\n<string:hello>'
-
-####################################################################### Numbers
-
-######################################################################### Float
-
-class Number(Primitive):
-    def __init__(self,V):
-        Primitive.__init__(self, V)
-        self.value = float(V)           # use python float
-
-def test_Number_point(): assert \
-    type(Number('-0123.45').value) == type(-123.45) and \
-    abs( Number('-0123.45').value - (-123.45) ) < 1e-6
-
-def test_Number_exp(): assert \
-    type(Number('-01.23e+45').value) == type(-123.45) and \
-    abs( Number('-01.23E+45').value - (-1.23e45) ) < 1e-6
-
-####################################################################### Integer
-
-class Integer(Number):
-    def __init__(self,V,B=10):
-        Number.__init__(self, '0')
-        self.value = int(V)             # use python integer
-
-def test_Integer(): assert \
-    type(Integer('-012345').value) == type(-12345) and \
-    Integer('-012345').value == -12345
-    
-class Hex(Integer):
-    def __init__(self,V): Integer.__init__(self, '0') ; self.value = V
-class Bin(Integer):
-    def __init__(self,V): Integer.__init__(self, '0') ; self.value = V
 
 ## @defgroup cont Container
 ## data containers

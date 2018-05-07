@@ -125,9 +125,75 @@ class Symbol(Primitive): pass
 def test_Symbol():
     assert Symbol('Pi').head() == '<symbol:Pi>'
 
+## @}
+
+## @defgroup string String
+## @brief text string
+## @ingroup prim
+## @{
+
+## string
+class String(Primitive): pass
+
+## @test hello world
+def test_String():
+    assert String('world').head(prefix='hello ') == 'hello <string:world>'
 
 ## @}
         
+## @defgroup number Numbers
+## @brief floating point, integers, hex/binary, complex,...
+## @ingroup prim
+## @{
+
+## floating point number
+class Number(Primitive):
+    ## construct floating point number 
+    def __init__(self,V):
+        Primitive.__init__(self, V)
+        ## wrap python float
+        self.value = float(V)
+
+## @test type/value for wrapped dotted number
+def test_Number_point(): assert \
+    type(Number('-0123.45').value) == type(-123.45) and \
+    abs( Number('-0123.45').value - (-123.45) ) < 1e-6
+
+## @test type/value for wrapped exponential number
+def test_Number_exp(): assert \
+    type(Number('-01.23e+45').value) == type(-123.45) and \
+    abs( Number('-01.23E+45').value - (-1.23e45) ) < 1e-6
+        
+## integer
+class Integer(Number):
+    ## construct with optional base
+    def __init__(self,V,base=10):
+        ## wrap python integer
+        self.val = int(V,base)
+
+## @test type and value for wrapped integer 
+def test_Integer(): assert \
+    type(Integer('-012345').val) == type(-12345) and \
+         Integer('-012345').val  == -12345        
+
+## hexadecimal (machine) number         
+class Hex(Integer):
+    ## inherit integer with base=16
+    def __init__(self,V): Integer.__init__(self, V[2:], 0x10)
+    
+## @test hex number reading
+def test_Hex(): assert Hex('0x1234').val == 0x1234
+    
+## binary (machine) number
+class Bin(Integer):
+    ## inherit integer with base=2
+    def __init__(self,V): Integer.__init__(self, V[2:], 0x02)
+    
+## @test binary number reading
+def test_Bin(): assert Bin('0b1101').val == 0b1101
+
+## @}
+
 ## @defgroup FVM oFORTH Virtual Machine
 
 ## @defgroup gui GUI engine
