@@ -6,3 +6,7 @@
 *.synctex.gz
 .pytest_cache/
 *.pdf
+.cache/
+
+/doc/
+doxygen_sqlite3.db

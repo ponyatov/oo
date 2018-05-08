@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pad',['pad',['../group__dump.html#ga8c6b1687b0b0d6d60fed16459cc78d9f',1,'oFORTH::Object']]],
-  ['pop',['pop',['../group__nest.html#gae2926bfacd702a48dcf0c57ea25f75f3',1,'oFORTH.Object.pop()'],['../group__nest.html#ga2319e8c3de8e98e0714835b03f73aaab',1,'oFORTH.Queue.pop()']]],
-  ['push',['push',['../group__nest.html#gaaed2952c43a1a9db64c9636166ef155e',1,'oFORTH.Object.push()'],['../group__nest.html#ga90a6a8c3422d310d72dd9c425fa78e66',1,'oFORTH.Queue.push()']]]
+  ['pad',['pad',['../group__dump.html#gaf57a1a24201e941a9084f23a09f31699',1,'oFORTH::Object']]],
+  ['pop',['pop',['../group__nest.html#ga4b4b09606db7ec8fae94f3edbf264dce',1,'oFORTH.Object.pop()'],['../group__nest.html#ga7b462e4a2ae44b0bd1ab078b53932a4e',1,'oFORTH.Queue.pop()']]],
+  ['push',['push',['../group__nest.html#gae75d2278289d639c273f8892daede8cb',1,'oFORTH.Object.push()'],['../group__nest.html#ga02b22b8d5844c2a620229557a5eac0f4',1,'oFORTH.Queue.push()']]]
 ];

@@ -51,17 +51,14 @@ class Object:
     
     ## dump object in full tree form
     ## @param[in] depth tree depth for recursive dump
-    ## @param[in] onlystack flag used for stack dump (disable `attr{}` dump)
-    def dump(self,depth=0,onlystack=False):
-        if depth==0:
-            ## list of dumped obejcts, block infty recursion
-            self.dumped = []
+    def dump(self,depth=0):
+        ## list of dumped objects, block infty recursion
+        if depth==0: self.dumped = []
         S = '\n'+self.pad(depth)+self.head()    # dump header
         if self in self.dumped: return '...'    # break recursion
         else: self.dumped.append(self)          # mark current object
-        if not onlystack:
-            for i in self.attr:
-                S += '\n' + self.pad(depth+1) + self.attr[i].head(prefix='%s = '%i)
+        for i in self.attr:
+            S += '\n' + self.pad(depth+1) + self.attr[i].head(prefix='%s = '%i)
         return S + self.dumpnest(depth)
     ## dump `nest[]`ed only
     def dumpnest(self,depth=0):
@@ -117,7 +114,6 @@ class Object:
     
 ## @defgroup symtests Tests
 ## run tests using `py.test -v oFORTH.py`
-## @ingroup object
 ## @{
 
 ## @test symbol creation
@@ -438,7 +434,6 @@ W << SWAP
 
 ## @defgroup ply Syntax parser /lexer only/
 ## made with PLY parser generator library
-## @ingroup interp
 ## @{
 
 import ply.lex as lex
@@ -540,7 +535,7 @@ W[':'] = Fn(colon)
 
 ## `; ( -- )` stop colon definition
 def semicolon():
-    global COMPILE ; COMPILE = None
+    global COMPILE ; print COMPILE ; COMPILE = None
 W[';'] = Fn(semicolon) ; W[';'].immed = True
 
 ## @}
@@ -576,9 +571,10 @@ CMD = Queue('CMD')
 
 ## interpreter will run in background
 class CMD_thread(threading.Thread):
+    stop = False
     ## infty loop on command queue processing
     def run(self):
-        while True:
+        while not self.stop:
             try: INTERPRET(CMD.pop())       # process next command
             except:                         # don't stop thread on errors
                 COMPILE = []                # drop compilation mode
@@ -614,6 +610,10 @@ class GUI_thread(threading.Thread):
         ## file/exit
         self.exit = self.file.Append(wx.ID_EXIT,'E&xit')
         self.main.Bind(wx.EVT_MENU, lambda e:self.main.Close(), self.exit)
+        ## debug demu
+        self.debug = wx.Menu() ; self.menubar.Append(self.debug,'&Debug')
+        self.dump = self.debug.Append(wx.ID_EXECUTE,'DUMP\tF12')
+        self.main.Bind(wx.EVT_MENU, self.onDump, self.dump)
         ## help menu
         self.help = wx.Menu() ; self.menubar.Append(self.help,'&Help')
         ## help/about
@@ -651,6 +651,8 @@ class GUI_thread(threading.Thread):
         key = e.GetKeyCode() ; ctrl = e.CmdDown() ; shift = e.ShiftDown()
         if key == 13 and ( ctrl or shift ): CMD.push(self.editor.GetSelectedText())
         else: e.Skip()
+    ## dump system state
+    def onDump(self,e): CMD.push('??')
     ## about event handler
     def onAbout(self,e):
         F = open('README.md') ; wx.MessageBox(F.read(166)) ; F.close()
@@ -671,4 +673,4 @@ if __name__ == '__main__':
     gui_thread.start()
     cmd_thread.start()
     gui_thread.join()
-    
+    cmd_thread.stop = True ; CMD.push('') ; cmd_thread.join()

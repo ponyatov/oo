@@ -303,15 +303,6 @@ EXTENSION_MAPPING      =
 
 MARKDOWN_SUPPORT       = YES
 
-# When the TOC_INCLUDE_HEADINGS tag is set to a non-zero value, all headings up
-# to that level are automatically included in the table of contents, even if
-# they do not have an id attribute.
-# Note: This feature currently applies only to Markdown headings.
-# Minimum value: 0, maximum value: 99, default value: 0.
-# This tag requires that the tag MARKDOWN_SUPPORT is set to YES.
-
-TOC_INCLUDE_HEADINGS   = 0
-
 # When enabled doxygen tries to link words that correspond to documented
 # classes, or namespaces to their corresponding documentation. Such a link can
 # be prevented in individual cases by putting a % sign in front of the word or
@@ -361,13 +352,6 @@ IDL_PROPERTY_SUPPORT   = YES
 # The default value is: NO.
 
 DISTRIBUTE_GROUP_DOC   = NO
-
-# If one adds a struct or class to a group and this option is enabled, then also
-# any nested class or struct is added to the same group. By default this option
-# is disabled and one has to add nested compounds explicitly via \ingroup.
-# The default value is: NO.
-
-GROUP_NESTED_COMPOUNDS = NO
 
 # Set the SUBGROUPING tag to YES to allow class member groups of the same type
 # (for instance a group of public functions) to be put as a subgroup of that
@@ -532,13 +516,6 @@ CASE_SENSE_NAMES       = YES
 # The default value is: NO.
 
 HIDE_SCOPE_NAMES       = NO
-
-# If the HIDE_COMPOUND_REFERENCE tag is set to NO (default) then doxygen will
-# append additional text to a page's title, such as Class Reference. If set to
-# YES the compound reference will be hidden.
-# The default value is: NO.
-
-HIDE_COMPOUND_REFERENCE= NO
 
 # If the SHOW_INCLUDE_FILES tag is set to YES then doxygen will put a list of
 # the files that are included by a file in the documentation of that file.
@@ -757,12 +734,6 @@ WARN_IF_DOC_ERROR      = YES
 # The default value is: NO.
 
 WARN_NO_PARAMDOC       = NO
-
-# If the WARN_AS_ERROR tag is set to YES then doxygen will immediately stop when
-# a warning is encountered.
-# The default value is: NO.
-
-WARN_AS_ERROR          = NO
 
 # The WARN_FORMAT tag determines the format of the warning messages that doxygen
 # can produce. The string should contain the $file, $line, and $text tags, which
@@ -1750,17 +1721,6 @@ LATEX_HEADER           =
 
 LATEX_FOOTER           =
 
-# The LATEX_EXTRA_STYLESHEET tag can be used to specify additional user-defined
-# LaTeX style sheets that are included after the standard style sheets created
-# by doxygen. Using this option one can overrule certain style aspects. Doxygen
-# will copy the style sheet files to the output directory.
-# Note: The order of the extra style sheet files is of importance (e.g. the last
-# style sheet in the list overrules the setting of the previous ones in the
-# list).
-# This tag requires that the tag GENERATE_LATEX is set to YES.
-
-LATEX_EXTRA_STYLESHEET =
-
 # The LATEX_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the LATEX_OUTPUT output
 # directory. Note that the files will be copied as-is; there are no commands or
@@ -1820,14 +1780,6 @@ LATEX_SOURCE_CODE      = NO
 
 LATEX_BIB_STYLE        = plain
 
-# If the LATEX_TIMESTAMP tag is set to YES then the footer of each generated
-# page will contain the date and time when the page was generated. Setting this
-# to NO can help when comparing the output of multiple runs.
-# The default value is: NO.
-# This tag requires that the tag GENERATE_LATEX is set to YES.
-
-LATEX_TIMESTAMP        = NO
-
 #---------------------------------------------------------------------------
 # Configuration options related to the RTF output
 #---------------------------------------------------------------------------
@@ -1883,16 +1835,6 @@ RTF_STYLESHEET_FILE    =
 # This tag requires that the tag GENERATE_RTF is set to YES.
 
 RTF_EXTENSIONS_FILE    =
-
-# If the RTF_SOURCE_CODE tag is set to YES then doxygen will include source code
-# with syntax highlighting in the RTF output.
-#
-# Note that which sources are shown also depends on other settings such as
-# SOURCE_BROWSER.
-# The default value is: NO.
-# This tag requires that the tag GENERATE_RTF is set to YES.
-
-RTF_SOURCE_CODE        = NO
 
 #---------------------------------------------------------------------------
 # Configuration options related to the man page output
@@ -2422,16 +2364,6 @@ DIAFILE_DIRS           =
 # will not generate output for the diagram.
 
 PLANTUML_JAR_PATH      =
-
-# When using plantuml, the PLANTUML_CFG_FILE tag can be used to specify a
-# configuration file for plantuml.
-
-PLANTUML_CFG_FILE      =
-
-# When using plantuml, the specified paths are searched for files specified by
-# the !include statement in a plantuml block.
-
-PLANTUML_INCLUDE_PATH  =
 
 # The DOT_GRAPH_MAX_NODES tag can be used to set the maximum number of nodes
 # that will be shown in the graph. If the number of nodes in a graph becomes
