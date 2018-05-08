@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['t_5feof',['t_eof',['../group__ply.html#ga03284098249c12bb04d54c554a79b018',1,'oFORTH']]],
   ['t_5ferror',['t_error',['../group__ply.html#gac2fbbd4f35ad89a49cb0aef502fc1e1d',1,'oFORTH']]],
   ['t_5fnewline',['t_newline',['../group__ply.html#gac8231341f29e8178d21566fe0717aac8',1,'oFORTH']]],
   ['t_5fnum',['t_NUM',['../group__ply.html#gafff5395efdfa6cf171948cbea9252aa4',1,'oFORTH']]],

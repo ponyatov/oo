@@ -7,10 +7,11 @@ var searchData=
   ['setupmenu',['SetupMenu',['../group__nest.html#ga25ffdcdc61c8dc6976a452c19ff34c07',1,'oFORTH::GUI_thread']]],
   ['stack',['Stack',['../classoFORTH_1_1Stack.html',1,'oFORTH']]],
   ['stack',['Stack',['../group__stack.html',1,'']]],
-  ['string',['String',['../classoFORTH_1_1String.html',1,'oFORTH']]],
+  ['stop',['stop',['../group__nest.html#ga184531f0ed9429f311ce297de6dc9508',1,'oFORTH::CMD_thread']]],
   ['string',['String',['../group__string.html',1,'']]],
+  ['string',['String',['../classoFORTH_1_1String.html',1,'oFORTH']]],
   ['swap',['swap',['../group__nest.html#ga7af5e5897ba81f397c0541acc7575520',1,'oFORTH.Object.swap()'],['../group__fvmstack.html#ga2e597a86fe736ac395909a19962e272d',1,'oFORTH.SWAP()']]],
   ['symbolic_20object_20system',['Symbolic object system',['../group__sym.html',1,'']]],
-  ['symbol',['Symbol',['../classoFORTH_1_1Symbol.html',1,'oFORTH']]],
-  ['symbol',['Symbol',['../group__symbol.html',1,'']]]
+  ['symbol',['Symbol',['../group__symbol.html',1,'']]],
+  ['symbol',['Symbol',['../classoFORTH_1_1Symbol.html',1,'oFORTH']]]
 ];

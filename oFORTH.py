@@ -51,14 +51,17 @@ class Object:
     
     ## dump object in full tree form
     ## @param[in] depth tree depth for recursive dump
-    def dump(self,depth=0):
+    ## @param[in] prefix optional prefix before <b>dump</b> header
+    def dump(self,depth=0,prefix=''):
         ## list of dumped objects, block infty recursion
-        if depth==0: self.dumped = []
-        S = '\n'+self.pad(depth)+self.head()    # dump header
-        if self in self.dumped: return '...'    # break recursion
-        else: self.dumped.append(self)          # mark current object
+        global dumped
+        if depth==0: dumped = []
+        S = '\n'+self.pad(depth)+self.head(prefix)      # dump header
+        if self in dumped: return S                     # break recursion
+        else: dumped.append(self) 
         for i in self.attr:
-            S += '\n' + self.pad(depth+1) + self.attr[i].head(prefix='%s = '%i)
+            S += '\n' + self.pad(depth+1) + \
+                self.attr[i].dump(depth+1,prefix='%s = '%i)
         return S + self.dumpnest(depth)
     ## dump `nest[]`ed only
     def dumpnest(self,depth=0):
@@ -349,7 +352,10 @@ class Queue(Container):
     ## put element
     def push(self,o): self.nest.put(o) ; return self
     ## pop element
-    def pop(self): return self.nest.get()
+    ## @param[in] timeout optional timeout, seconds
+    def pop(self,timeout=None):
+        if timeout: return self.nest.get(timeout=timeout)
+        else: return self.nest.get()
 
 ## @test empty queue creation
 def test_Queue():
@@ -465,6 +471,9 @@ def t_SYM(t):
 ## lexer error callabck
 def t_error(t): raise SyntaxError(t)
 
+## end of file must reset FVM
+def t_eof(t): global COMPILE ; COMPILE = [] 
+
 ## global lexer
 lexer = lex.lex()
 
@@ -571,14 +580,16 @@ CMD = Queue('CMD')
 
 ## interpreter will run in background
 class CMD_thread(threading.Thread):
+    ## stop thread flag
     stop = False
     ## infty loop on command queue processing
     def run(self):
         while not self.stop:
-            try: INTERPRET(CMD.pop())       # process next command
-            except:                         # don't stop thread on errors
-                COMPILE = []                # drop compilation mode
-                print sys.exc_info()        # print error frame
+            try: INTERPRET(CMD.pop(timeout=1))  # process next command
+            except pyQueue.Empty: pass          # required for self.stop flag
+            except:                             # don't stop thread on errors
+                COMPILE = []                    # drop compilation mode
+                print sys.exc_info()            # print error frame
 ## command processing singleton thread
 cmd_thread = CMD_thread()
 
@@ -612,6 +623,7 @@ class GUI_thread(threading.Thread):
         self.main.Bind(wx.EVT_MENU, lambda e:self.main.Close(), self.exit)
         ## debug demu
         self.debug = wx.Menu() ; self.menubar.Append(self.debug,'&Debug')
+        ## debug/dump
         self.dump = self.debug.Append(wx.ID_EXECUTE,'DUMP\tF12')
         self.main.Bind(wx.EVT_MENU, self.onDump, self.dump)
         ## help menu
@@ -673,4 +685,4 @@ if __name__ == '__main__':
     gui_thread.start()
     cmd_thread.start()
     gui_thread.join()
-    cmd_thread.stop = True ; CMD.push('') ; cmd_thread.join()
+    cmd_thread.stop = True ; cmd_thread.join()
