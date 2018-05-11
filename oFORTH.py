@@ -114,6 +114,8 @@ class Object:
         B = self.pop() ; A = self.pop()
         self.push(B) ; self.push(A)
         return self
+    ## primitive objects executes into itself
+    def __call__(self): D << self
     
 ## @defgroup symtests Tests
 ## run tests using `py.test -v oFORTH.py`
@@ -198,6 +200,7 @@ def test_Number_exp(): assert \
 class Integer(Number):
     ## construct with optional base
     def __init__(self,V,base=10):
+        Primitive.__init__(self, V)
         ## wrap python integer
         self.val = int(V,base)
 
@@ -210,6 +213,8 @@ def test_Integer(): assert \
 class Hex(Integer):
     ## inherit integer with base=16
     def __init__(self,V): Integer.__init__(self, V[2:], 0x10)
+    ## dump in hex
+    def head(self,prefix=''): return '%s<%s:0x%X>'%(prefix,self.tag,self.val)
     
 ## @test hex number reading
 def test_Hex(): assert Hex('0x1234').val == 0x1234
@@ -445,7 +450,7 @@ W << SWAP
 import ply.lex as lex
 
 ## list of supported token types
-tokens = ['SYM','NUM']
+tokens = ['SYM','NUM','HEX']
 
 ## ignored chars: spaces
 t_ignore = ' \t\r\n'
@@ -457,8 +462,13 @@ t_ignore_COMMENT = r'[\#\\].*|\(.*?\)'
 def t_newline(t):
     r'\n'
     t.lexer.lineno += 1
+
+## hex number
+def t_HEX(t):
+    r'0x[0-9a-fA-F]+'
+    t.value = Hex(t.value) ; return t
     
-## numbers
+## float numbers
 def t_NUM(t):
     r'[\+\-]?[0-9]+(\.[0-9]*)?([eE][\+\-]?[0-9]+)?'
     t.value = Number(t.value) ; return t
@@ -685,4 +695,7 @@ if __name__ == '__main__':
     gui_thread.start()
     cmd_thread.start()
     gui_thread.join()
-    cmd_thread.stop = True ; cmd_thread.join()
+    ## stop command processing thread
+    cmd_thread.stop = True
+    ## and wait until cmd dispatch tick will be end
+    cmd_thread.join()

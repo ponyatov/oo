@@ -1,7 +1,9 @@
 # metasystem
 
-: nop ; ?dis nop
-: init nop init nop ; ?dis init
+0x1234
+
+: nop ;			\ ?dis nop
+: init nop init nop ;	\ ?dis init
 
 ??
 
