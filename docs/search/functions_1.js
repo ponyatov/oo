@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['colon',['colon',['../group__interp.html#gae48c04ae1115fa24394845480aae750e',1,'oFORTH']]]
+  ['colon',['colon',['../group__interp.html#ga8f64324898b21aac77d0b1197f01c1cc',1,'oFORTH']]]
 ];

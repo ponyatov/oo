@@ -450,7 +450,10 @@ W << SWAP
 import ply.lex as lex
 
 ## list of supported token types
-tokens = ['SYM','NUM','HEX']
+tokens = ['SYM','NUM','HEX','STR']
+
+## multiple lexing states: string parsing with `\escapes`
+states = (('string','exclusive'),)
 
 ## ignored chars: spaces
 t_ignore = ' \t\r\n'
@@ -477,9 +480,27 @@ def t_NUM(t):
 def t_SYM(t):
     r'[a-zA-Z0-9_\?\:\;\.\+\-]+'
     t.value = Symbol(t.value) ; return t
+
+## ignore chars in string mode 
+t_string_ignore = ''
+## move to `string` state on `'`
+def t_begin_string(t):
+    r'\''
+    t.lexer.push_state('string')
+    t.lexer.string=''
+## return from `string` state on `'`
+## @returns string token
+def t_string_STR(t):
+    r'\''
+    t.lexer.pop_state()
+    t.value = String(t.lexer.string) ; return t
+## any char in `string` mode    
+def t_string_char(t):
+    r'.'
+    t.lexer.string += t.value
     
 ## lexer error callabck
-def t_error(t): raise SyntaxError(t)
+def t_ANY_error(t): raise SyntaxError(t)
 
 ## end of file must reset FVM
 def t_eof(t): global COMPILE ; COMPILE = [] 
