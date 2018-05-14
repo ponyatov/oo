@@ -165,7 +165,17 @@ def test_Symbol():
 ## @{
 
 ## string
-class String(Primitive): pass
+class String(Primitive):
+    ## dump string in line form
+    ## @param[in] prefix optional string will be put before ``string``
+    def head(self,prefix=''):
+        H = "%s'" % prefix
+        for c in self.val:
+            if c == '\t': H += '\\t'
+            elif c == '\r': H += '\\r'
+            elif c == '\n': H += '\\n'
+            else: H += c
+        return H+"'"
 
 ## @test hello world
 def test_String():
@@ -494,6 +504,18 @@ def t_string_STR(t):
     r'\''
     t.lexer.pop_state()
     t.value = String(t.lexer.string) ; return t
+## tab
+def t_string_tab(t):
+    r'\\t'
+    t.lexer.string += '\t'
+## cr
+def t_string_cr(t):
+    r'\\r'
+    t.lexer.string += '\r'
+## lf
+def t_string_lf(t):
+    r'\\n'
+    t.lexer.string += '\n'
 ## any char in `string` mode    
 def t_string_char(t):
     r'.'
