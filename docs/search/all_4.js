@@ -8,6 +8,7 @@ var searchData=
   ['dump',['dump',['../group__nest.html#ga09aa0ecca4deebf55b0ea2958b8a8d41',1,'oFORTH.GUI_thread.dump()'],['../group__dump.html#ga3ecbc19ae0cc7a421fa006280e3ee7c0',1,'oFORTH.Object.dump()'],['../group__dump.html',1,'(Global Namespace)']]],
   ['dumpfvm',['DumpFVM',['../group__debug.html#ga1db5ba91f0d63cf0b8d5d1db666cc1f4',1,'oFORTH']]],
   ['dumpnest',['dumpnest',['../group__dump.html#ga2fd48a11ed262b68da075df787e78c1d',1,'oFORTH.Object.dumpnest()'],['../group__nest.html#gab336215c26c5cc1896238049cffc442b',1,'oFORTH.Queue.dumpnest()']]],
-  ['dumpstack',['DumpStack',['../group__debug.html#ga1a7286df73573184453bd316a6cb1564',1,'oFORTH']]],
+  ['dumpstack',['dumpstack',['../group__nest.html#gabf015b1825ef12ddcb73bd9e3c8e7f6d',1,'oFORTH.GUI_thread.dumpstack()'],['../group__debug.html#ga1a7286df73573184453bd316a6cb1564',1,'oFORTH.DumpStack()']]],
+  ['dumpvocab',['dumpvocab',['../group__nest.html#ga3401363aa19de4becef8e3d043661730',1,'oFORTH::GUI_thread']]],
   ['dup',['dup',['../group__nest.html#gaf37ac671bca26bd95e2aff77472bd923',1,'oFORTH.Object.dup()'],['../group__fvmstack.html#ga1f7f5a49d61ed1882fdfad1640ce0b68',1,'oFORTH.DUP()']]]
 ];

@@ -46,5 +46,7 @@ var searchData=
   ['test_5fsymbol',['test_Symbol',['../group__symbol.html#gae9f7eb88464e77d15aa7ef693d7f0eeb',1,'oFORTH']]],
   ['test_5fvector',['test_Vector',['../group__vector.html#ga9135b5a059bd0501ba80e1839c348ad7',1,'oFORTH']]],
   ['test_5fvector_5fexecute',['test_Vector_execute',['../group__vector.html#gad5b6cd3e86f2174fb266b94df2ca2e77',1,'oFORTH']]],
+  ['togglestack',['ToggleStack',['../group__nest.html#gac01ecd83b6328c5035d0e51bd9a4e7f6',1,'oFORTH::GUI_thread']]],
+  ['togglevocabulary',['ToggleVocabulary',['../group__nest.html#ga821b5694c3dc1553345addd189f51ce9',1,'oFORTH::GUI_thread']]],
   ['top',['top',['../group__nest.html#gacfa344f98eac7f8c87056c844aeb4420',1,'oFORTH::Object']]]
 ];

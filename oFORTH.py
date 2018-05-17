@@ -566,6 +566,7 @@ def INTERPRET(SRC=''):
             EXECUTE()                       # run found callable object
         else:
             COMPILE << D.pop()              # compile
+    gui_thread.onDump(None)
 
 ## @test empty script
 def test_INTERPRET_empty():
@@ -655,6 +656,8 @@ class GUI_thread(threading.Thread):
         self.app = wx.App()
         ## main window
         self.main = wx.Frame(None,wx.ID_ANY,str(sys.argv))
+        ## vocabulary/stack dump windows
+        self.SetupDumpers()
         ## menu
         self.SetupMenu()
         ## editor area
@@ -679,6 +682,14 @@ class GUI_thread(threading.Thread):
         ## debug/dump
         self.dump = self.debug.Append(wx.ID_EXECUTE,'DUMP\tF12')
         self.main.Bind(wx.EVT_MENU, self.onDump, self.dump)
+        ## debug/vocabulary
+        self.vocabulary = self.debug.Append(wx.ID_ANY,'&Vocabulary',kind=wx.ITEM_CHECK)
+        self.menubar.Check(self.vocabulary.GetId(),True) ; self.ToggleVocabulary(None)
+        self.main.Bind(wx.EVT_MENU,self.ToggleVocabulary,self.vocabulary)
+        ## debug/stack
+        self.stack = self.debug.Append(wx.ID_ANY,'&Stack',kind=wx.ITEM_CHECK)
+        self.menubar.Check(self.stack.GetId(),True) ; self.ToggleStack(None)
+        self.main.Bind(wx.EVT_MENU, self.ToggleStack, self.stack)
         ## help menu
         self.help = wx.Menu() ; self.menubar.Append(self.help,'&Help')
         ## help/about
@@ -716,16 +727,46 @@ class GUI_thread(threading.Thread):
         key = e.GetKeyCode() ; ctrl = e.CmdDown() ; shift = e.ShiftDown()
         if key == 13 and ( ctrl or shift ): CMD.push(self.editor.GetSelectedText())
         else: e.Skip()
-    ## dump system state
-    def onDump(self,e): CMD.push('??')
     ## about event handler
     def onAbout(self,e):
         F = open('README.md') ; wx.MessageBox(F.read(166)) ; F.close()
+        
     ## activate GUI elements only on thread start
     ## (interpreter system can run in headless mode)
     def run(self):
         self.main.Show()
         self.app.MainLoop()
+        
+    ## configure dump windows
+    def SetupDumpers(self):
+        # vocabulary
+        ## vocabulary dump window
+        self.dumpvocab = wx.Frame(self.main,wx.ID_ANY,W.head())
+        ## vocabulary widget (generic text editor)
+        self.editvoc = self.dumpvocab.control = wx.stc.StyledTextCtrl(self.dumpvocab)
+        # stack
+        ## data stack dump window
+        self.dumpstack = wx.Frame(self.main,wx.ID_ANY,D.head())
+        ## stack widget (generic text editor)
+        self.editstack = self.dumpstack.control = wx.stc.StyledTextCtrl(self.dumpstack)
+    ## dump system state
+    def onDump(self,e):
+        self.onVocabularyUpdate(e)
+        self.onStackUpdate(e)
+    ## toggle vocabulary window
+    def ToggleVocabulary(self,e):
+        if self.dumpvocab.IsShown(): self.dumpvocab.Hide()
+        else: self.dumpvocab.Show()
+    ## toggle stack window
+    def ToggleStack(self,e):
+        if self.dumpstack.IsShown(): self.dumpstack.Hide()
+        else: self.dumpstack.Show()
+    ## update vocabulary window
+    def onVocabularyUpdate(self,e):
+        if self.dumpvocab.IsShown(): self.editvoc.SetValue(str(W))
+    ## update stack window
+    def onStackUpdate(self,e):
+        if self.dumpstack.IsShown(): self.editstack.SetValue(str(D))
         
 ## GUI thread singleton
 gui_thread = GUI_thread()
