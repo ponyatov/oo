@@ -695,6 +695,7 @@ class GUI_thread(threading.Thread):
         ## help/about
         self.about = self.help.Append(wx.ID_ABOUT,'&About\tF1')
         self.main.Bind(wx.EVT_MENU, self.onAbout, self.about)
+        
     ## configure editor
     def SetupEditor(self):
         ## editor: use StyledText widget with rich syntax coloring
@@ -704,6 +705,7 @@ class GUI_thread(threading.Thread):
         W,H = self.main.GetClientSize()
         self.editor.StyleSetFont(wx.stc.STC_STYLE_DEFAULT, \
             wx.Font(H>>4, wx.FONTFAMILY_MODERN, wx.NORMAL, wx.NORMAL))
+        
     ## reopen file in editor
     def ReOpen(self,e,filename='src.src'):
         ## save used file name
@@ -756,11 +758,11 @@ class GUI_thread(threading.Thread):
     ## toggle vocabulary window
     def ToggleVocabulary(self,e):
         if self.dumpvocab.IsShown(): self.dumpvocab.Hide()
-        else: self.dumpvocab.Show()
+        else: self.dumpvocab.Show() ; self.onDump(e)
     ## toggle stack window
     def ToggleStack(self,e):
         if self.dumpstack.IsShown(): self.dumpstack.Hide()
-        else: self.dumpstack.Show()
+        else: self.dumpstack.Show() ; self.onDump(e)
     ## update vocabulary window
     def onVocabularyUpdate(self,e):
         if self.dumpvocab.IsShown(): self.editvoc.SetValue(str(W))
@@ -776,6 +778,9 @@ gui_thread = GUI_thread()
 import pickle
 
 if __name__ == '__main__':
+    # pickle
+    W = pickle.load(open(sys.argv[0]+'.image'))
+    # start
     gui_thread.start()
     cmd_thread.start()
     gui_thread.join()
@@ -783,3 +788,5 @@ if __name__ == '__main__':
     cmd_thread.stop = True
     ## and wait until cmd dispatch tick will be end
     cmd_thread.join()
+    ## pickle
+    pickle.dump(W,open(sys.argv[0]+'.image','w'))
