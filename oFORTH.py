@@ -5,6 +5,8 @@ import os,sys,time
 
 # wxPython
 import wx,wx.stc
+import wx.lib.floatcanvas.NavCanvas as NavCanvas
+
 
 # we'll use threaded VM/GUI/HTTP to avoid lockups and system falls
 import threading
@@ -662,6 +664,8 @@ class GUI_thread(threading.Thread):
         self.SetupMenu()
         ## editor area
         self.SetupEditor()
+        ## vizualization
+        self.SetupCanvas()
     ## condifure menu
     def SetupMenu(self):
         ## menu bar
@@ -690,6 +694,10 @@ class GUI_thread(threading.Thread):
         self.stack = self.debug.Append(wx.ID_ANY,'&Stack\tF9',kind=wx.ITEM_CHECK)
 #         self.menubar.Check(self.stack.GetId(),True) ; self.ToggleStack(None)
         self.main.Bind(wx.EVT_MENU, self.ToggleStack, self.stack)
+        ## viz menu
+        self.vizmenu = wx.Menu() ; self.menubar.Append(self.vizmenu,'&Viz')
+        self.canvasmenu = self.vizmenu.Append(wx.ID_ANY,'&Canvas\tF8',kind=wx.ITEM_CHECK)
+        self.main.Bind(wx.EVT_MENU,self.ToggleCanvas, self.canvasmenu)
         ## help menu
         self.help = wx.Menu() ; self.menubar.Append(self.help,'&Help')
         ## help/about
@@ -769,6 +777,16 @@ class GUI_thread(threading.Thread):
     ## update stack window
     def onStackUpdate(self,e):
         if self.dumpstack.IsShown(): self.editstack.SetValue(str(D))
+        
+    ## create vizualization
+    def SetupCanvas(self):
+        self.vizwin = wx.Frame(self.main,wx.ID_ANY,'canvas')
+        self.canvas = NavCanvas.NavCanvas(self.vizwin).Canvas
+    ## show/hide canvas window
+    def ToggleCanvas(self,e):
+        if self.vizwin.IsShown(): self.vizwin.Hide()
+        else: self.vizwin.Show()
+        
         
 ## GUI thread singleton
 gui_thread = GUI_thread()
