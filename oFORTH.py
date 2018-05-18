@@ -683,12 +683,12 @@ class GUI_thread(threading.Thread):
         self.dump = self.debug.Append(wx.ID_EXECUTE,'DUMP\tF12')
         self.main.Bind(wx.EVT_MENU, self.onDump, self.dump)
         ## debug/vocabulary
-        self.vocabulary = self.debug.Append(wx.ID_ANY,'&Vocabulary',kind=wx.ITEM_CHECK)
-        self.menubar.Check(self.vocabulary.GetId(),True) ; self.ToggleVocabulary(None)
+        self.vocabulary = self.debug.Append(wx.ID_ANY,'&Vocabulary\tF10',kind=wx.ITEM_CHECK)
+#         self.menubar.Check(self.vocabulary.GetId(),True) ; self.ToggleVocabulary(None)
         self.main.Bind(wx.EVT_MENU,self.ToggleVocabulary,self.vocabulary)
         ## debug/stack
-        self.stack = self.debug.Append(wx.ID_ANY,'&Stack',kind=wx.ITEM_CHECK)
-        self.menubar.Check(self.stack.GetId(),True) ; self.ToggleStack(None)
+        self.stack = self.debug.Append(wx.ID_ANY,'&Stack\tF9',kind=wx.ITEM_CHECK)
+#         self.menubar.Check(self.stack.GetId(),True) ; self.ToggleStack(None)
         self.main.Bind(wx.EVT_MENU, self.ToggleStack, self.stack)
         ## help menu
         self.help = wx.Menu() ; self.menubar.Append(self.help,'&Help')
@@ -779,9 +779,10 @@ import pickle
 
 if __name__ == '__main__':
     # pickle
-    W = pickle.load(open(sys.argv[0]+'.image'))
+    try: W = pickle.load(open(sys.argv[0]+'.image'))
+    except IOError: pass
     # start
-    gui_thread.start()
+    gui_thread.start() ; gui_thread.onDump(None)
     cmd_thread.start()
     gui_thread.join()
     ## stop command processing thread
