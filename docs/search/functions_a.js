@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['semicolon',['semicolon',['../group__interp.html#ga87f0a3c7dab755bc654b298d1d2d81a0',1,'oFORTH']]],
-  ['setupeditor',['SetupEditor',['../group__nest.html#gada1ffaa901460d63b9337f51ec3528dd',1,'oFORTH::GUI_thread']]],
-  ['setupmenu',['SetupMenu',['../group__nest.html#ga72767c1a8bce819cdc1ba8be2b0e2af2',1,'oFORTH::GUI_thread']]],
-  ['swap',['swap',['../group__nest.html#gab05017b50ff66c62c2cd6511cf4f99a7',1,'oFORTH.Object.swap()'],['../group__fvmstack.html#gaf1b573353a7e24d6c66171c7da9f244a',1,'oFORTH.SWAP()']]]
+  ['semicolon',['semicolon',['../group__interp.html#gad9d6d9ab74d22a47c52208fcef82ce3b',1,'oFORTH']]],
+  ['setupeditor',['SetupEditor',['../group__nest.html#gadb823b9c2beb80f7cfd4481d61bdb243',1,'oFORTH::GUI_thread']]],
+  ['setupmenu',['SetupMenu',['../group__nest.html#ga25ffdcdc61c8dc6976a452c19ff34c07',1,'oFORTH::GUI_thread']]],
+  ['swap',['swap',['../group__nest.html#ga7af5e5897ba81f397c0541acc7575520',1,'oFORTH.Object.swap()'],['../group__fvmstack.html#ga2e597a86fe736ac395909a19962e272d',1,'oFORTH.SWAP()']]]
 ];

@@ -23,7 +23,7 @@ $(PDF): doc/manual.pdf
 	cp $< $@
 TEX = doc/*.tex doc/core/*.tex doc/oForth/*.tex doc/algo/*.tex doc/dyna/*.tex
 TEX += doc/micro/*.tex doc/meta/* doc/model/*.tex doc/plan/*.tex doc/web/*.tex
-TEX += doc/game/*.tex doc/js/* doc/plc/*.tex doc/cpp/*.tex
+TEX += doc/game/*.tex doc/js/* doc/plc/*.tex doc/cpp/*.tex doc/GUI/*.tex
 TEX += doc/img/*
 doc/manual.pdf: $(TEX) doc/Makefile doc/*.sty
 	cd doc ; $(MAKE)

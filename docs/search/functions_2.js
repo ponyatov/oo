@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['dis',['dis',['../group__debug.html#ga009ce0207ceefc0960899f616bd9a033',1,'oFORTH']]],
-  ['drop',['drop',['../group__nest.html#gad2501b19e83efee8077fc7af01d4d1c6',1,'oFORTH.Object.drop()'],['../group__fvmstack.html#ga5fd0dde5e0211e8296ac788fe33221f4',1,'oFORTH.DROP()']]],
-  ['dropall',['DropAll',['../group__debug.html#gaed351fdf16877cfe4d0f1eebb1b6254d',1,'oFORTH']]],
-  ['dump',['dump',['../group__dump.html#ga3ecbc19ae0cc7a421fa006280e3ee7c0',1,'oFORTH::Object']]],
-  ['dumpfvm',['DumpFVM',['../group__debug.html#ga1db5ba91f0d63cf0b8d5d1db666cc1f4',1,'oFORTH']]],
-  ['dumpnest',['dumpnest',['../group__dump.html#ga2fd48a11ed262b68da075df787e78c1d',1,'oFORTH.Object.dumpnest()'],['../group__nest.html#gab336215c26c5cc1896238049cffc442b',1,'oFORTH.Queue.dumpnest()']]],
-  ['dumpstack',['DumpStack',['../group__debug.html#ga1a7286df73573184453bd316a6cb1564',1,'oFORTH']]],
-  ['dup',['dup',['../group__nest.html#gaf37ac671bca26bd95e2aff77472bd923',1,'oFORTH.Object.dup()'],['../group__fvmstack.html#ga1f7f5a49d61ed1882fdfad1640ce0b68',1,'oFORTH.DUP()']]]
+  ['dis',['dis',['../group__debug.html#ga2371cef491138df872e519e4c4634bb1',1,'oFORTH']]],
+  ['drop',['drop',['../group__nest.html#ga632900f68759f5afe6e12f4c6977e57c',1,'oFORTH.Object.drop()'],['../group__fvmstack.html#gaee3afe75cf9b3434819924faae1c97c5',1,'oFORTH.DROP()']]],
+  ['dropall',['DropAll',['../group__debug.html#gadc08079e8e7d8a3be591c2e25b025840',1,'oFORTH']]],
+  ['dump',['dump',['../group__dump.html#ga7ce002bf2993aaaf5b1d33b08e9cc644',1,'oFORTH::Object']]],
+  ['dumpfvm',['DumpFVM',['../group__debug.html#gaafe633a94c29e53948eaa67eb705995c',1,'oFORTH']]],
+  ['dumpnest',['dumpnest',['../group__dump.html#gacc631aa9e3fe22e8246f18a366042a0c',1,'oFORTH.Object.dumpnest()'],['../group__nest.html#ga25c1b7924c33a72701c651a7e20d718d',1,'oFORTH.Queue.dumpnest()']]],
+  ['dumpstack',['DumpStack',['../group__debug.html#ga0d3e2aa5143baaf87e75cbd231917197',1,'oFORTH']]],
+  ['dup',['dup',['../group__nest.html#ga5ceb61df5aa830ed9bc93146586c91ad',1,'oFORTH.Object.dup()'],['../group__fvmstack.html#ga984c9bd10674479a5b8decd71161dce2',1,'oFORTH.DUP()']]]
 ];
