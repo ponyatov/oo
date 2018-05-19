@@ -5,6 +5,8 @@ import os,sys,time
 
 # wxPython
 import wx,wx.stc
+import wx.lib.floatcanvas.NavCanvas as NavCanvas
+
 
 # we'll use threaded VM/GUI/HTTP to avoid lockups and system falls
 import threading
@@ -566,6 +568,7 @@ def INTERPRET(SRC=''):
             EXECUTE()                       # run found callable object
         else:
             COMPILE << D.pop()              # compile
+    gui_thread.onDump(None)
 
 ## @test empty script
 def test_INTERPRET_empty():
@@ -655,10 +658,14 @@ class GUI_thread(threading.Thread):
         self.app = wx.App()
         ## main window
         self.main = wx.Frame(None,wx.ID_ANY,str(sys.argv))
+        ## vocabulary/stack dump windows
+        self.SetupDumpers()
         ## menu
         self.SetupMenu()
         ## editor area
         self.SetupEditor()
+        ## vizualization
+        self.SetupCanvas()
     ## condifure menu
     def SetupMenu(self):
         ## menu bar
@@ -679,11 +686,24 @@ class GUI_thread(threading.Thread):
         ## debug/dump
         self.dump = self.debug.Append(wx.ID_EXECUTE,'DUMP\tF12')
         self.main.Bind(wx.EVT_MENU, self.onDump, self.dump)
+        ## debug/vocabulary
+        self.vocabulary = self.debug.Append(wx.ID_ANY,'&Vocabulary\tF10',kind=wx.ITEM_CHECK)
+#         self.menubar.Check(self.vocabulary.GetId(),True) ; self.ToggleVocabulary(None)
+        self.main.Bind(wx.EVT_MENU,self.ToggleVocabulary,self.vocabulary)
+        ## debug/stack
+        self.stack = self.debug.Append(wx.ID_ANY,'&Stack\tF9',kind=wx.ITEM_CHECK)
+#         self.menubar.Check(self.stack.GetId(),True) ; self.ToggleStack(None)
+        self.main.Bind(wx.EVT_MENU, self.ToggleStack, self.stack)
+        ## viz menu
+        self.vizmenu = wx.Menu() ; self.menubar.Append(self.vizmenu,'&Viz')
+        self.canvasmenu = self.vizmenu.Append(wx.ID_ANY,'&Canvas\tF8',kind=wx.ITEM_CHECK)
+        self.main.Bind(wx.EVT_MENU,self.ToggleCanvas, self.canvasmenu)
         ## help menu
         self.help = wx.Menu() ; self.menubar.Append(self.help,'&Help')
         ## help/about
         self.about = self.help.Append(wx.ID_ABOUT,'&About\tF1')
         self.main.Bind(wx.EVT_MENU, self.onAbout, self.about)
+        
     ## configure editor
     def SetupEditor(self):
         ## editor: use StyledText widget with rich syntax coloring
@@ -693,6 +713,7 @@ class GUI_thread(threading.Thread):
         W,H = self.main.GetClientSize()
         self.editor.StyleSetFont(wx.stc.STC_STYLE_DEFAULT, \
             wx.Font(H>>4, wx.FONTFAMILY_MODERN, wx.NORMAL, wx.NORMAL))
+        
     ## reopen file in editor
     def ReOpen(self,e,filename='src.src'):
         ## save used file name
@@ -716,16 +737,56 @@ class GUI_thread(threading.Thread):
         key = e.GetKeyCode() ; ctrl = e.CmdDown() ; shift = e.ShiftDown()
         if key == 13 and ( ctrl or shift ): CMD.push(self.editor.GetSelectedText())
         else: e.Skip()
-    ## dump system state
-    def onDump(self,e): CMD.push('??')
     ## about event handler
     def onAbout(self,e):
         F = open('README.md') ; wx.MessageBox(F.read(166)) ; F.close()
+        
     ## activate GUI elements only on thread start
     ## (interpreter system can run in headless mode)
     def run(self):
         self.main.Show()
         self.app.MainLoop()
+        
+    ## configure dump windows
+    def SetupDumpers(self):
+        # vocabulary
+        ## vocabulary dump window
+        self.dumpvocab = wx.Frame(self.main,wx.ID_ANY,W.head())
+        ## vocabulary widget (generic text editor)
+        self.editvoc = self.dumpvocab.control = wx.stc.StyledTextCtrl(self.dumpvocab)
+        # stack
+        ## data stack dump window
+        self.dumpstack = wx.Frame(self.main,wx.ID_ANY,D.head())
+        ## stack widget (generic text editor)
+        self.editstack = self.dumpstack.control = wx.stc.StyledTextCtrl(self.dumpstack)
+    ## dump system state
+    def onDump(self,e):
+        self.onVocabularyUpdate(e)
+        self.onStackUpdate(e)
+    ## toggle vocabulary window
+    def ToggleVocabulary(self,e):
+        if self.dumpvocab.IsShown(): self.dumpvocab.Hide()
+        else: self.dumpvocab.Show() ; self.onDump(e)
+    ## toggle stack window
+    def ToggleStack(self,e):
+        if self.dumpstack.IsShown(): self.dumpstack.Hide()
+        else: self.dumpstack.Show() ; self.onDump(e)
+    ## update vocabulary window
+    def onVocabularyUpdate(self,e):
+        if self.dumpvocab.IsShown(): self.editvoc.SetValue(str(W))
+    ## update stack window
+    def onStackUpdate(self,e):
+        if self.dumpstack.IsShown(): self.editstack.SetValue(str(D))
+        
+    ## create vizualization
+    def SetupCanvas(self):
+        self.vizwin = wx.Frame(self.main,wx.ID_ANY,'canvas')
+        self.canvas = NavCanvas.NavCanvas(self.vizwin).Canvas
+    ## show/hide canvas window
+    def ToggleCanvas(self,e):
+        if self.vizwin.IsShown(): self.vizwin.Hide()
+        else: self.vizwin.Show()
+        
         
 ## GUI thread singleton
 gui_thread = GUI_thread()
@@ -735,10 +796,16 @@ gui_thread = GUI_thread()
 import pickle
 
 if __name__ == '__main__':
-    gui_thread.start()
+    # pickle
+    try: W = pickle.load(open(sys.argv[0]+'.image'))
+    except IOError: pass
+    # start
+    gui_thread.start() ; gui_thread.onDump(None)
     cmd_thread.start()
     gui_thread.join()
     ## stop command processing thread
     cmd_thread.stop = True
     ## and wait until cmd dispatch tick will be end
     cmd_thread.join()
+    ## pickle
+    pickle.dump(W,open(sys.argv[0]+'.image','w'))

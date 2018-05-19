@@ -52,6 +52,9 @@ var searchData=
   ['test_5fsymbol',['test_Symbol',['../group__symbol.html#ga164f4cd5cab416b421aa41de4e7c2e8d',1,'oFORTH']]],
   ['test_5fvector',['test_Vector',['../group__vector.html#ga2777bbae8f57a904dff37c2652a99268',1,'oFORTH']]],
   ['test_5fvector_5fexecute',['test_Vector_execute',['../group__vector.html#ga021c7ab2715254d039101333fdc2779f',1,'oFORTH']]],
+  ['togglecanvas',['ToggleCanvas',['../group__nest.html#ga1ab76efa0c286379a7abe0531242b2c5',1,'oFORTH::GUI_thread']]],
+  ['togglestack',['ToggleStack',['../group__nest.html#ga9a1881d757af68432b07875e03eb5f3f',1,'oFORTH::GUI_thread']]],
+  ['togglevocabulary',['ToggleVocabulary',['../group__nest.html#gaea7540986d812b4f291a895d862814d1',1,'oFORTH::GUI_thread']]],
   ['tokens',['tokens',['../group__ply.html#ga4bd79bb3809dcbb03678e7110a66f3b0',1,'oFORTH']]],
   ['top',['top',['../group__nest.html#ga7e7c7fbf351d3d34a50a8aa24a8ca6c5',1,'oFORTH::Object']]]
 ];
